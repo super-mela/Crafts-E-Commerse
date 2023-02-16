@@ -7,10 +7,6 @@ import Product from "../../../components/Product/Product";
 import SectionHeader from "../../../components/SectionHeader/SectionHeader";
 
 const LatestDiscounts = () => {
-  useEffect(() => {
-    const result = axios.get("/discounts")
-    console.log(result)
-  }, [])
   const {
     isLoading,
     error,
