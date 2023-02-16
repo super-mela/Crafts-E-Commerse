@@ -1,0 +1,113 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+html {
+  scroll-behavior: smooth;
+}
+
+.component {
+  @apply lg:px-10 lg:py-1;
+}
+
+.icon {
+  @apply w-5 h-5 cursor-pointer min-w-max;
+}
+
+.sidebarMenu {
+  @apply border w-full py-1 focus:bg-primary focus:text-white;
+}
+.section {
+  @apply lg:py-5 pb-2;
+}
+.sub-section {
+  @apply lg:px-10 lg:py-5 px-2 py-3;
+}
+
+.tori-btn-primary {
+  @apply bg-primary text-white rounded-full px-3 py-2 text-sm border border-primary hover:bg-white hover:text-primary transition-colors delay-[50ms] font-bold cursor-pointer;
+}
+.tori-btn-secondary {
+  @apply flex items-center gap-1 justify-center bg-primary text-white rounded-md px-3 py-[7px] text-sm border border-primary hover:bg-white hover:text-primary transition-colors delay-[50ms] font-bold cursor-pointer;
+}
+.tori-btn-warning {
+  @apply flex items-center gap-1 justify-center bg-warning text-white rounded-md px-3 py-[7px] text-sm border border-warning hover:bg-white hover:text-warning transition-colors delay-[50ms] font-bold cursor-pointer;
+}
+.tori-btn-accent {
+  @apply flex items-center gap-1 justify-center bg-accent text-white rounded-md px-3 py-[7px] text-sm border border-warning hover:bg-white hover:text-warning transition-colors delay-[50ms] font-bold cursor-pointer;
+}
+.tori-text-neutral {
+  @apply text-[#374151];
+}
+.tori-bg-gray {
+  @apply bg-[#F9FAFB];
+}
+.tori-title {
+  @apply font-bold text-base;
+}
+.price {
+  @apply font-extrabold text-base text-primary;
+}
+.coupon-tag {
+  @apply bg-primary/10 text-primary border-dashed border-primary border rounded-md px-1;
+}
+
+.tori-link {
+  @apply hover:text-primary border-none cursor-pointer flex items-center gap-1 transition-all delay-[50ms] no-underline;
+}
+
+.tori-input {
+  @apply focus:outline-none border px-2 placeholder:text-xs border-black/20 rounded-sm text-black text-sm py-1 w-full;
+}
+
+.tori-input-wrapper {
+  @apply flex items-center border px-2 border-black/20 rounded-sm;
+}
+
+.tori-label {
+  @apply text-sm block text-gray-500;
+}
+
+.dashboard-link {
+  @apply flex hover:bg-[#F9FAFB] p-2 hover:text-primary text-sm font-medium items-center gap-1;
+}
+
+.social-icon {
+  @apply border rounded-full p-2 cursor-pointer flex justify-center items-center text-white transition-all delay-[50ms];
+}
+
+.twitter {
+  @apply bg-[#1DA1F2] hover:bg-white hover:text-[#1DA1F2];
+}
+
+.facebook {
+  @apply bg-[#4867AA] hover:bg-white hover:text-[#4867AA];
+}
+.whatsApp {
+  @apply bg-primary hover:bg-white hover:text-primary;
+}
+.google {
+  @apply bg-[#DD5144] hover:bg-white hover:text-[#DD5144];
+}
+
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: #f1f1f1;
+  border-top-right-radius: 10px;
+  border-bottom-right-radius: 10px;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: #888;
+  border-radius: 10px;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #555;
+}
