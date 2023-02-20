@@ -81,10 +81,73 @@ const getStoredCart = () => {
   return shoppingCart;
 };
 
+/***************************************************************** *
+Local Storage for wishlist
+***************************************************************** */
+
+const addToWishlistDb = (id) => {
+  const wishlistCart = getStoredWishlist();
+
+  // if quantity available increase otherwise add 1 minimum
+
+  if (!wishlistCart[id]) {
+    wishlistCart[id] = 1;
+  }
+  localStorage.setItem("wishlist-cart", JSON.stringify(wishlistCart));
+};
+
+/**
+ * Get the stored cart
+ * If quantity is true then reduce by one
+ * If quantity is false remove the cart from storage
+ * Upload the updated cart
+ * */
+const reduceQuantityFromWishlistDb = (id) => {
+  const wishlistCart = getStoredWishlist();
+
+  // reduce quantity
+  if (wishlistCart[id]) {
+    wishlistCart[id]--;
+    localStorage.setItem("wishlist-cart", JSON.stringify(wishlistCart));
+  }
+  if (wishlistCart[id] === 0) {
+    removeFromWishlistDb(id);
+  }
+};
+
+const removeFromWishlistDb = (id) => {
+  const wishlistCart = getStoredWishlist();
+
+  // Check if the id is in the shopping cart then delete the id and upload the updated cart into storage
+  if (id in wishlistCart) {
+    delete wishlistCart[id];
+    localStorage.setItem("wishlist-cart", JSON.stringify(wishlistCart));
+  }
+};
+
+const deleteWishlistCart = () => {
+  localStorage.removeItem("wishlist-cart");
+};
+
+const getStoredWishlist = () => {
+  let wishlistCart = {};
+  const storedCart = localStorage.getItem("wishlist-cart");
+  if (storedCart) {
+    wishlistCart = JSON.parse(storedCart);
+  }
+
+  return wishlistCart;
+};
+
 export {
   addToDb,
   removeFromDb,
   deleteShoppingCart,
   getStoredCart,
   reduceQuantityFromDb,
+  addToWishlistDb,
+  deleteWishlistCart,
+  getStoredWishlist,
+  reduceQuantityFromWishlistDb,
+  removeFromWishlistDb,
 };

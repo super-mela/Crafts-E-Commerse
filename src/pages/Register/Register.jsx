@@ -120,11 +120,11 @@ const Register = ({ setLoginOrRegister }) => {
               render={({ messages }) => {
                 return messages
                   ? Object.entries(messages).map(([type, message]) => (
-                      <ValidationError
-                        key={type}
-                        message={message}
-                      ></ValidationError>
-                    ))
+                    <ValidationError
+                      key={type}
+                      message={message}
+                    ></ValidationError>
+                  ))
                   : null;
               }}
             />
@@ -153,11 +153,11 @@ const Register = ({ setLoginOrRegister }) => {
               render={({ messages }) => {
                 return messages
                   ? Object.entries(messages).map(([type, message]) => (
-                      <ValidationError
-                        key={type}
-                        message={message}
-                      ></ValidationError>
-                    ))
+                    <ValidationError
+                      key={type}
+                      message={message}
+                    ></ValidationError>
+                  ))
                   : null;
               }}
             />
@@ -208,11 +208,11 @@ const Register = ({ setLoginOrRegister }) => {
               render={({ messages }) => {
                 return messages
                   ? Object.entries(messages).map(([type, message]) => (
-                      <ValidationError
-                        key={type}
-                        message={message}
-                      ></ValidationError>
-                    ))
+                    <ValidationError
+                      key={type}
+                      message={message}
+                    ></ValidationError>
+                  ))
                   : null;
               }}
             />

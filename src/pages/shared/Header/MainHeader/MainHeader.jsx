@@ -8,6 +8,7 @@ import CategoriesDropdown from "../../../../components/CategoriesDropdown/Catego
 import Indicator from "../../../../components/Indicator/Indicator";
 import Logo from "../../../../components/Logo/Logo";
 import { CartContext } from "../../../../Contexts/CartProvider/CartProvider";
+import { WishlistContext } from "../../../../Contexts/WishlistProvider/WishlistProvider";
 import MobileSideBarLayout from "../../../../layouts/MobileSideBarLayout/MobileSideBarLayout";
 import Footer from "../../Footer/Footer";
 import BottomHeader from "../BottomHeader/BottomHeader";
@@ -15,6 +16,8 @@ import TopHeader from "../TopHeader/TopHeader";
 
 const MainHeader = ({ setLoginOrRegister }) => {
   const { numberOfCartItems, refetch } = useContext(CartContext);
+  const { numberOfWishlisttItems, refetchwish } = useContext(WishlistContext);
+
   const navigate = useNavigate();
 
   // Search Handler
@@ -64,7 +67,7 @@ const MainHeader = ({ setLoginOrRegister }) => {
 
           {/* title */}
           <Link to={"/"} className="lg:block hidden ">
-            <Logo></Logo>
+            <Logo />
           </Link>
 
           {/* Search Option */}
@@ -103,9 +106,11 @@ const MainHeader = ({ setLoginOrRegister }) => {
           {/* Navbar icons */}
           {/* wishlist */}
           <div className="flex gap-5 items-center">
-            <div className="indicator">
-              <FaRegHeart className="icon" />
-              <Indicator></Indicator>
+            <div className="indicator" onMouseEnter={() => refetchwish()}>
+              <label htmlFor="wishlist-drawer">
+                <FaRegHeart className="icon" />
+                <Indicator>{numberOfWishlisttItems}</Indicator>
+              </label>
             </div>
 
             {/* cart */}

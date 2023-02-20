@@ -10,11 +10,11 @@ const Home = () => {
   return (
     <div>
       <Helmet>
-        <title>ToriTorkari Bazar - Home</title>
-        <meta name="description" content="An online grocery shop" />
+        <title>Crafts - Home</title>
+        <meta name="description" content="An online gift shop" />
         <meta
           name="keywords"
-          content="Ecommerce, grocery, online shop, vegetables"
+          content="Ecommerce, gift, online shop, vegetables"
         />
       </Helmet>
       <Advertisements />

@@ -44,14 +44,14 @@ const Category = () => {
   return (
     <div className="bg-[#F9FAFB] section">
       <Helmet>
-        <title>ToriTorkari Bazar - Category</title>
+        <title>Crafts Bazar - Category</title>
         <meta
           name="description"
           content="Explore a specific category on the shop"
         />
       </Helmet>
-      <CategoryAds></CategoryAds>
-      <Categories></Categories>
+      <CategoryAds />
+      <Categories />
       <TotalProduct
         refetch={refetch}
         setSort={setSort}

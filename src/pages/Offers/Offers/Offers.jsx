@@ -22,7 +22,7 @@ const Offers = () => {
   return (
     <div>
       <Helmet>
-        <title>ToriTorkari Bazar - Offers</title>
+        <title>Crafts - Offers</title>
         <meta
           name="description"
           content="Explore offers provided by the shop"

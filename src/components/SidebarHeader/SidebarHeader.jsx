@@ -2,6 +2,7 @@ import React from "react";
 import { BsBagCheck } from "react-icons/bs";
 
 const SidebarHeader = ({ children, title, position, drawer }) => {
+  console.log(children)
   return (
     <div
       className={`bg-secondary px-3 py-3 fixed right-0 left-0 top-0 ${position} flex justify-between items-center`}

@@ -73,6 +73,7 @@ const CheckoutForm = ({
   // Handle Order Confirmation
   const handlePlaceOrder = async (data) => {
     setProccessing(true);
+    console.log(!creditPayment)
     if (!creditPayment) {
       placeOrderInDb(data);
     } else {
@@ -150,6 +151,7 @@ const CheckoutForm = ({
     return cart;
   };
   const placeOrderInDb = (data, transId) => {
+    console.log(data)
     const unique_id = uuid();
     setUniqueId(unique_id);
     const orderDetails = {
@@ -190,7 +192,7 @@ const CheckoutForm = ({
         {/* Name */}
         <div className="">
           <label htmlFor="firstname" className="tori-label">
-            First name <Required></Required>
+            First name <Required />
           </label>
           <input
             id="firstname"
@@ -207,18 +209,18 @@ const CheckoutForm = ({
             render={({ messages }) => {
               return messages
                 ? Object.entries(messages).map(([type, message]) => (
-                    <ValidationError
-                      key={type}
-                      message={message}
-                    ></ValidationError>
-                  ))
+                  <ValidationError
+                    key={type}
+                    message={message}
+                  ></ValidationError>
+                ))
                 : null;
             }}
           />
         </div>
         <div className="">
           <label htmlFor="lastname" className="tori-label">
-            Last name <Required></Required>
+            Last name <Required />
           </label>
           <input
             id="lastname"
@@ -235,11 +237,11 @@ const CheckoutForm = ({
             render={({ messages }) => {
               return messages
                 ? Object.entries(messages).map(([type, message]) => (
-                    <ValidationError
-                      key={type}
-                      message={message}
-                    ></ValidationError>
-                  ))
+                  <ValidationError
+                    key={type}
+                    message={message}
+                  ></ValidationError>
+                ))
                 : null;
             }}
           />
@@ -248,7 +250,7 @@ const CheckoutForm = ({
         {/* Email */}
         <div className="">
           <label htmlFor="email" className="tori-label">
-            Email <Required></Required>
+            Email <Required />
           </label>
           <input
             readOnly
@@ -271,11 +273,11 @@ const CheckoutForm = ({
             render={({ messages }) => {
               return messages
                 ? Object.entries(messages).map(([type, message]) => (
-                    <ValidationError
-                      key={type}
-                      message={message}
-                    ></ValidationError>
-                  ))
+                  <ValidationError
+                    key={type}
+                    message={message}
+                  ></ValidationError>
+                ))
                 : null;
             }}
           />
@@ -284,7 +286,7 @@ const CheckoutForm = ({
         {/* Phone */}
         <div className="">
           <label htmlFor="phone" className="tori-label">
-            Phone <Required></Required>
+            Phone <Required />
           </label>
           <input
             id="phone"
@@ -302,11 +304,11 @@ const CheckoutForm = ({
             render={({ messages }) => {
               return messages
                 ? Object.entries(messages).map(([type, message]) => (
-                    <ValidationError
-                      key={type}
-                      message={message}
-                    ></ValidationError>
-                  ))
+                  <ValidationError
+                    key={type}
+                    message={message}
+                  ></ValidationError>
+                ))
                 : null;
             }}
           />
@@ -317,7 +319,7 @@ const CheckoutForm = ({
       <div className="flex flex-col lg:gap-3 gap-y-3">
         <div className="">
           <label htmlFor="address" className="tori-label">
-            Address <Required></Required>
+            Address <Required />
           </label>
           <textarea
             id="address"
@@ -334,11 +336,11 @@ const CheckoutForm = ({
             render={({ messages }) => {
               return messages
                 ? Object.entries(messages).map(([type, message]) => (
-                    <ValidationError
-                      key={type}
-                      message={message}
-                    ></ValidationError>
-                  ))
+                  <ValidationError
+                    key={type}
+                    message={message}
+                  ></ValidationError>
+                ))
                 : null;
             }}
           />
@@ -347,7 +349,7 @@ const CheckoutForm = ({
         <div className="flex justify-between lg:flex-nowrap flex-wrap gap-3">
           <div className="w-full">
             <label htmlFor="city" className="tori-label">
-              City <Required></Required>
+              City <Required />
             </label>
             <input
               id="city"
@@ -364,18 +366,18 @@ const CheckoutForm = ({
               render={({ messages }) => {
                 return messages
                   ? Object.entries(messages).map(([type, message]) => (
-                      <ValidationError
-                        key={type}
-                        message={message}
-                      ></ValidationError>
-                    ))
+                    <ValidationError
+                      key={type}
+                      message={message}
+                    ></ValidationError>
+                  ))
                   : null;
               }}
             />
           </div>
           <div className="w-full">
             <label htmlFor="country" className="tori-label">
-              Country <Required></Required>
+              Country <Required />
             </label>
             <input
               id="country"
@@ -392,18 +394,18 @@ const CheckoutForm = ({
               render={({ messages }) => {
                 return messages
                   ? Object.entries(messages).map(([type, message]) => (
-                      <ValidationError
-                        key={type}
-                        message={message}
-                      ></ValidationError>
-                    ))
+                    <ValidationError
+                      key={type}
+                      message={message}
+                    ></ValidationError>
+                  ))
                   : null;
               }}
             />
           </div>
           <div className="w-full">
             <label htmlFor="zip" className="tori-label">
-              Zip Code <Required></Required>
+              Zip Code <Required />
             </label>
             <input
               id="zip"
@@ -420,11 +422,11 @@ const CheckoutForm = ({
               render={({ messages }) => {
                 return messages
                   ? Object.entries(messages).map(([type, message]) => (
-                      <ValidationError
-                        key={type}
-                        message={message}
-                      ></ValidationError>
-                    ))
+                    <ValidationError
+                      key={type}
+                      message={message}
+                    ></ValidationError>
+                  ))
                   : null;
               }}
             />
@@ -433,7 +435,7 @@ const CheckoutForm = ({
 
         <div className="">
           <label htmlFor="shippingCost" className="tori-label">
-            Shipping Cost <Required></Required>
+            Shipping Cost <Required />
           </label>
 
           <div className="flex justify-between lg:gap-5 gap-2 lg:flex-nowrap flex-wrap">
@@ -495,11 +497,11 @@ const CheckoutForm = ({
             render={({ messages }) => {
               return messages
                 ? Object.entries(messages).map(([type, message]) => (
-                    <ValidationError
-                      key={type}
-                      message={message}
-                    ></ValidationError>
-                  ))
+                  <ValidationError
+                    key={type}
+                    message={message}
+                  ></ValidationError>
+                ))
                 : null;
             }}
           />
@@ -510,7 +512,7 @@ const CheckoutForm = ({
       {creditPayment && (
         <div>
           <label className="tori-label">
-            Card info <Required></Required>
+            Card info <Required />
           </label>
           <div className=" border rounded-md px-2 py-3">
             <CardElement
@@ -584,11 +586,11 @@ const CheckoutForm = ({
           render={({ messages }) => {
             return messages
               ? Object.entries(messages).map(([type, message]) => (
-                  <ValidationError
-                    key={type}
-                    message={message}
-                  ></ValidationError>
-                ))
+                <ValidationError
+                  key={type}
+                  message={message}
+                ></ValidationError>
+              ))
               : null;
           }}
         />
@@ -599,10 +601,14 @@ const CheckoutForm = ({
         <button
           // onClick={() => navigate("/invoice")}
           className="tori-btn-secondary"
-          disabled={!stripe || !clientSecret || processing}
+          // disabled={!stripe || !clientSecret || !processing}
           type="submit"
         >
-          Confirm{processing && <ButtonLoader></ButtonLoader>}
+          {console.log(!stripe)}
+          {console.log(!clientSecret)}
+          {console.log(processing)}
+
+          Confirm{processing && <ButtonLoader />}
         </button>
       </div>
       <SuccessModal

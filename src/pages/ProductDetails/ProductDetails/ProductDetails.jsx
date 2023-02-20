@@ -29,7 +29,7 @@ const ProductDetails = () => {
   return (
     <div className="bg-[#F9FAFB] text-black sub-section">
       <Helmet>
-        <title>ToriTorkari Bazar - Product Details</title>
+        <title>Crafts - Product Details</title>
         <meta name="description" content="Explore details of a product" />
       </Helmet>
       {/* Bread Cumbs */}

@@ -13,7 +13,7 @@ const CategoryAd = ({ ad: { title, image } }) => {
         <h3 className="text-2xl">{title}</h3>
         <small className="text-xs leading-none"> Weekend Discount Offer</small>
 
-        <Link className="tori-btn-primary mt-3">Shop Now</Link>
+        <Link className="tori-btn-primary mt-3">Order Now</Link>
       </div>
     </div>
   );

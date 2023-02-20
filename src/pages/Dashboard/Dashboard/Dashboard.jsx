@@ -26,7 +26,7 @@ const Dashboard = () => {
   return (
     <div className="bg-white w-full flex flex-col gap-5 p-5">
       <Helmet>
-        <title>ToriTorkari Bazar - Dashboard</title>
+        <title>Crafts - Dashboard</title>
         <meta name="description" content="User dashboard." />
       </Helmet>
       {isLoading ? (

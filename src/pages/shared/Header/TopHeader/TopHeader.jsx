@@ -3,6 +3,7 @@ import { FaRegUser } from "react-icons/fa";
 import { FiPhoneCall } from "react-icons/fi";
 import { Link } from "react-router-dom";
 import { AuthContext } from "../../../../Contexts/AuthProvider/AuthProvider";
+
 const TopHeader = ({ setLoginOrRegister }) => {
   const { user } = useContext(AuthContext);
   return (

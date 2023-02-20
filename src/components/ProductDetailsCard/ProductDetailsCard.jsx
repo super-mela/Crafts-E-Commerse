@@ -17,6 +17,7 @@ import { BiChevronLeft, BiChevronRight } from "react-icons/bi";
 import { MdOutlineMore } from "react-icons/md";
 import { FreeMode, Thumbs } from "swiper";
 import { CartContext } from "../../Contexts/CartProvider/CartProvider";
+import { WishlistContext } from "../../Contexts/WishlistProvider/WishlistProvider";
 import useGetQuantity from "../../Hooks/useGetQuantity/useGetQuantity";
 import RatingsStars from "../RatingsStars/RatingsStars";
 
@@ -31,6 +32,9 @@ const ProductDetailsCard = ({
   const location = useLocation();
   const [quantity] = useGetQuantity(_id);
   const { reduceQuantityFromCart, addToCart } = useContext(CartContext);
+  const { addToWishlist, removeFromWishlist, checkWishllistExist } = useContext(WishlistContext)
+
+  const wishlistExist = checkWishllistExist(_id);
 
   const handleReduceQuantity = (id, product) => {
     reduceQuantityFromCart(id);
@@ -44,6 +48,24 @@ const ProductDetailsCard = ({
     addToCart(id);
     if (quantity === 0) {
       toast.success(`${product} Added to cart`);
+    }
+  };
+
+
+  const handleRemoveWishlist = (id, product) => {
+    removeFromWishlist(id);
+    if (wishlistExist) {
+      toast.success(`${product} Removed from wishlist`);
+    }
+  };
+
+  const handleAddtoWishlist = (id, product) => {
+    if (!wishlistExist) {
+      addToWishlist(id);
+      toast.success(`${product} Added to Wishlist`);
+    }
+    else {
+      toast.error(`${product} Exist in Wishlist`)
     }
   };
 
@@ -170,11 +192,10 @@ const ProductDetailsCard = ({
           <p>
             Availability:{" "}
             <span
-              className={`${
-                status?.toLowerCase() === "in stock"
-                  ? "text-primary/80"
-                  : "text-warning/80"
-              }`}
+              className={`${status?.toLowerCase() === "in stock"
+                ? "text-primary/80"
+                : "text-warning/80"
+                }`}
             >
               {status}
             </span>
@@ -218,12 +239,22 @@ const ProductDetailsCard = ({
               </div>
             )}
             <div className="">
-              <button
-                data-tip="Add to Wishlist"
-                className="tooltip tooltip-secondary bg-gray-400 text-white hover:bg-secondary hover:text-black p-[8px] rounded-md"
-              >
-                <AiOutlineHeart className="icon" />
-              </button>
+              {wishlistExist ?
+                <button
+                  onClick={() => handleRemoveWishlist(_id, name)}
+                  data-tip="Exist in Wishlist"
+                  className="tooltip tooltip-secondary bg-primary text-white hover:bg-secondary hover:text-black p-[8px] rounded-md"
+                >
+                  <AiOutlineHeart className="icon" />
+                </button>
+                :
+                <button
+                  onClick={() => handleAddtoWishlist(_id, name)}
+                  data-tip="Add to Wishlist"
+                  className="tooltip tooltip-secondary bg-gray-400 text-white hover:bg-secondary hover:text-black p-[8px] rounded-md"
+                >
+                  <AiOutlineHeart className="icon" />
+                </button>}
             </div>
           </div>
         )}

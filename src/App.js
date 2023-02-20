@@ -11,7 +11,7 @@ function App() {
   // }, []);
 
   return (
-    <div className="font-rubik max-w-screen-2xl mx-auto">
+    <div className="font-rubik max-w-screen-3xl mx-auto">
       <RouterProvider router={router}></RouterProvider>
     </div>
   );

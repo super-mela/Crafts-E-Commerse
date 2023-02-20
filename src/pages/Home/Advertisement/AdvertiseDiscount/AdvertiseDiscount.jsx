@@ -6,9 +6,9 @@ const AdvertiseDiscount = () => {
       <div>
         <h1 className="lg:text-xl text-lg text-gray-800">
           <span className="text-primary font-semibold">
-            100% Natural Quality{" "}
+            100% High Quality{" "}
           </span>{" "}
-          Organic Product
+          Uniqe Product
         </h1>
         <p className="text-black/80 lg:text-sm text-xs">
           See Our latest discounted products from here and get a special{" "}
@@ -18,7 +18,7 @@ const AdvertiseDiscount = () => {
         </p>
       </div>
 
-      <button className="tori-btn-primary">Shop Now</button>
+      <button className="tori-btn-primary">Order Now</button>
     </div>
   );
 };

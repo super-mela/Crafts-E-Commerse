@@ -4,6 +4,7 @@ import { AiOutlineHeart } from "react-icons/ai";
 import { BsBagPlusFill } from "react-icons/bs";
 import { HiOutlineEye } from "react-icons/hi";
 import { CartContext } from "../../Contexts/CartProvider/CartProvider";
+import { WishlistContext } from "../../Contexts/WishlistProvider/WishlistProvider";
 import { ProductContext } from "../../Contexts/ProductsProvider/ProductsProvider";
 import useGetQuantity from "../../Hooks/useGetQuantity/useGetQuantity";
 import RatingsStars from "../RatingsStars/RatingsStars";
@@ -15,10 +16,11 @@ const Product = ({
 }) => {
   const { setSelectedProduct } = useContext(ProductContext);
   const { addToCart, reduceQuantityFromCart } = useContext(CartContext);
+  const { addToWishlist, removeFromWishlist, checkWishllistExist } = useContext(WishlistContext)
 
   // const [quantity, setQuantity] = useState(getQuantityOfItem(_id) || 0);
   const [quantity] = useGetQuantity(_id);
-
+  const wishlistExist = checkWishllistExist(_id);
   /**
    * Check quantity of the cart if so then addedToCart must be true
    * If reduce then reduce the state variable along with the storage by calling reduceFromDb
@@ -32,11 +34,28 @@ const Product = ({
     }
   };
 
+  const handleRemoveWishlist = (id, product) => {
+    removeFromWishlist(id);
+    if (wishlistExist) {
+      toast.success(`${product} Removed from wishlist`);
+    }
+  };
+
   // Add to cart
   const handleAddtoCart = (id, product) => {
     addToCart(id);
     if (quantity === 0) {
       toast.success(`${product} Added to cart`);
+    }
+  };
+
+  const handleAddtoWishlist = (id, product) => {
+    if (!wishlistExist) {
+      addToWishlist(id);
+      toast.success(`${product} Added to Wishlist`);
+    }
+    else {
+      toast.error(`${product} Exist in Wishlist`)
     }
   };
 
@@ -71,12 +90,22 @@ const Product = ({
             >
               <HiOutlineEye className="" />
             </label>
-            <button
-              data-tip="Add to Wishlist"
-              className=" transition-all delay-[50ms] hover:bg-primary text-black/60 hover:text-white rounded-full p-1 tooltip tooltip-secondary"
-            >
-              <AiOutlineHeart className="" />
-            </button>
+            {wishlistExist ?
+              <button
+                onClick={() => handleRemoveWishlist(_id, name)}
+                data-tip="Exist in Wishlist"
+                className=" bg-primary text-black/60 text-white rounded-full p-1 tooltip tooltip-secondary"
+              >
+                <AiOutlineHeart className="" />
+              </button>
+              :
+              <button
+                onClick={() => handleAddtoWishlist(_id, name)}
+                data-tip="Add to Wishlist"
+                className=" transition-all delay-[50ms] hover:bg-primary text-black/60 hover:text-white rounded-full p-1 tooltip tooltip-secondary"
+              >
+                <AiOutlineHeart className="" />
+              </button>}
           </div>
         </div>
         {/* end */}

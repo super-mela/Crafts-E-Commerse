@@ -6,7 +6,7 @@ const Blogs = () => {
   return (
     <div>
       <Helmet>
-        <title>ToriTorkari Bazar - Blogs</title>
+        <title>Crafts - Blogs</title>
         <meta name="description" content="Latest news and blog by the shop." />
       </Helmet>
       <ComingSoon></ComingSoon>

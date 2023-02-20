@@ -6,6 +6,7 @@ import NewsLetterModal from "../../components/NewsLetterModal/NewsLetterModal";
 import ProductModal from "../../components/ProductModal/ProductModal";
 import { CartContext } from "../../Contexts/CartProvider/CartProvider";
 import MyCart from "../../pages/MyCart/MyCart/MyCart";
+import MyWishlist from "../../pages/MyWishlist/MyWishlist/MyWishlist";
 import MainHeader from "../../pages/shared/Header/MainHeader/MainHeader";
 
 const Main = () => {
@@ -16,6 +17,7 @@ const Main = () => {
   return (
     <div className="drawer drawer-end ">
       <input id="cart-drawer" type="checkbox" className="drawer-toggle" />
+      <input id="wishlist-drawer" type="checkbox" className="drawer-toggle" />
       <div className="drawer-content">
         <MainHeader setLoginOrRegister={setLoginOrRegister}></MainHeader>
         <LoginModal
@@ -39,6 +41,14 @@ const Main = () => {
         {/* Cart bottom End */}
       </div>
       <div className="drawer-side">
+        <label htmlFor="wishlist-drawer" className="drawer-overlay"></label>
+
+        <div className="menu  bg-white text-gray-700 relative min-h-screen max-h-screen">
+          {/* <!-- Sidebar content here --> */}
+          <MyWishlist />
+        </div>
+      </div>
+      <div className="drawer-side show-drawer">
         <label htmlFor="cart-drawer" className="drawer-overlay"></label>
 
         <div className="menu  bg-white text-gray-700 relative min-h-screen max-h-screen">

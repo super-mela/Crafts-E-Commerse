@@ -32,7 +32,7 @@ const Invoice = () => {
   return (
     <div className="sub-section bg-[#F9FAFB]">
       <Helmet>
-        <title>ToriTorkari Bazar - Invoice</title>
+        <title>Crafts - Invoice</title>
         <meta
           name="description"
           content="Order details with confirmation of the user."

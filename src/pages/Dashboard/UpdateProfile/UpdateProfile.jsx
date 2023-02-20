@@ -58,7 +58,7 @@ const UpdateProfile = () => {
   return (
     <div className="bg-white w-full flex flex-col gap-5 p-5">
       <Helmet>
-        <title>ToriTorkari Bazar - Dashboard</title>
+        <title>Crafts - Dashboard</title>
         <meta
           name="description"
           content="Place order by confirming payment and checkout."
@@ -74,7 +74,7 @@ const UpdateProfile = () => {
         {/* Email */}
         <div>
           <label htmlFor="firstname" className="tori-label">
-            Email <Required></Required>
+            Email <Required />
           </label>
           <div className="tori-input-wrapper">
             <MdEmail />
@@ -91,7 +91,7 @@ const UpdateProfile = () => {
         {/* name */}
         <div>
           <label htmlFor="firstname" className="tori-label">
-            User Name <Required></Required>
+            User Name <Required />
           </label>
           <div className="tori-input-wrapper">
             <MdDriveFileRenameOutline />
@@ -109,7 +109,7 @@ const UpdateProfile = () => {
         {/* Phone */}
         <div>
           <label htmlFor="firstname" className="tori-label">
-            Phone Number <Required></Required>
+            Phone Number <Required />
           </label>
           <div className="tori-input-wrapper">
             <BiPhoneCall />
@@ -128,11 +128,11 @@ const UpdateProfile = () => {
             render={({ messages }) => {
               return messages
                 ? Object.entries(messages).map(([type, message]) => (
-                    <ValidationError
-                      key={type}
-                      message={message}
-                    ></ValidationError>
-                  ))
+                  <ValidationError
+                    key={type}
+                    message={message}
+                  ></ValidationError>
+                ))
                 : null;
             }}
           />
@@ -141,7 +141,7 @@ const UpdateProfile = () => {
         {/* Image */}
         <div>
           <label htmlFor="firstname" className="tori-label">
-            Image <Required></Required>
+            Image <Required />
           </label>
           <div className="tori-input-wrapper">
             <HiOutlinePhotograph />
@@ -160,11 +160,11 @@ const UpdateProfile = () => {
             render={({ messages }) => {
               return messages
                 ? Object.entries(messages).map(([type, message]) => (
-                    <ValidationError
-                      key={type}
-                      message={message}
-                    ></ValidationError>
-                  ))
+                  <ValidationError
+                    key={type}
+                    message={message}
+                  ></ValidationError>
+                ))
                 : null;
             }}
           />

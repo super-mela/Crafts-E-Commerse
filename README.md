@@ -29,7 +29,7 @@
 <h3 align="center">ToriTorkari</h3>
 
   <p align="center">
-    An online grocery shop where all the regular grocery items can be found in a place.
+    An online gift shop where all the regular gift items can be found in a place.
     <br />
     <!-- <a href="https://github.com/github_username/repo_name"><strong>Explore the docs »</strong></a> -->
     <!-- <br /> -->
@@ -74,7 +74,7 @@
 
 [![Product Name Screen Shot][product-screenshot]](https://example.com)
 
-This is an online grocery shop. Where a customer can satisfactorily find all the grocery needs gathered in a place.
+This is an online gift shop. Where a customer can satisfactorily find all the gift needs gathered in a place.
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 

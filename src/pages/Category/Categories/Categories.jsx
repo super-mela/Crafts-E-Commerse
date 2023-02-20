@@ -14,7 +14,6 @@ import Loader from "../../../components/Loader/Loader";
 SwiperCore.use([Pagination, Navigation, Autoplay]);
 
 const Categories = () => {
-  console.log(axios)
   // Fetch Categories
   const {
     isLoading,

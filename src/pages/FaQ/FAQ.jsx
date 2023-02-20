@@ -6,7 +6,7 @@ const FAQ = () => {
   return (
     <div>
       <Helmet>
-        <title>ToriTorkari Bazar - FAQ</title>
+        <title>Crafts - FAQ</title>
         <meta name="description" content="Common QNA." />
       </Helmet>
       <ComingSoon></ComingSoon>

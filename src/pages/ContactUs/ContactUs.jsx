@@ -10,7 +10,7 @@ const ContactUs = () => {
   return (
     <div>
       <Helmet>
-        <title>ToriTorkari Bazar - Contact</title>
+        <title>Crafts - Contact</title>
         <meta
           name="description"
           content="Contact information of the authority."

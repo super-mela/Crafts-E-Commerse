@@ -31,7 +31,7 @@ const ChangePassword = () => {
   return (
     <div className="bg-white w-full flex flex-col gap-5 p-5">
       <Helmet>
-        <title>ToriTorkari Bazar - Dashboard</title>
+        <title>Crafts - Dashboard</title>
         <meta name="description" content="User Dashboard" />
       </Helmet>
       <h4 className="text-base text-gray-700 font-semibold leading-none">
@@ -91,11 +91,11 @@ const ChangePassword = () => {
               render={({ messages }) => {
                 return messages
                   ? Object.entries(messages).map(([type, message]) => (
-                      <ValidationError
-                        key={type}
-                        message={message}
-                      ></ValidationError>
-                    ))
+                    <ValidationError
+                      key={type}
+                      message={message}
+                    ></ValidationError>
+                  ))
                   : null;
               }}
             />

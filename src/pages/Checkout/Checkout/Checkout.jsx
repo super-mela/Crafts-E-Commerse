@@ -30,7 +30,7 @@ const Checkout = () => {
   return (
     <div className="sub-section bg-[#F9FAFB] flex lg:flex-nowrap flex-wrap justify-between gap-5">
       <Helmet>
-        <title>ToriTorkari Bazar - Checkout</title>
+        <title>Crafts - Checkout</title>
         <meta
           name="description"
           content="Place order by confirming payment and checkout."
