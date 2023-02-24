@@ -604,10 +604,6 @@ const CheckoutForm = ({
           // disabled={!stripe || !clientSecret || !processing}
           type="submit"
         >
-          {console.log(!stripe)}
-          {console.log(!clientSecret)}
-          {console.log(processing)}
-
           Confirm{processing && <ButtonLoader />}
         </button>
       </div>
