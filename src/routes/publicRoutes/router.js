@@ -10,7 +10,7 @@ import Dashboard from "../../pages/Dashboard/Dashboard/Dashboard";
 import MyOrders from "../../pages/Dashboard/MyOrders/MyOrders";
 import UpdateProfile from "../../pages/Dashboard/UpdateProfile/UpdateProfile";
 import ErrorPage from "../../pages/ErrorPage/ErrorPage";
-import FAQ from "../../pages/FaQ/FAQ";
+import AboutUs from "../../pages/AboutUs/AboutUs";
 import Home from "../../pages/Home/Home/Home";
 import Invoice from "../../pages/Invoice/Invoice/Invoice";
 import Offers from "../../pages/Offers/Offers/Offers";
@@ -74,8 +74,8 @@ export const router = createBrowserRouter([
         element: <Order />,
       },
       {
-        path: "/faq",
-        element: <FAQ />,
+        path: "/aboutus",
+        element: <AboutUs />,
       },
       {
         path: "/user/dashboard",

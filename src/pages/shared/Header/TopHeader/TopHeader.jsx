@@ -23,8 +23,8 @@ const TopHeader = ({ setLoginOrRegister }) => {
           Contact Us
         </Link>
         |
-        <Link className="tori-link" to={"/faq"}>
-          FAQ
+        <Link className="tori-link" to={"/aboutus"}>
+          About Us
         </Link>
         |
         <Link className="tori-link" to={"/order"}>
