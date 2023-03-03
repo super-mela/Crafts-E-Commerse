@@ -93,7 +93,7 @@ const MainHeader = ({ setLoginOrRegister }) => {
                 <input
                   type="text"
                   name="searchtext"
-                  placeholder="Search Products(e.g. Fish, Oil etc.)"
+                  placeholder="Search Products"
                   className="outline-none px-1 w-full"
                 />
                 <button type="submit" className="lg:px-5 px-1 h-full bg-accent">

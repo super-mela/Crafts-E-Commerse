@@ -3,7 +3,12 @@ import { Helmet } from "react-helmet-async";
 import PageBanner from "../../components/PageBanner/PageBanner";
 import spoon from '../../assets/spoon.png'
 import weddinggift from '../../assets/wedding-gift.png'
-import babyShower from '../../assets/baby-shower.jpeg'
+import image1 from '../../assets/image1.webp'
+import image2 from '../../assets/image2.webp'
+import image3 from '../../assets/image (3).webp'
+import image4 from '../../assets/image (4).webp'
+import image5 from '../../assets/image (5).webp'
+import image6 from '../../assets/image (6).webp'
 
 
 const AboutUs = () => {
@@ -108,153 +113,149 @@ const AboutUs = () => {
           </span>
         </div>
       </div>
-      <div class="bg-gray-50 lg:py-20 py-10">
-        <div class="max-w-screen-2xl mx-auto px-3 sm:px-10">
-          <div class="relative flex flex-col sm:flex-row sm:items-end justify-between mb-8">
-            <div class="max-w-2xl">
-              <h3 class="text-xl lg:text-3xl mb-2 font-serif font-semibold">Our Founder</h3>
-              <p class="mt-2 md:mt-3 font-normal block text-base">
+      {/* Founder of crafts gift */}
+      <div className="bg-gray-50 lg:py-20 py-10 text-gray-800">
+        <div className="max-w-screen-2xl mx-auto px-3 sm:px-10">
+          <div className="relative flex flex-col sm:flex-row sm:items-end justify-between mb-8">
+            <div className="max-w-2xl">
+              <h3 className="text-xl lg:text-3xl mb-2 font-serif font-semibold">Our Founder</h3>
+              <p className="mt-2 md:mt-3 font-normal block text-base">
                 We’re impartial and independent, and every day we create distinctive, world-class reintermediate backend supply programmes.
               </p>
             </div>
           </div>
-          <div class="grid sm:grid-cols-2 gap-x-5 gap-y-8 lg:grid-cols-6 xl:gap-x-8">
-            <div class="max-w-sm">
-              <span style="box-sizing: border-box; display: inline-block; overflow: hidden; width: initial; height: initial; background: none; opacity: 1; border: 0px; margin: 0px; padding: 0px; position: relative; max-width: 100%;">
-                <span style="box-sizing: border-box; display: block; width: initial; height: initial; background: none; opacity: 1; border: 0px; margin: 0px; padding: 0px; max-width: 100%;">
+          <div className="grid sm:grid-cols-2 gap-x-5 gap-y-8 lg:grid-cols-6 xl:gap-x-8">
+            <div className="max-w-sm">
+              <span style={{ boxSizing: 'border-box', display: 'inline-block', overflow: "hidden", width: "initial", height: "initial", background: "none", opacity: 1, border: '0px', margin: '0px', padding: '0px', position: "relative", maxWidth: '100%' }}>
+                <span style={{ boxSizing: 'border-box', display: "block", width: "initial", height: "initial", background: "none", opacity: 1, border: '0px', margin: '0px', padding: '0px', maxWidth: '100%' }}>
                   <img
                     alt=""
                     aria-hidden="true"
                     src="data:image/svg+xml,%3csvg%20xmlns=%27http://www.w3.org/2000/svg%27%20version=%271.1%27%20width=%27420%27%20height=%27420%27/%3e"
-                    style="display: block; max-width: 100%; width: initial; height: initial; background: none; opacity: 1; border: 0px; margin: 0px; padding: 0px;" />
+                    style={{ display: "block", maxWidth: '100%', width: "initial;", height: "initial", background: "none", opacity: 1, border: '0px', margin: '0px', padding: '0px' }} />
                 </span>
                 <img
                   alt="logo"
-                  src="/_next/image?url=%2Fteam%2Fteam-1.jpg&amp;w=1080&amp;q=75"
+                  src={`${image1} `}
                   decoding="async"
                   data-nimg="intrinsic"
-                  class="block rounded-lg"
-                  srcset="/_next/image?url=%2Fteam%2Fteam-1.jpg&amp;w=640&amp;q=75 1x, /_next/image?url=%2Fteam%2Fteam-1.jpg&amp;w=1080&amp;q=75 2x"
-                  style="position: absolute; inset: 0px; box-sizing: border-box; padding: 0px; border: none; margin: auto; display: block; width: 0px; height: 0px; min-width: 100%; max-width: 100%; min-height: 100%; max-height: 100%;" />
+                  className="block rounded-lg"
+                  srcset={`${image1}w=640 q=75 1x, ${image1}w=1080 q=75 2x`}
+                  style={{ position: "absolute", inset: '0px', boxSizing: 'border-box', padding: '0px', border: "none", margin: "auto", display: "block", width: '0px', height: '0px', minWidth: '100%', maxWidth: '100%', minHeight: '100%', maxHeight: '100%' }} />
               </span>
-              <div class="py-4">
-                <h5 class="text-lg font-semibold font-serif">Niamh Shea</h5>
-                <span class="opacity-75 text-sm">Co-founder &amp; Executive</span>
+              <div className="py-4">
+                <h5 className="text-lg font-semibold font-serif">Niamh Shea</h5>
+                <span className="opacity-75 text-sm">Co-founder &amp; Executive</span>
               </div>
             </div>
-            <div class="max-w-sm">
-              <span style="box-sizing: border-box; display: inline-block; overflow: hidden; width: initial; height: initial; background: none; opacity: 1; border: 0px; margin: 0px; padding: 0px; position: relative; max-width: 100%;">
-                <span style="box-sizing: border-box; display: block; width: initial; height: initial; background: none; opacity: 1; border: 0px; margin: 0px; padding: 0px; max-width: 100%;">
+            <div className="max-w-sm">
+              <span style={{ boxSizing: 'border-box', display: 'inline-block', overflow: "hidden", width: "initial", height: "initial", background: "none", opacity: 1, border: '0px', margin: '0px', padding: '0px', position: "relative", maxWidth: '100%' }}>
+                <span style={{ boxSizing: 'border-box', display: "block", width: "initial", height: "initial", background: "none", opacity: 1, border: '0px', margin: '0px', padding: '0px', maxWidth: '100%' }}>
                   <img
                     alt=""
                     aria-hidden="true"
                     src="data:image/svg+xml,%3csvg%20xmlns=%27http://www.w3.org/2000/svg%27%20version=%271.1%27%20width=%27420%27%20height=%27420%27/%3e"
-                    style="display: block; max-width: 100%; width: initial; height: initial; background: none; opacity: 1; border: 0px; margin: 0px; padding: 0px;" />
+                    style={{ display: "block", maxWidth: '100%', width: "initial;", height: "initial", background: "none", opacity: 1, border: '0px', margin: '0px', padding: '0px' }} />
                 </span>
                 <img
                   alt="logo"
-                  src="/_next/image?url=%2Fteam%2Fteam-2.jpg&amp;w=1080&amp;q=75"
+                  src={image2}
                   decoding="async"
                   data-nimg="intrinsic"
-                  class="block rounded-lg"
-                  srcset="/_next/image?url=%2Fteam%2Fteam-2.jpg&amp;w=640&amp;q=75 1x, /_next/image?url=%2Fteam%2Fteam-2.jpg&amp;w=1080&amp;q=75 2x"
-                  style="position: absolute; inset: 0px; box-sizing: border-box; padding: 0px; border: none; margin: auto; display: block; width: 0px; height: 0px; min-width: 100%; max-width: 100%; min-height: 100%; max-height: 100%;" />
+                  className="block rounded-lg"
+                  style={{ position: "absolute", inset: '0px', boxSizing: 'border-box', padding: '0px', border: "none", margin: "auto", display: "block", width: '0px', height: '0px', minWidth: '100%', maxWidth: '100%', minHeight: '100%', maxHeight: '100%' }} />
               </span>
-              <div class="py-4">
-                <h5 class="text-lg font-semibold font-serif">Orla Dwyer</h5>
-                <span class="opacity-75 text-sm">Chief Executive</span>
+              <div className="py-4">
+                <h5 className="text-lg font-semibold font-serif">Orla Dwyer</h5>
+                <span className="opacity-75 text-sm">Chief Executive</span>
               </div>
             </div>
-            <div class="max-w-sm">
-              <span style="box-sizing: border-box; display: inline-block; overflow: hidden; width: initial; height: initial; background: none; opacity: 1; border: 0px; margin: 0px; padding: 0px; position: relative; max-width: 100%;">
-                <span style="box-sizing: border-box; display: block; width: initial; height: initial; background: none; opacity: 1; border: 0px; margin: 0px; padding: 0px; max-width: 100%;">
+            <div className="max-w-sm">
+              <span style={{ boxSizing: 'border-box', display: 'inline-block', overflow: "hidden", width: "initial", height: "initial", background: "none", opacity: 1, border: '0px', margin: '0px', padding: '0px', position: "relative", maxWidth: '100%' }}>
+                <span style={{ boxSizing: 'border-box', display: "block", width: "initial", height: "initial", background: "none", opacity: 1, border: '0px', margin: '0px', padding: '0px', maxWidth: '100%' }}>
                   <img
                     alt=""
                     aria-hidden="true"
                     src="data:image/svg+xml,%3csvg%20xmlns=%27http://www.w3.org/2000/svg%27%20version=%271.1%27%20width=%27420%27%20height=%27420%27/%3e"
-                    style="display: block; max-width: 100%; width: initial; height: initial; background: none; opacity: 1; border: 0px; margin: 0px; padding: 0px;" />
+                    style={{ display: "block", maxWidth: '100%', width: "initial;", height: "initial", background: "none", opacity: 1, border: '0px', margin: '0px', padding: '0px' }} />
                 </span>
                 <img
                   alt="logo"
-                  src="/_next/image?url=%2Fteam%2Fteam-3.jpg&amp;w=1080&amp;q=75"
+                  src={image3}
                   decoding="async"
                   data-nimg="intrinsic"
-                  class="block rounded-lg"
-                  srcset="/_next/image?url=%2Fteam%2Fteam-3.jpg&amp;w=640&amp;q=75 1x, /_next/image?url=%2Fteam%2Fteam-3.jpg&amp;w=1080&amp;q=75 2x"
-                  style="position: absolute; inset: 0px; box-sizing: border-box; padding: 0px; border: none; margin: auto; display: block; width: 0px; height: 0px; min-width: 100%; max-width: 100%; min-height: 100%; max-height: 100%;" />
+                  className="block rounded-lg"
+                  style={{ position: "absolute", inset: '0px', boxSizing: 'border-box', padding: '0px', border: "none", margin: "auto", display: "block", width: '0px', height: '0px', minWidth: '100%', maxWidth: '100%', minHeight: '100%', maxHeight: '100%' }} />
               </span>
-              <div class="py-4">
-                <h5 class="text-lg font-semibold font-serif">Danien James</h5>
-                <span class="opacity-75 text-sm">Co-founder, Chairman</span>
+              <div className="py-4">
+                <h5 className="text-lg font-semibold font-serif">Danien James</h5>
+                <span className="opacity-75 text-sm">Co-founder, Chairman</span>
               </div>
             </div>
-            <div class="max-w-sm">
-              <span style="box-sizing: border-box; display: inline-block; overflow: hidden; width: initial; height: initial; background: none; opacity: 1; border: 0px; margin: 0px; padding: 0px; position: relative; max-width: 100%;">
-                <span style="box-sizing: border-box; display: block; width: initial; height: initial; background: none; opacity: 1; border: 0px; margin: 0px; padding: 0px; max-width: 100%;">
+            <div className="max-w-sm">
+              <span style={{ boxSizing: 'border-box', display: 'inline-block', overflow: "hidden", width: "initial", height: "initial", background: "none", opacity: 1, border: '0px', margin: '0px', padding: '0px', position: "relative", maxWidth: '100%' }}>
+                <span style={{ boxSizing: 'border-box', display: "block", width: "initial", height: "initial", background: "none", opacity: 1, border: '0px', margin: '0px', padding: '0px', maxWidth: '100%' }}>
                   <img
                     alt=""
                     aria-hidden="true"
                     src="data:image/svg+xml,%3csvg%20xmlns=%27http://www.w3.org/2000/svg%27%20version=%271.1%27%20width=%27420%27%20height=%27420%27/%3e"
-                    style="display: block; max-width: 100%; width: initial; height: initial; background: none; opacity: 1; border: 0px; margin: 0px; padding: 0px;" />
+                    style={{ display: "block", maxWidth: '100%', width: "initial;", height: "initial", background: "none", opacity: 1, border: '0px', margin: '0px', padding: '0px' }} />
                 </span>
                 <img
                   alt="logo"
-                  src="/_next/image?url=%2Fteam%2Fteam-4.jpg&amp;w=1080&amp;q=75"
+                  src={image4}
                   decoding="async"
                   data-nimg="intrinsic"
-                  class="block rounded-lg"
-                  srcset="/_next/image?url=%2Fteam%2Fteam-4.jpg&amp;w=640&amp;q=75 1x, /_next/image?url=%2Fteam%2Fteam-4.jpg&amp;w=1080&amp;q=75 2x"
-                  style="position: absolute; inset: 0px; box-sizing: border-box; padding: 0px; border: none; margin: auto; display: block; width: 0px; height: 0px; min-width: 100%; max-width: 100%; min-height: 100%; max-height: 100%;" />
+                  className="block rounded-lg"
+                  style={{ position: "absolute", inset: '0px', boxSizing: 'border-box', padding: '0px', border: "none", margin: "auto", display: "block", width: '0px', height: '0px', minWidth: '100%', maxWidth: '100%', minHeight: '100%', maxHeight: '100%' }} />
               </span>
-              <div class="py-4">
-                <h5 class="text-lg font-semibold font-serif">Dara Frazier</h5>
-                <span class="opacity-75 text-sm">Chief Strategy Officer</span>
+              <div className="py-4">
+                <h5 className="text-lg font-semibold font-serif">Dara Frazier</h5>
+                <span className="opacity-75 text-sm">Chief Strategy Officer</span>
               </div>
             </div>
-            <div class="max-w-sm">
-              <span style="box-sizing: border-box; display: inline-block; overflow: hidden; width: initial; height: initial; background: none; opacity: 1; border: 0px; margin: 0px; padding: 0px; position: relative; max-width: 100%;">
-                <span style="box-sizing: border-box; display: block; width: initial; height: initial; background: none; opacity: 1; border: 0px; margin: 0px; padding: 0px; max-width: 100%;">
+            <div className="max-w-sm">
+              <span style={{ boxSizing: 'border-box', display: 'inline-block', overflow: "hidden", width: "initial", height: "initial", background: "none", opacity: 1, border: '0px', margin: '0px', padding: '0px', position: "relative", maxWidth: '100%' }}>
+                <span style={{ boxSizing: 'border-box', display: "block", width: "initial", height: "initial", background: "none", opacity: 1, border: '0px', margin: '0px', padding: '0px', maxWidth: '100%' }}>
                   <img
                     alt=""
                     aria-hidden="true"
                     src="data:image/svg+xml,%3csvg%20xmlns=%27http://www.w3.org/2000/svg%27%20version=%271.1%27%20width=%27420%27%20height=%27420%27/%3e"
-                    style="display: block; max-width: 100%; width: initial; height: initial; background: none; opacity: 1; border: 0px; margin: 0px; padding: 0px;" />
+                    style={{ display: "block", maxWidth: '100%', width: "initial;", height: "initial", background: "none", opacity: 1, border: '0px', margin: '0px', padding: '0px' }} />
                 </span>
                 <img
                   alt="logo"
-                  src="/_next/image?url=%2Fteam%2Fteam-5.jpg&amp;w=1080&amp;q=75"
+                  src={image5}
                   decoding="async"
                   data-nimg="intrinsic"
-                  class="block rounded-lg"
-                  srcset="/_next/image?url=%2Fteam%2Fteam-5.jpg&amp;w=640&amp;q=75 1x, /_next/image?url=%2Fteam%2Fteam-5.jpg&amp;w=1080&amp;q=75 2x"
-                  style="position: absolute; inset: 0px; box-sizing: border-box; padding: 0px; border: none; margin: auto; display: block; width: 0px; height: 0px; min-width: 100%; max-width: 100%; min-height: 100%; max-height: 100%;" />
+                  className="block rounded-lg"
+                  style={{ position: "absolute", inset: '0px', boxSizing: 'border-box', padding: '0px', border: "none", margin: "auto", display: "block", width: '0px', height: '0px', minWidth: '100%', maxWidth: '100%', minHeight: '100%', maxHeight: '100%' }} />
               </span>
-              <div class="py-4">
-                <h5 class="text-lg font-semibold font-serif">Glenda Arvidson</h5>
-                <span class="opacity-75 text-sm">HR Officer</span>
+              <div className="py-4">
+                <h5 className="text-lg font-semibold font-serif">Glenda Arvidson</h5>
+                <span className="opacity-75 text-sm">HR Officer</span>
               </div>
             </div>
-            <div class="max-w-sm">
-              <span style="box-sizing: border-box; display: inline-block; overflow: hidden; width: initial; height: initial; background: none; opacity: 1; border: 0px; margin: 0px; padding: 0px; position: relative; max-width: 100%;">
-                <span style="box-sizing: border-box; display: block; width: initial; height: initial; background: none; opacity: 1; border: 0px; margin: 0px; padding: 0px; max-width: 100%;">
+            <div className="max-w-sm">
+              <span style={{ boxSizing: 'border-box', display: 'inline-block', overflow: "hidden", width: "initial", height: "initial", background: "none", opacity: 1, border: '0px', margin: '0px', padding: '0px', position: "relative", maxWidth: '100%' }}>
+                <span style={{ boxSizing: 'border-box', display: "block", width: "initial", height: "initial", background: "none", opacity: 1, border: '0px', margin: '0px', padding: '0px', maxWidth: '100%' }}>
                   <img
                     alt=""
                     aria-hidden="true"
                     src="data:image/svg+xml,%3csvg%20xmlns=%27http://www.w3.org/2000/svg%27%20version=%271.1%27%20width=%27420%27%20height=%27420%27/%3e"
-                    style="display: block; max-width: 100%; width: initial; height: initial; background: none; opacity: 1; border: 0px; margin: 0px; padding: 0px;" />
+                    style={{ display: "block", maxWidth: '100%', width: "initial;", height: "initial", background: "none", opacity: 1, border: '0px', margin: '0px', padding: '0px' }} />
                 </span>
                 <img
                   alt="logo"
-                  src="/_next/image?url=%2Fteam%2Fteam-6.jpg&amp;w=1080&amp;q=75"
+                  src={image6}
                   decoding="async"
                   data-nimg="intrinsic"
-                  class="block rounded-lg"
-                  srcset="/_next/image?url=%2Fteam%2Fteam-6.jpg&amp;w=640&amp;q=75 1x, /_next/image?url=%2Fteam%2Fteam-6.jpg&amp;w=1080&amp;q=75 2x"
-                  style="position: absolute; inset: 0px; box-sizing: border-box; padding: 0px; border: none; margin: auto; display: block; width: 0px; height: 0px; min-width: 100%; max-width: 100%; min-height: 100%; max-height: 100%;" />
+                  className="block rounded-lg"
+                  style={{ position: "absolute", inset: '0px', boxSizing: 'border-box', padding: '0px', border: "none", margin: "auto", display: "block", width: '0px', height: '0px', minWidth: '100%', maxWidth: '100%', minHeight: '100%', maxHeight: '100%' }} />
               </span>
-              <div class="py-4">
-                <h5 class="text-lg font-semibold font-serif">Melvin Davis</h5>
-                <span class="opacity-75 text-sm">Lead Developer</span>
+              <div className="py-4">
+                <h5 className="text-lg font-semibold font-serif">Melvin Davis</h5>
+                <span className="opacity-75 text-sm">Lead Developer</span>
               </div>
             </div>
           </div>
