@@ -29,12 +29,12 @@ const BottomHeader = () => {
           Offer
           <span className="live absolute w-2 h-2 rounded-full -top-1 -right-1 "></span>
         </NavLink>
-        <NavLink>Sell</NavLink>
-        <NavLink>Customer Service</NavLink>
+        {/* <NavLink>Sell</NavLink>
+        <NavLink>Customer Service</NavLink> */}
       </div>
       <div className="flex gap-5">
-        <NavLink>Privacy Policy</NavLink>
-        <NavLink>Terms & Conditions</NavLink>
+        <NavLink to={"/privacy-policy"}>Privacy Policy</NavLink>
+        <NavLink to={'/terms-and-condition'}>Terms & Conditions</NavLink>
       </div>
     </div>
   );

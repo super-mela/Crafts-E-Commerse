@@ -1,7 +1,7 @@
 import { createBrowserRouter } from "react-router-dom";
 import DashboardLayout from "../../layouts/DashboardLayout/DashboardLayout";
 import Main from "../../layouts/Main/Main";
-import Blogs from "../../pages/Blogs/Blogs";
+import Order from "../../pages/Orders/Order";
 import Category from "../../pages/Category/Category/Category";
 import Checkout from "../../pages/Checkout/Checkout/Checkout";
 import ContactUs from "../../pages/ContactUs/ContactUs";
@@ -14,9 +14,11 @@ import FAQ from "../../pages/FaQ/FAQ";
 import Home from "../../pages/Home/Home/Home";
 import Invoice from "../../pages/Invoice/Invoice/Invoice";
 import Offers from "../../pages/Offers/Offers/Offers";
+import PrivacyPolicy from "../../pages/privacyPolicy/PrivacyPolicy";
 import ProductDetails from "../../pages/ProductDetails/ProductDetails/ProductDetails";
 import SearchResult from "../../pages/SearchResult/SearchResult";
 import PrivateRoutes from "../PrivateRoutes/PrivateRoutes";
+import TermsCondition from "../../pages/termscondition/TermsCondition";
 export const router = createBrowserRouter([
   {
     path: "/",
@@ -34,6 +36,14 @@ export const router = createBrowserRouter([
       {
         path: "/offers",
         element: <Offers />,
+      },
+      {
+        path: "/privacy-policy",
+        element: <PrivacyPolicy />,
+      },
+      {
+        path: "/terms-and-condition",
+        element: <TermsCondition />,
       },
       {
         path: "/checkout",
@@ -60,8 +70,8 @@ export const router = createBrowserRouter([
         element: <ContactUs />,
       },
       {
-        path: "/blog",
-        element: <Blogs />,
+        path: "/order",
+        element: <Order />,
       },
       {
         path: "/faq",

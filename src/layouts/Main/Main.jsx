@@ -25,7 +25,7 @@ const Main = () => {
           setLoginOrRegister={setLoginOrRegister}
         ></LoginModal>
         <ProductModal />
-        <NewsLetterModal />
+        {/* <NewsLetterModal /> */}
         {/* Cart On Bottom */}
         <label
           className="lg:block hidden bg-primary absolute bottom-5 p-3 rounded-sm shadow-lg cursor-pointer right-5"

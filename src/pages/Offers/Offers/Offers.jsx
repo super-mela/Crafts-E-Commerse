@@ -28,7 +28,7 @@ const Offers = () => {
           content="Explore offers provided by the shop"
         />
       </Helmet>
-      <PageBanner></PageBanner>
+      <PageBanner title={"Mega Offer"} />
 
       <div className="lg:px-10 py-16 grid lg:grid-cols-2 lg:gap-x-10 gap-y-5 bg-[#F9FAFB]">
         {isLoading ? (

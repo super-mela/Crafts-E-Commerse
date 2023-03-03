@@ -15,7 +15,7 @@ const CartProvider = ({ children }) => {
   const cartSize = Object.values(getStoredCart()).reduce((a, b) => a + b, 0);
   const [numberOfCartItems, setNumberOfCartItems] = useState(cartSize);
   const successModal = useRef();
-
+  console.log(getStoredCart())
   const {
     isLoading,
     error,

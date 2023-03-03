@@ -13,7 +13,7 @@ const TopHeader = ({ setLoginOrRegister }) => {
         <p>
           <FiPhoneCall className="inline mr-1" /> We are available 24/7, Need
           Help? Call Us:{" "}
-          <span className="text-primary font-bold">+880 1876 097120</span>
+          <span className="text-primary font-bold">+880 00000000</span>
         </p>
       </div>
 
@@ -27,8 +27,8 @@ const TopHeader = ({ setLoginOrRegister }) => {
           FAQ
         </Link>
         |
-        <Link className="tori-link" to={"/blog"}>
-          Blog
+        <Link className="tori-link" to={"/order"}>
+          Order
         </Link>
         |{" "}
         {user && user.uid ? (

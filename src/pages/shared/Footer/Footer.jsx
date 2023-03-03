@@ -20,9 +20,9 @@ const Footer = () => {
             <p>
               987 Andre Plain Suite High Street 838, <br /> Lake Hestertown, USA{" "}
               <br />
-              Tell: 02.356.1666
+              Tell: 02.356.1111
               <br />
-              Email: ccruidk@test.com
+              Email: craftsgift@test.com
             </p>
           </div>
         </div>
@@ -91,7 +91,7 @@ const Footer = () => {
           <div className="text-center flex flex-col justify-center items-center">
             <p>Call Us Today!</p>
             <span className="text-primary font-extrabold text-xl">
-              +880 1571763498
+              +123 000000000
             </span>
           </div>
           <div className="flex items-center lg:justify-end justify-center">
@@ -105,8 +105,8 @@ const Footer = () => {
 
         <div className="text-center pt-5 text-black/90 text-sm">
           <p>
-            Copyright 2022 @{" "}
-            <span className="text-primary">Dabasish Das Joy</span>, All rights
+            Copyright 2023 @{" "}
+            <span className="text-primary">Z-angel</span>, All rights
             reserved.
           </p>
         </div>

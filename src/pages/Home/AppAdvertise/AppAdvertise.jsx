@@ -6,13 +6,13 @@ const AppAdvertise = () => {
       <div className="w-full rounded-md bg-primary lg:p-10 p-3 text-black">
         <div className="bg-white grid lg:grid-cols-6 rounded-md ">
           <div className="lg:col-span-4 p-7 lg:order-1 order-2 flex flex-col gap-2">
-            <span className="lg:text-xl">Organic Products and Food</span>
+            <span className="lg:text-xl">Best Quality product and custom orders</span>
             <h1 className="font-bold  lg:text-2xl text-xl">
               Quick Delivery to <span className="text-primary">Your Home</span>
             </h1>
             <p className="lg:text-sm text-xs">
               There are many products you will find our shop, Choose your daily
-              necessary product from our KachaBazar shop and get some special
+              necessary product from our Crafts Gift shop and get some special
               offer. See Our latest discounted products from here and get a
               special discount.
             </p>

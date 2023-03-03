@@ -1,22 +1,22 @@
 import React from "react";
 import CategoryAd from "../CategoryAd/CategoryAd";
+import kids from "../../../assets/kid-gift.png";
+import wedding from "../../../assets/Gift-giving.png";
+import retirement from "../../../assets/retirement-gifts.jpg"
 
 const CategoryAds = () => {
   const ads = [
     {
-      title: "Fresh & Natural",
-      image:
-        "https://kachabazar-store.vercel.app/_next/image?url=%2Fcta%2Fcta-bg-1.jpg&w=1920&q=75",
+      title: "Kids Gift",
+      image: kids,
     },
     {
-      title: "Fish & Meat",
-      image:
-        "https://kachabazar-store.vercel.app/_next/image?url=%2Fcta%2Fcta-bg-2.jpg&w=1920&q=75",
+      title: "Wedding Gift",
+      image: wedding,
     },
     {
-      title: "Bread & Bakery",
-      image:
-        "https://kachabazar-store.vercel.app/_next/image?url=%2Fcta%2Fcta-bg-3.jpg&w=1920&q=75",
+      title: "Retirement Gift",
+      image: retirement,
     },
   ];
   return (

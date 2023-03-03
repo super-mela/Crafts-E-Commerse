@@ -1,5 +1,6 @@
 import React from "react";
 import meat from "../../../../assets/wedding.png";
+import { Link } from "react-router-dom";
 
 const AdvertiseProduct = () => {
   return (
@@ -13,7 +14,7 @@ const AdvertiseProduct = () => {
           quisquam?
         </p>
         <div className="mt-2">
-          <button className="tori-btn-secondary">Order Now</button>
+          <Link className="tori-btn-secondary" to={"/order"}>Order Now</Link>
         </div>
       </div>
       <div className="lg:col-span-2 flex items-center lg:order-1 order-0">

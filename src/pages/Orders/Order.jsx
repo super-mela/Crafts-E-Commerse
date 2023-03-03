@@ -2,16 +2,16 @@ import React from "react";
 import { Helmet } from "react-helmet-async";
 import ComingSoon from "../../components/ComingSoon/ComingSoon";
 
-const Blogs = () => {
+const Order = () => {
   return (
     <div>
       <Helmet>
-        <title>Crafts - Blogs</title>
-        <meta name="description" content="Latest news and blog by the shop." />
+        <title>Crafts - Order</title>
+        <meta name="description" content="Custom Order of Craft Gifts." />
       </Helmet>
       <ComingSoon></ComingSoon>
     </div>
   );
 };
 
-export default Blogs;
+export default Order;

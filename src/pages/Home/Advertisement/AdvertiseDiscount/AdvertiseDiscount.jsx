@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 const AdvertiseDiscount = () => {
   return (
@@ -18,7 +19,7 @@ const AdvertiseDiscount = () => {
         </p>
       </div>
 
-      <button className="tori-btn-primary">Order Now</button>
+      <Link className="tori-btn-primary" to={"/order"}>Order Now</Link>
     </div>
   );
 };
