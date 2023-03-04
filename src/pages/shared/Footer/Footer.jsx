@@ -28,23 +28,21 @@ const Footer = () => {
         </div>
         <div>
           <span className="footer-title text-gray-700">Services</span>
-          <Link className="tori-link link-hover">Branding</Link>
-          <Link className="tori-link link-hover">Design</Link>
-          <Link className="tori-link link-hover">Marketing</Link>
-          <Link className="tori-link link-hover">Advertisement</Link>
+          <Link className="tori-link link-hover" to={"/order"}>Branding</Link>
+          <Link className="tori-link link-hover" to={"/order"}>Design</Link>
+          <Link className="tori-link link-hover" to={"/order"}>Marketing</Link>
+          <Link className="tori-link link-hover" to={"/order"}>Advertisement</Link>
         </div>
         <div>
           <span className="footer-title text-gray-700">Company</span>
-          <Link className="tori-link link-hover">About us</Link>
-          <Link className="tori-link link-hover">Contact</Link>
-          <Link className="tori-link link-hover">Jobs</Link>
-          <Link className="tori-link link-hover">Press kit</Link>
+          <Link className="tori-link link-hover" to={"/aboutus"}>About us</Link>
+          <Link className="tori-link link-hover" to={"/contact"}>Contact</Link>
         </div>
         <div>
           <span className="footer-title text-gray-700">Legal</span>
-          <Link className="tori-link link-hover">Terms of use</Link>
-          <Link className="tori-link link-hover">Privacy policy</Link>
-          <Link className="tori-link link-hover">Cookie policy</Link>
+          <Link className="tori-link link-hover" to={"/terms-and-condition"}>Terms of use</Link>
+          <Link className="tori-link link-hover" to={"/privacy-policy"}>Privacy policy</Link>
+          {/* <Link className="tori-link link-hover">Cookie policy</Link> */}
         </div>
       </footer>
       <div className="border-t-[1px] w-[50%] mx-auto"></div>

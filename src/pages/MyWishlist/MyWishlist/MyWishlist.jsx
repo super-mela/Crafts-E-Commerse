@@ -15,7 +15,6 @@ const MyWishlist = () => {
   const { wishlistItems, isLoading } = useContext(WishlistContext);
   const [subTotal] = useGetSubTotal();
   const navigate = useNavigate();
-  console.log(wishlistItems)
   return (
     <>
       {/* Top section */}
@@ -42,29 +41,7 @@ const MyWishlist = () => {
       </div>
       {/* Cart Items End */}
 
-      {/* checkout */}
-      {wishlistItems?.length && (
-        <div className="px-2 flex justify-center items-center fixed right-0 left-0 bottom-2">
-          <label
-            onClick={() => navigate("/checkout", { state: { from: location } })}
-            htmlFor="wishlist-drawer"
-            // to={"/checkout"}
-            // state={{ from: location }}
-            className="btn-primary cursor-pointer text-white w-full rounded-sm p-2 flex items-center justify-between"
-          >
-            <div className="bg-white text-primary font-bold px-2 rounded-sm">
-              {subTotal ? (
-                `$ ${subTotal.toFixed(2)}`
-              ) : (
-                <span className="text-xs">Calculating...</span>
-              )}
-            </div>
-            <span className="flex items-center gap-1 uppercase text-sm font-semibold">
-              Checkout <AiOutlineArrowRight />
-            </span>
-          </label>
-        </div>
-      )}
+
     </>
   );
 };
