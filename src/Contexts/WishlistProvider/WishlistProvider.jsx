@@ -1,6 +1,7 @@
 import { useQuery } from "@tanstack/react-query";
-import React, { createContext, useRef, useState } from "react";
+import React, { createContext, useRef, useState, useContext } from "react";
 import axios from "../../AxiosInstance/AxiosInstance";
+import { AuthContext } from "../AuthProvider/AuthProvider";
 import {
   addToWishlistDb,
   deleteWishlistCart,
@@ -15,7 +16,7 @@ const WishlistProvider = ({ children }) => {
   const wishlistSize = Object.values(getStoredWishlist()).reduce((a, b) => a + b, 0);
   const [numberOfWishlisttItems, setNumberOfWishlisttItems] = useState(wishlistSize);
   const successModal = useRef();
-
+  const { user } = useContext(AuthContext);
   const {
     isLoading,
     error,
@@ -30,7 +31,7 @@ const WishlistProvider = ({ children }) => {
 
   const addToWishlist = (id) => {
     setNumberOfWishlisttItems((numberOfWishlisttItems) => numberOfWishlisttItems + 1);
-    return addToWishlistDb(id);
+    return addToWishlistDb(id, user);
   };
 
   const removeFromWishlist = (id) => {
@@ -38,7 +39,7 @@ const WishlistProvider = ({ children }) => {
       (numberOfWishlisttItems) => numberOfWishlisttItems - getStoredWishlist()[id]
     );
 
-    return removeFromWishlistDb(id);
+    return removeFromWishlistDb(id, user);
   };
 
   // const existInCart = (id) => {

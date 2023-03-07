@@ -1,3 +1,6 @@
+import { AddwishlistRealdb, getwishlistRealdb, removewishlitRealdb } from "./realDB";
+
+
 // use local storage to manage cart data
 /* const addToDb = (id) => {
   const shoppingCart = getStoredCart();
@@ -85,7 +88,7 @@ const getStoredCart = () => {
 Local Storage for wishlist
 ***************************************************************** */
 
-const addToWishlistDb = (id) => {
+const addToWishlistDb = (id, user) => {
   const wishlistCart = getStoredWishlist();
 
   // if quantity available increase otherwise add 1 minimum
@@ -94,6 +97,7 @@ const addToWishlistDb = (id) => {
     wishlistCart[id] = 1;
   }
   localStorage.setItem("wishlist-cart", JSON.stringify(wishlistCart));
+  AddwishlistRealdb(wishlistCart, user)
 };
 
 /**
@@ -109,19 +113,21 @@ const reduceQuantityFromWishlistDb = (id) => {
   if (wishlistCart[id]) {
     wishlistCart[id]--;
     localStorage.setItem("wishlist-cart", JSON.stringify(wishlistCart));
+    removewishlitRealdb(wishlistCart)
   }
   if (wishlistCart[id] === 0) {
     removeFromWishlistDb(id);
   }
 };
 
-const removeFromWishlistDb = (id) => {
+const removeFromWishlistDb = (id, user) => {
   const wishlistCart = getStoredWishlist();
 
   // Check if the id is in the shopping cart then delete the id and upload the updated cart into storage
   if (id in wishlistCart) {
     delete wishlistCart[id];
     localStorage.setItem("wishlist-cart", JSON.stringify(wishlistCart));
+    removewishlitRealdb(wishlistCart, user)
   }
 };
 
@@ -135,7 +141,7 @@ const getStoredWishlist = () => {
   if (storedCart) {
     wishlistCart = JSON.parse(storedCart);
   }
-
+  getwishlistRealdb()
   return wishlistCart;
 };
 

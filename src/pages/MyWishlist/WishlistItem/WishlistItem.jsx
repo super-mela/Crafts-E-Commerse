@@ -7,7 +7,7 @@ import useGetQuantity from "../../../Hooks/useGetQuantity/useGetQuantity";
 import { WishlistContext } from "../../../Contexts/WishlistProvider/WishlistProvider";
 
 const WishlisttItem = ({ wishlistItem }) => {
-  console.log(wishlistItem)
+
   const [quantity] = useGetQuantity(wishlistItem?._id);
 
   const { addToCart, reduceQuantityFromCart, refetch } = useContext(CartContext);

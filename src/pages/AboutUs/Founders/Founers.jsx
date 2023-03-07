@@ -44,8 +44,6 @@ const Founders = () => {
 
     return (
         <div>
-
-
             {/* Founder of crafts gift */}
             <div className="bg-gray-50 lg:py-20 py-10 text-gray-800">
                 <div className="max-w-screen-2xl mx-auto px-3 sm:px-10">
