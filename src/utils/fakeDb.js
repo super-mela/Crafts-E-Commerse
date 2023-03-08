@@ -1,4 +1,4 @@
-import { AddwishlistRealdb, getwishlistRealdb, removewishlitRealdb } from "./realDB";
+import { AddwishlistRealdb, removewishlitRealdb } from "./realDB";
 
 
 // use local storage to manage cart data
@@ -113,7 +113,6 @@ const reduceQuantityFromWishlistDb = (id) => {
   if (wishlistCart[id]) {
     wishlistCart[id]--;
     localStorage.setItem("wishlist-cart", JSON.stringify(wishlistCart));
-    removewishlitRealdb(wishlistCart)
   }
   if (wishlistCart[id] === 0) {
     removeFromWishlistDb(id);
@@ -141,7 +140,7 @@ const getStoredWishlist = () => {
   if (storedCart) {
     wishlistCart = JSON.parse(storedCart);
   }
-  getwishlistRealdb()
+
   return wishlistCart;
 };
 

@@ -6,7 +6,6 @@ import {
   addToWishlistDb,
   deleteWishlistCart,
   getStoredWishlist,
-  reduceQuantityFromWishlistDb,
   removeFromWishlistDb,
 } from "../../utils/fakeDb";
 
@@ -35,10 +34,10 @@ const WishlistProvider = ({ children }) => {
   };
 
   const removeFromWishlist = (id) => {
-    setNumberOfWishlisttItems(
-      (numberOfWishlisttItems) => numberOfWishlisttItems - getStoredWishlist()[id]
-    );
-
+    if (getStoredWishlist()[id]) {
+      setNumberOfWishlisttItems(
+        (numberOfWishlisttItems) => numberOfWishlisttItems - 1);
+    }
     return removeFromWishlistDb(id, user);
   };
 
@@ -46,10 +45,6 @@ const WishlistProvider = ({ children }) => {
   //   return id in getStoredWishlist();
   // };
 
-  const reduceQuantityFromWishlist = (id) => {
-    setNumberOfWishlisttItems((numberOfWishlisttItems) => numberOfWishlisttItems - 1);
-    return reduceQuantityFromWishlistDb(id);
-  };
 
   const removeWishlistCart = () => {
     deleteWishlistCart();
@@ -69,13 +64,13 @@ const WishlistProvider = ({ children }) => {
     addToWishlist,
     removeFromWishlist,
     numberOfWishlisttItems,
-    reduceQuantityFromWishlist,
     checkWishllistExist,
     wishlistItems,
     refetchwish: refetch,
     isLoading,
     successModal,
     removeWishlistCart,
+    setNumberOfWishlisttItems,
   };
   return (
     <WishlistContext.Provider value={wishlistInfo}>{children}</WishlistContext.Provider>

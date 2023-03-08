@@ -11,9 +11,13 @@ import SocialLogin from "../../components/SocialLogin/SocialLogin";
 import ValidationError from "../../components/ValidationError/ValidationError";
 import { AuthContext } from "../../Contexts/AuthProvider/AuthProvider";
 import useGetToken from "../../Hooks/useGetToken/useGetToken";
+import { getwishlistRealdb } from "../../utils/realDB";
+import { WishlistContext } from "../../Contexts/WishlistProvider/WishlistProvider";
+import { getStoredWishlist } from "../../utils/fakeDb";
 
 const Login = ({ setLoginOrRegister, setIsPasswordReset }) => {
   const { loginModal, signIn } = useContext(AuthContext);
+  const { setNumberOfWishlisttItems } = useContext(WishlistContext);
   const [showPassword, setShowPassword] = useState(false);
   const [loginLoading, setLoginLoading] = useState(false);
   const [email, setEmail] = useState("");
@@ -37,8 +41,8 @@ const Login = ({ setLoginOrRegister, setIsPasswordReset }) => {
     setLoginLoading(true);
     signIn(data.email, data.password)
       .then((res) => {
-        console.log(res.user?.email);
         setEmail(res?.user?.email);
+
         // toast
         toast.success(`Welcome ${res.user?.displayName}`);
         // Modal dissappear
@@ -46,11 +50,19 @@ const Login = ({ setLoginOrRegister, setIsPasswordReset }) => {
         // navigate
         setLoginLoading(false);
         navigate(from, { replace: true });
+        //whishlist data store to local storage
+        getwishlistRealdb(res?.user?.email)
+        setTimeout(() => {
+          const wishlistSize = Object.values(getStoredWishlist()).reduce((a, b) => a + b, 0);
+          setNumberOfWishlisttItems(wishlistSize);
+        }, 2000);
+
       })
       .catch((err) => toast.error(err.message));
 
     setLoginLoading(false);
   };
+
 
   return (
     <>
@@ -91,11 +103,11 @@ const Login = ({ setLoginOrRegister, setIsPasswordReset }) => {
               render={({ messages }) => {
                 return messages
                   ? Object.entries(messages).map(([type, message]) => (
-                      <ValidationError
-                        key={type}
-                        message={message}
-                      ></ValidationError>
-                    ))
+                    <ValidationError
+                      key={type}
+                      message={message}
+                    ></ValidationError>
+                  ))
                   : null;
               }}
             />
@@ -146,11 +158,11 @@ const Login = ({ setLoginOrRegister, setIsPasswordReset }) => {
               render={({ messages }) => {
                 return messages
                   ? Object.entries(messages).map(([type, message]) => (
-                      <ValidationError
-                        key={type}
-                        message={message}
-                      ></ValidationError>
-                    ))
+                    <ValidationError
+                      key={type}
+                      message={message}
+                    ></ValidationError>
+                  ))
                   : null;
               }}
             />
