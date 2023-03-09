@@ -21,6 +21,8 @@ import { WishlistContext } from "../../Contexts/WishlistProvider/WishlistProvide
 import useGetQuantity from "../../Hooks/useGetQuantity/useGetQuantity";
 import RatingsStars from "../RatingsStars/RatingsStars";
 
+const StaticPath = process.env.REACT_APP_STATIC;
+
 const ProductDetailsCard = ({
   children,
   display,
@@ -74,7 +76,7 @@ const ProductDetailsCard = ({
       {/* Image */}
       <div className="lg:w-[30%] w-full">
         <img
-          src={image}
+          src={StaticPath + "product/" + image}
           alt=""
           className="w-full rounded-sm lg:hidden block mx-auto"
         />
@@ -90,17 +92,17 @@ const ProductDetailsCard = ({
         >
           <SwiperSlide>
             <div className="border rounded-sm overflow-hidden">
-              <img src={image} alt="" className=" w-full " />
+              <img src={StaticPath + "product/" + image} alt="" className=" w-full " />
             </div>
           </SwiperSlide>
           <SwiperSlide>
             <div className="border rounded-sm overflow-hidden">
-              <img src={image} alt="" className="h-full w-full " />
+              <img src={StaticPath + "product/" + image} alt="" className="h-full w-full " />
             </div>
           </SwiperSlide>
           <SwiperSlide>
             <div className="border rounded-sm overflow-hidden">
-              <img src={image} alt="" className="h-full w-full " />
+              <img src={StaticPath + "product/" + image} alt="" className="h-full w-full " />
             </div>
           </SwiperSlide>
         </Swiper>
@@ -120,13 +122,13 @@ const ProductDetailsCard = ({
           className="mySwiper p-2 bg-secondary relative md:block hidden"
         >
           <SwiperSlide>
-            <img src={image} alt="" className="h-full w-full cursor-pointer" />
+            <img src={StaticPath + "product/" + image} alt="" className="h-full w-full cursor-pointer" />
           </SwiperSlide>
           <SwiperSlide>
-            <img src={image} alt="" className="h-full w-full cursor-pointer" />
+            <img src={StaticPath + "product/" + image} alt="" className="h-full w-full cursor-pointer" />
           </SwiperSlide>
           <SwiperSlide>
-            <img src={image} alt="" className="h-full w-full cursor-pointer" />
+            <img src={StaticPath + "product/" + image} alt="" className="h-full w-full cursor-pointer" />
           </SwiperSlide>
 
           <button className="absolute prevThumb bottom-[26%] bg-primary w-6 rounded-r-md my-auto flex justify-center items-center h-7 z-10 lg:left-0 left-2">

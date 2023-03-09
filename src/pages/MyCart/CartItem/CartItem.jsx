@@ -4,6 +4,8 @@ import { FaRegTrashAlt } from "react-icons/fa";
 import { CartContext } from "../../../Contexts/CartProvider/CartProvider";
 import useGetQuantity from "../../../Hooks/useGetQuantity/useGetQuantity";
 
+const StaticPath = process.env.REACT_APP_STATIC;
+
 const CartItem = ({ cartItem }) => {
   const [quantity] = useGetQuantity(cartItem?._id);
 
@@ -36,7 +38,7 @@ const CartItem = ({ cartItem }) => {
   return (
     <div className="flex w-full gap-3 border-b text-[#374151] items-center justify-center px-3 py-2  hover:bg-slate-50 cursor-pointer">
       <div className="">
-        <img src={cartItem?.image} alt="" className="w-14 rounded-lg" />
+        <img src={cartItem ? StaticPath + "product/" + cartItem.image : ""} alt="" className="w-14 rounded-lg" />
       </div>
 
       <div className="flex flex-col w-full">
@@ -45,9 +47,9 @@ const CartItem = ({ cartItem }) => {
           Item Price: $
           {cartItem?.discount
             ? (
-                cartItem?.price -
-                (cartItem?.discount / 100) * cartItem?.price
-              ).toFixed(2)
+              cartItem?.price -
+              (cartItem?.discount / 100) * cartItem?.price
+            ).toFixed(2)
             : cartItem?.price}
         </p>
 
@@ -56,10 +58,10 @@ const CartItem = ({ cartItem }) => {
             $
             {cartItem?.discount
               ? (
-                  (cartItem?.price -
-                    (cartItem?.discount / 100) * cartItem?.price) *
-                  quantity
-                ).toFixed(2)
+                (cartItem?.price -
+                  (cartItem?.discount / 100) * cartItem?.price) *
+                quantity
+              ).toFixed(2)
               : (cartItem?.price * quantity).toFixed(2)}
           </span>
 
@@ -69,7 +71,7 @@ const CartItem = ({ cartItem }) => {
                 quantity && handleReduceQuantity(cartItem?._id, cartItem?.name)
               }
               className="px-2 "
-              // onClick={() => handleReduceQuantity(_id, name)}
+            // onClick={() => handleReduceQuantity(_id, name)}
             >
               {" "}
               -{" "}
@@ -78,7 +80,7 @@ const CartItem = ({ cartItem }) => {
             <button
               onClick={() => handleAddtoCart(cartItem?._id)}
               className="px-2 "
-              // onClick={() => handleAddtoCart(_id, name)}
+            // onClick={() => handleAddtoCart(_id, name)}
             >
               {" "}
               +{" "}

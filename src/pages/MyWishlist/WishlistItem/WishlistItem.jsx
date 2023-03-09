@@ -6,6 +6,8 @@ import { CartContext } from "../../../Contexts/CartProvider/CartProvider";
 import useGetQuantity from "../../../Hooks/useGetQuantity/useGetQuantity";
 import { WishlistContext } from "../../../Contexts/WishlistProvider/WishlistProvider";
 
+const StaticPath = process.env.REACT_APP_STATIC;
+
 const WishlisttItem = ({ wishlistItem }) => {
 
   const [quantity] = useGetQuantity(wishlistItem?._id);
@@ -40,7 +42,7 @@ const WishlisttItem = ({ wishlistItem }) => {
   return (
     <div className="flex w-full gap-3 border-b text-[#374151] items-center justify-center px-3 py-2  hover:bg-slate-50 cursor-pointer">
       <div className="">
-        <img src={wishlistItem?.image} alt="" className="w-14 rounded-lg" />
+        <img src={wishlistItem ? StaticPath + "product/" + wishlistItem.image : ""} alt="" className="w-14 rounded-lg" />
       </div>
 
       <div className="flex flex-col w-full">

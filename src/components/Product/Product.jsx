@@ -10,6 +10,9 @@ import useGetQuantity from "../../Hooks/useGetQuantity/useGetQuantity";
 import RatingsStars from "../RatingsStars/RatingsStars";
 import StatusTag from "../StatusTag/StatusTag";
 import "./Product.css";
+
+const StaticPath = process.env.REACT_APP_STATIC;
+
 const Product = ({
   product,
   product: { name, image, price, status, subCategory, net, _id },
@@ -77,7 +80,7 @@ const Product = ({
         // to={`/product/${_id}`}
         className="cursor-pointer flex justify-center items-center border-b relative overflow-hidden"
       >
-        <img src={image} alt="" className="w-28 h-28 image z-0" />
+        <img src={StaticPath + "product/" + image} alt="" className="w-28 h-28 image z-0" />
 
         {/* View Button */}
         <div className="action absolute bottom-1 right-0 left-0 z-10">
