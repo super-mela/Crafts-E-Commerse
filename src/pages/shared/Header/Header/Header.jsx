@@ -7,7 +7,7 @@ const Header = () => {
       {/* Upper section */}
 
       {/* uppder section end */}
-      <MainHeader></MainHeader>
+      <MainHeader />
     </div>
   );
 };

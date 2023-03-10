@@ -2,6 +2,8 @@ import React, { useState } from "react";
 import { BiChevronRight } from "react-icons/bi";
 import { useNavigate } from "react-router-dom";
 
+const StaticPath = process.env.REACT_APP_STATIC;
+
 const CategoryCard = ({
   category: { _id, categoryName, image, subCategories },
 }) => {
@@ -16,7 +18,7 @@ const CategoryCard = ({
       className="grid lg:grid-cols-6 bg-white px-2 py-3 cursor-pointer rounded-sm text-sm text-black/80 hover:text-primary shadow-sm hover:shadow-2xl transition-all delay-[30ms]"
     >
       <div className="flex items-center justify-center lg:col-span-2">
-        <img src={image} alt="" className="lg:w-[50%]" />
+        <img src={StaticPath + "category/" + image} alt="" className="lg:w-[50%]" />
       </div>
       <div className="lg:col-span-4 text-center lg:text-left">
         <h6 className="mb-1 text-sm">{categoryName}</h6>

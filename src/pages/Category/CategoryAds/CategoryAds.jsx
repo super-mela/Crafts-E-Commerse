@@ -8,18 +8,15 @@ const CategoryAds = () => {
   const ads = [
     {
       title: "Kids Gift",
-      image:
-        "https://kachabazar-store.vercel.app/_next/image?url=%2Fcta%2Fcta-bg-1.jpg&w=1920&q=75",
+      image: kids,
     },
     {
       title: "Wedding Gift",
-      image:
-        "https://kachabazar-store.vercel.app/_next/image?url=%2Fcta%2Fcta-bg-2.jpg&w=1920&q=75",
+      image: wedding,
     },
     {
       title: "Retirement Gift",
-      image:
-        "https://kachabazar-store.vercel.app/_next/image?url=%2Fcta%2Fcta-bg-3.jpg&w=1920&q=75",
+      image: retirement,
     },
   ];
   return (

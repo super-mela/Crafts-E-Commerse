@@ -6,6 +6,8 @@ import axios from "../../AxiosInstance/AxiosInstance";
 import Loader from "../Loader/Loader";
 import "./CategoriesDropdown.css";
 
+const StaticPath = process.env.REACT_APP_STATIC;
+
 const CategoriesDropdown = ({ idText }) => {
   const {
     isLoading,
@@ -25,9 +27,8 @@ const CategoriesDropdown = ({ idText }) => {
       className="dropdown-content shadow bg-base-100 rounded-md h-64 py-5 min-w-max overflow-y-auto w-64"
     >
       <div
-        className={`accordion-wrapper flex ${
-          isLoading && "h-full"
-        } flex-col gap-5`}
+        className={`accordion-wrapper flex ${isLoading && "h-full"
+          } flex-col gap-5`}
       >
         {isLoading ? (
           <Loader></Loader>
@@ -45,16 +46,15 @@ const CategoriesDropdown = ({ idText }) => {
                 className="accordion-label text-black text-sm gap-1 items-center"
                 htmlFor={`${idText}${idx + 1}`}
               >
-                <img src={category.image} alt="" className="w-4 h-4" />
+                <img src={StaticPath + "category/" + category.image} alt="" className="w-4 h-4" />
                 {category?.categoryName}
               </label>
 
               <div className="accordion-content flex flex-col">
                 {category?.subCategories?.map((subCategory, idx) => (
                   <Link
-                    to={`/category/${
-                      category?._id
-                    }?subcategory=${subCategory.toLowerCase()}`}
+                    to={`/category/${category?._id
+                      }?subcategory=${subCategory.toLowerCase()}`}
                     className="text-black/80 flex items-center gap-x-2 tori-link"
                     key={Math.random()}
                   >
