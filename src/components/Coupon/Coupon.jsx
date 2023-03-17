@@ -2,6 +2,8 @@ import React, { useEffect, useState } from "react";
 import { toast } from "react-hot-toast";
 import StatusTag from "../StatusTag/StatusTag";
 
+const StaticPath = process.env.REACT_APP_STATIC;
+
 const Coupon = ({
   offer: { name, coupon, discount, image, expiresIn, leastAmount },
 }) => {
@@ -56,15 +58,14 @@ const Coupon = ({
 
   return (
     <div
-      className={`flex lg:flex-nowrap flex-wrap px-2 py-3 rounded-md bg-white shadow lg:gap-0 gap-2 ${
-        expired && "border-warning border"
-      }`}
+      className={`flex lg:flex-nowrap flex-wrap px-2 py-3 rounded-md bg-white shadow lg:gap-0 gap-2 ${expired && "border-warning border"
+        }`}
     >
       {/* First Part */}
       <div className="lg:w-[65%] w-full lg:border-r-2 border-dashed flex">
         {/* image */}
         <div className="flex items-center">
-          <img src={image} alt="" className="w-16" />
+          <img src={StaticPath + "offer/" + image} alt="" className="w-16" />
         </div>
         {/*  */}
         <div className="text-black w-[65%] flex flex-col mx-auto justify-around lg:gap-0 gap-2">
