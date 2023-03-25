@@ -1,99 +1,19 @@
 import { ErrorMessage } from "@hookform/error-message";
-import React, { useContext, useEffect, useState } from "react";
-import { useForm } from "react-hook-form";
-import { toast } from "react-hot-toast";
-import { v4 as uuid } from "uuid";
-import axios from "../../../AxiosInstance/AxiosInstance";
+import React, { useContext } from "react";
 import ButtonLoader from "../../../components/ButtonLoader/ButtonLoader";
 import Required from "../../../components/Required/Required";
-import SuccessModal from "../../../components/SuccessModal/SuccessModal";
 import ValidationError from "../../../components/ValidationError/ValidationError";
 import { AuthContext } from "../../../Contexts/AuthProvider/AuthProvider";
-import { CartContext } from "../../../Contexts/CartProvider/CartProvider";
-import { getRandomId } from "../../../utils/GetRandomId/getRandomId";
 
 const PersonalInfo = ({
-    grandTotal,
-    setShippingCost,
-    discount,
-    shippingCost,
+    register,
+    errors,
+    processing
 }) => {
-    const [processing, setProccessing] = useState(false);
-    const [trasactionId, setTransactionId] = useState("");
     const { user } = useContext(AuthContext);
-    const { successModal, cartItems, getQuantityOfItem, removeShoppingCart } =
-        useContext(CartContext);
-    const [uniqueId, setUniqueId] = useState("");
 
-    const invoiceNumber = getRandomId();
-
-    const {
-        register,
-        formState: { errors },
-        handleSubmit,
-    } = useForm({
-        criteriaMode: "all",
-    });
-
-    // Create Payment intent and grab client secret
-    useEffect(() => {
-        // Create PaymentIntent as soon as the page loads
-    }, [user?.email]);
-
-    /* ===================================== */
-    // Handle Order Confirmation
-    const createCart = () => {
-        const cart = [];
-        cartItems.forEach((item) =>
-            cart.push({
-                name: item?.name,
-                price: item?.discount
-                    ? (item?.price - (item?.discount / 100) * item?.price).toFixed(2)
-                    : item?.price,
-                productId: item?._id,
-                quantity: getQuantityOfItem(item?._id),
-            })
-        );
-
-        return cart;
-    };
-    const placeOrderInDb = (data, transId) => {
-        console.log(data)
-        const unique_id = uuid();
-        setUniqueId(unique_id);
-        const orderDetails = {
-            ...data,
-            amount: grandTotal,
-            invoiceId: unique_id,
-            discount: discount,
-            shippingCost: shippingCost,
-            cart: createCart(),
-            status: "pending",
-            invoice: `#${invoiceNumber}`,
-            date: new Date(),
-            trasactionId: transId,
-        };
-
-        // Send to Db
-        axios
-            .post(`/invoices?email=${user?.email}`, { orderDetails })
-            .then((res) => {
-                if (res?.data?.acknowledged) {
-                    //
-                    // Delete shopping cart
-                    successModal.current.checked = true;
-                    removeShoppingCart();
-                }
-            })
-            .catch((err) => {
-                toast.error("Something went wrong");
-            });
-    };
     return (
-        <form
-            onSubmit={handleSubmit()}
-            className="text-gray-700 lg:p-5 px-2 py-5 flex flex-col gap-3"
-        >
+        <div className="text-gray-700 lg:p-5 px-2 py-5 flex flex-col gap-3">
             <h4 className="tori-title">01. Personal Details</h4>
             <div className="grid lg:grid-cols-2 gap-x-5 gap-y-3">
                 {/* Name */}
@@ -163,7 +83,7 @@ const PersonalInfo = ({
                         readOnly
                         id="email"
                         type="email"
-                        defaultValue={user?.email}
+                        value={user?.email}
                         className="tori-input"
                         {...register("email", {
                             required: "Email is required!",
@@ -231,7 +151,7 @@ const PersonalInfo = ({
                     <textarea
                         id="address"
                         type="text"
-                        placeholder="Adress"
+                        placeholder="Address"
                         className="tori-input"
                         {...register("address", {
                             required: "Address is required!",
@@ -338,6 +258,35 @@ const PersonalInfo = ({
                             }}
                         />
                     </div>
+
+                </div>
+                <div className="">
+                    <label htmlFor="description" className="tori-label">
+                        Description <Required />
+                    </label>
+                    <textarea
+                        id="description"
+                        type="text"
+                        placeholder="Description"
+                        className="tori-input"
+                        {...register("description", {
+                            required: "Description is required!",
+                        })}
+                    />
+                    <ErrorMessage
+                        errors={errors}
+                        name="description"
+                        render={({ messages }) => {
+                            return messages
+                                ? Object.entries(messages).map(([type, message]) => (
+                                    <ValidationError
+                                        key={type}
+                                        message={message}
+                                    ></ValidationError>
+                                ))
+                                : null;
+                        }}
+                    />
                 </div>
             </div>
             <div className="flex lg:gap-5 gap-2 lg:flex-nowrap flex-wrap">
@@ -345,17 +294,14 @@ const PersonalInfo = ({
                 <button
                     // onClick={() => navigate("/invoice")}
                     className="tori-btn-secondary"
-                    // disabled={!stripe || !clientSecret || !processing}
+                    disabled={processing}
                     type="submit"
                 >
                     Confirm{processing && <ButtonLoader />}
                 </button>
             </div>
-            <SuccessModal
-                unique_id={uniqueId}
-                trasactionId={trasactionId}
-            ></SuccessModal>
-        </form>
+
+        </div>
     );
 };
 
