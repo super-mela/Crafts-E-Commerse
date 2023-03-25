@@ -35,6 +35,12 @@ const DashboardSidebar = () => {
           </span>
           My Orders
         </Link>
+        <Link to={"/user/dashboard/customorders"} className="dashboard-link">
+          <span className="border rounded-full p-1">
+            <AiOutlineMenuFold />
+          </span>
+          My Custome Orders
+        </Link>
         <Link to={"/user/dashboard/updateProfile"} className="dashboard-link">
           <span className="border rounded-full p-1">
             <AiOutlineSetting />

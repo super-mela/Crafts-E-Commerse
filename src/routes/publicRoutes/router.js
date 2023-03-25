@@ -8,11 +8,13 @@ import ContactUs from "../../pages/ContactUs/ContactUs";
 import ChangePassword from "../../pages/Dashboard/ChangePassword/ChangePassword";
 import Dashboard from "../../pages/Dashboard/Dashboard/Dashboard";
 import MyOrders from "../../pages/Dashboard/MyOrders/MyOrders";
+import CustomOrders from "../../pages/Dashboard/CustomOrders/CustomOrders";
 import UpdateProfile from "../../pages/Dashboard/UpdateProfile/UpdateProfile";
 import ErrorPage from "../../pages/ErrorPage/ErrorPage";
 import AboutUs from "../../pages/AboutUs/AboutUs";
 import Home from "../../pages/Home/Home/Home";
 import Invoice from "../../pages/Invoice/Invoice/Invoice";
+import OrderInfo from "../../pages/OrderInfo/OrderInfo/OrderInfo";
 import Offers from "../../pages/Offers/Offers/Offers";
 import PrivacyPolicy from "../../pages/privacyPolicy/PrivacyPolicy";
 import ProductDetails from "../../pages/ProductDetails/ProductDetails/ProductDetails";
@@ -58,6 +60,10 @@ export const router = createBrowserRouter([
         element: <Invoice />,
       },
       {
+        path: "/orderinfo/:uid",
+        element: <OrderInfo />,
+      },
+      {
         path: "/category/:id",
         element: <Category />,
       },
@@ -71,7 +77,10 @@ export const router = createBrowserRouter([
       },
       {
         path: "/order",
-        element: <Order />,
+        element: (
+          <PrivateRoutes>
+            <Order />
+          </PrivateRoutes>),
       },
       {
         path: "/aboutus",
@@ -92,6 +101,10 @@ export const router = createBrowserRouter([
           {
             path: "/user/dashboard/myorders",
             element: <MyOrders />,
+          },
+          {
+            path: "/user/dashboard/customorders",
+            element: <CustomOrders />,
           },
           {
             path: "/user/dashboard/updateProfile",
