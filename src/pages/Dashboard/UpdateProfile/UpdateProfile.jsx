@@ -10,6 +10,9 @@ import { MdDriveFileRenameOutline, MdEmail } from "react-icons/md";
 import Required from "../../../components/Required/Required";
 import ValidationError from "../../../components/ValidationError/ValidationError";
 import { AuthContext } from "../../../Contexts/AuthProvider/AuthProvider";
+import { fileinstace } from "../../../AxiosInstance/AxiosInstance";
+
+const StaticPath = process.env.REACT_APP_STATIC;
 
 const UpdateProfile = () => {
   const {
@@ -22,28 +25,46 @@ const UpdateProfile = () => {
   const { user, updateUser } = useContext(AuthContext);
 
   const formData = new FormData();
-
+  console.log(user)
   const handleUpdateProfile = (d) => {
-    console.log(d);
+
     //   Upload Image
-    formData.append("image", d?.photoURL[0]);
-    axios({
-      method: "post",
-      url: `https://api.imgbb.com/1/upload?expiration=600&key=${process.env.REACT_APP_Image_Host_API}`,
-      data: formData,
-    })
+    formData.append("file", d?.photoURL[0], user?.uid);
+
+    fileinstace
+      .post(`/profileupdate?email=${user?.email}`, formData)
       .then((res) => {
         if (res?.data?.success) {
           const userData = {
             displayName: d.username,
-            photoURL: res.data.data.url,
+            photoURL: StaticPath + "profile/" + res.data.url,
             phoneNumber: d.phone,
           };
-          console.log(userData);
+          console.log(userData)
           updateUserData(userData);
         }
       })
-      .catch((error) => console.error(error));
+      .catch((err) => {
+        toast.error("Something went wrong");
+      });
+
+    // axios({
+    //   method: "post",
+    //   url: `https://api.imgbb.com/1/upload?expiration=600&key=${process.env.REACT_APP_Image_Host_API}`,
+    //   data: formData,
+    // })
+    //   .then((res) => {
+    //     if (res?.data?.success) {
+    //       const userData = {
+    //         displayName: d.username,
+    //         photoURL: res.data.data.url,
+    //         phoneNumber: d.phone,
+    //       };
+    //       console.log(userData);
+    //       updateUserData(userData);
+    //     }
+    //   })
+    //   .catch((error) => console.error(error));
   };
 
   const updateUserData = (data) => {
@@ -115,6 +136,7 @@ const UpdateProfile = () => {
             <BiPhoneCall />
             <input
               type="text"
+              defaultValue={user?.phoneNumber}
               placeholder="Your Phone Number"
               className="tori-input border-none"
               {...register("phone", {

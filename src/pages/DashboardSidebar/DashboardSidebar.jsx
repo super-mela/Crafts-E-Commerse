@@ -1,5 +1,5 @@
 import React, { useContext } from "react";
-import { AiOutlineMenuFold, AiOutlineSetting } from "react-icons/ai";
+import { AiOutlineMenuFold, AiOutlineSetting, AiOutlineGift } from "react-icons/ai";
 import {
   RiDashboardLine,
   RiLockPasswordLine,
@@ -9,7 +9,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../Contexts/AuthProvider/AuthProvider";
 
 const DashboardSidebar = () => {
-  const { logout } = useContext(AuthContext);
+  const { user, logout } = useContext(AuthContext);
   const navigate = useNavigate();
 
   const handleLogout = () => {
@@ -22,7 +22,12 @@ const DashboardSidebar = () => {
   };
   return (
     <div className="lg:w-[30%] w-full relative text-gray-800 ">
-      <div className="flex flex-col divide-y-2 sticky top-0 bg-white px-5 py-3 rounded-sm">
+      <div className="flex flex-col divide-y-2 sticky top-0 bg-white px-5 py-3 rounded-sm ">
+        {user?.photoURL ?
+          <div className="flex justify-center mb-2">
+            <img className="h-[70px] w-[70px] rounded-full" src={user?.photoURL} alt="profile" />
+          </div>
+          : null}
         <Link to={"/user/dashboard"} className="dashboard-link">
           <span className="border rounded-full p-1">
             <RiDashboardLine />
@@ -37,7 +42,7 @@ const DashboardSidebar = () => {
         </Link>
         <Link to={"/user/dashboard/customorders"} className="dashboard-link">
           <span className="border rounded-full p-1">
-            <AiOutlineMenuFold />
+            <AiOutlineGift />
           </span>
           My Custome Orders
         </Link>

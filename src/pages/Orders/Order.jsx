@@ -40,7 +40,7 @@ const Order = () => {
   }, [subTotal, discount, shippingCost]);
 
   const handleOrder = (data) => {
-    console.log(data)
+
     setProccessing(true)
     const unique_id = uuid();
     setUniqueId(unique_id);
@@ -57,7 +57,6 @@ const Order = () => {
     formdata.append("zip", data.zip)
     formdata.append("description", data.description)
 
-    console.log(formdata.get("file"))
     // Send to Db
     fileinstace
       .post(`/customOrder?email=${user?.email}`, formdata)
