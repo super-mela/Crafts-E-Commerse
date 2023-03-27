@@ -75,8 +75,8 @@ const Product = ({
 
       {/* Image */}
       <label
-        onClick={() => setSelectedProduct(product)}
-        htmlFor="product-modal"
+        // onClick={() => setSelectedProduct(product)}
+        htmlFor="email-modal"
         // to={`/product/${_id}`}
         className="cursor-pointer flex justify-center items-center border-b relative overflow-hidden"
       >

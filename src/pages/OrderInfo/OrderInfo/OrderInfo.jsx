@@ -9,6 +9,7 @@ import axios from "../../../AxiosInstance/AxiosInstance";
 import Loader from "../../../components/Loader/Loader";
 import Logo from "../../../components/Logo/Logo";
 import { AuthContext } from "../../../Contexts/AuthProvider/AuthProvider";
+
 // import SuccessMessage from "../SuccessMessage/SuccessMessage";
 import "./OrderInfo.css";
 
@@ -18,6 +19,7 @@ const OrderInfo = () => {
   const ref = useRef();
   const { uid } = useParams();
   const { user } = useContext(AuthContext);
+
 
   const {
     isLoading,
@@ -98,13 +100,14 @@ const OrderInfo = () => {
                 </div>
               </div>
             </div>
-
           </div>
           <div className="flex lg:flex-nowrap flex-wrap justify-between">
             <div className="sub-section ">
-              <button className="tori-btn-secondary w-[100%] flex justify-center items-center gap-1 ">
+              <label
+                htmlFor="email-modal"
+                className="tori-btn-secondary w-[100%] flex justify-center items-center gap-1 ">
                 <BsEnvelope className="  text-white" /> Email
-              </button>
+              </label>
             </div>
             <div className="sub-section ">
               <ReactToPrint

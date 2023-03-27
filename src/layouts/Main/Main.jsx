@@ -8,6 +8,7 @@ import { CartContext } from "../../Contexts/CartProvider/CartProvider";
 import MyCart from "../../pages/MyCart/MyCart/MyCart";
 import MyWishlist from "../../pages/MyWishlist/MyWishlist/MyWishlist";
 import MainHeader from "../../pages/shared/Header/MainHeader/MainHeader";
+import EmailModal from "../../components/EmailModal/EmailModal";
 
 const Main = () => {
   const [loginOrRegister, setLoginOrRegister] = useState("login");
@@ -18,6 +19,8 @@ const Main = () => {
     <div className="drawer drawer-end ">
       <input id="cart-drawer" type="checkbox" className="drawer-toggle" />
       <input id="wishlist-drawer" type="checkbox" className="drawer-toggle" />
+      <EmailModal />
+
       <div className="drawer-content">
         <MainHeader setLoginOrRegister={setLoginOrRegister}></MainHeader>
         <LoginModal
