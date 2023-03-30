@@ -1,7 +1,8 @@
 import React, { useState } from "react";
 import contactus from "../../assets/contact-us.webp"
 import ReCAPTCHA from 'react-google-recaptcha';
-
+import axios from '../../AxiosInstance/AxiosInstance'
+import toast from "react-hot-toast";
 // import "./ContactUs.css";
 
 const Email = () => {
@@ -19,8 +20,19 @@ const Email = () => {
     const handleSubmit = (event) => {
         event.preventDefault();
         console.log('Email:', email);
-        console.log('Captcha:', captcha);
         // Submit the form data to the server
+        axios
+            .post(`/feedback`, email)
+            .then((res) => {
+                if (res?.data) {
+                    toast.success(res.data.msg);
+                    // setProccessing(false)
+                    //  successModal.current.checked = true;
+                }
+            })
+            .catch((err) => {
+                toast.error("Something went wrong");
+            });
     };
 
 
@@ -47,7 +59,7 @@ const Email = () => {
                 <form className="w-full mx-auto flex flex-col justify-center" onSubmit={handleSubmit}>
                     <div className="mb-12">
                         <h3 className="text-xl md:text-2xl lg:text-3xl font-semibold font-serif mb-3">
-                            For any suppoort just send your query
+                            For any support just send your query
                         </h3>
                         <p className="text-base opacity-90 leading-7">
                             Collaboratively promote client-focused convergence vis-a-vis customer directed alignments via plagiarize strategic users and standardized infrastructures.

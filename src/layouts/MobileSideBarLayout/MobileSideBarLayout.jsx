@@ -8,12 +8,12 @@ const MobileSideBarLayout = ({ setLoginOrRegister }) => {
   const [isMenu, setIsMenu] = useState(true);
   return (
     <>
-      <MobileSideBarHeader></MobileSideBarHeader>
+      <MobileSideBarHeader />
       <SideBarNav setIsMenu={setIsMenu}></SideBarNav>
       {isMenu ? (
         <SideMenu setLoginOrRegister={setLoginOrRegister}></SideMenu>
       ) : (
-        <SideBarCategories></SideBarCategories>
+        <SideBarCategories />
       )}
     </>
   );

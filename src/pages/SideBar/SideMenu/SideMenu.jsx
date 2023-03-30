@@ -35,20 +35,17 @@ const SideMenu = ({ setLoginOrRegister }) => {
       <Link className="p-2" to={"/contact"}>
         Contact Us
       </Link>
-      <Link className="p-2" to={"/faq"}>
-        FAQ
+      <Link className="p-2" to={"/aboutus"}>
+        About Us
       </Link>
-      <Link className="p-2" to={"/blog"}>
-        Blog
+      <Link className="p-2" to={"/order"}>
+        Order
       </Link>
       <Link to={"/offers"} className="p-2">
         Offers
       </Link>
       <Link to={"/todaysdeal"} className="p-2">
         Todays Deal
-      </Link>
-      <Link to={"/sell"} className="p-2">
-        Sell
       </Link>
     </div>
   );

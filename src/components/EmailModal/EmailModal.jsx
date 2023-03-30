@@ -1,10 +1,12 @@
 import React, { useState, useContext } from "react";
 import ReCAPTCHA from 'react-google-recaptcha';
 import { AuthContext } from "../../Contexts/AuthProvider/AuthProvider";
+import axios from '../../AxiosInstance/AxiosInstance'
+import toast from "react-hot-toast";
 
 const EmailModal = () => {
   const { user } = useContext(AuthContext);
-  const [compose, setCompose] = useState({ name: user?.displayName, email: user?.email, subject: "", message: "" });
+  const [compose, setCompose] = useState({ name: user.displayName, email: user.email, subject: "", message: "" });
   const [captcha, setCaptcha] = useState("");
 
   const handlChange = (event) => {
@@ -17,9 +19,21 @@ const EmailModal = () => {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    console.log('Email:', compose);
-    console.log('Captcha:', captcha);
+    compose.name = user?.displayName
+    compose.email = user?.email
     // Submit the form data to the server
+    axios
+      .post(`/customEmail?email=${user?.email}`, compose)
+      .then((res) => {
+        if (res?.data) {
+          toast.success(res.data.msg);
+          // setProccessing(false)
+          //  successModal.current.checked = true;
+        }
+      })
+      .catch((err) => {
+        toast.error("Something went wrong");
+      });
   };
   return (
     <div>
@@ -38,7 +52,7 @@ const EmailModal = () => {
             <div className="hidden md:w-full lg:w-5/12 lg:flex flex-col h-full">
               <div className="mb-12">
                 <h3 className="text-xl md:text-2xl lg:text-3xl font-semibold font-serif mb-3">
-                  For any suppoort just send your query
+                  For any support just send your query
                 </h3>
                 <p className="text-base opacity-90 leading-7">
                   Collaboratively promote client-focused convergence vis-a-vis customer directed alignments via plagiarize strategic users and standardized infrastructures.
@@ -58,10 +72,10 @@ const EmailModal = () => {
                           name="name"
                           type="text"
                           placeholder="Inter Your Name"
-                          required
+                          // required
                           className="py-2 px-4 md:px-5 w-full appearance-none border text-sm opacity-75 text-input rounded-md placeholder-body min-h-12 transition duration-200 focus:ring-0 ease-in-out bg-white border-gray-200 focus:outline-none focus:border-emerald-500 h-11 md:h-12"
-                          value={compose.name}
-                          onChange={(e) => handlChange(e)}
+                          value={user.displayName}
+                        // onChange={(e) => handlChange(e)}
                         />
                       </div>
                     </div>
@@ -73,10 +87,10 @@ const EmailModal = () => {
                           name="email"
                           type="email"
                           placeholder="Inter Your Email"
-                          required
+                          // required
                           className="py-2 px-4 md:px-5 w-full appearance-none border text-sm opacity-75 text-input rounded-md placeholder-body min-h-12 transition duration-200 focus:ring-0 ease-in-out bg-white border-gray-200 focus:outline-none focus:border-emerald-500 h-11 md:h-12"
-                          value={compose.email}
-                          onChange={(e) => handlChange(e)}
+                          value={user.email}
+                        // onChange={(e) => handlChange(e)}
                         />
                       </div>
                     </div>
