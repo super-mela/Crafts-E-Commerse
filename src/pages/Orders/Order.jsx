@@ -42,7 +42,7 @@ const Order = () => {
   const handleOrder = (data) => {
 
     setProccessing(true)
-    const unique_id = uuid();
+    const unique_id = uuid() + "." + data.file[0].type.split("/")[1];
     setUniqueId(unique_id);
     const formdata = new FormData()
     formdata.append("orderId", unique_id)

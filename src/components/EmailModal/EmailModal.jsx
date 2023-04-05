@@ -6,7 +6,7 @@ import toast from "react-hot-toast";
 
 const EmailModal = () => {
   const { user } = useContext(AuthContext);
-  const [compose, setCompose] = useState({ name: user.displayName, email: user.email, subject: "", message: "" });
+  const [compose, setCompose] = useState({ name: user?.displayName, email: user?.email, subject: "", message: "" });
   const [captcha, setCaptcha] = useState("");
 
   const handlChange = (event) => {
@@ -74,7 +74,7 @@ const EmailModal = () => {
                           placeholder="Inter Your Name"
                           // required
                           className="py-2 px-4 md:px-5 w-full appearance-none border text-sm opacity-75 text-input rounded-md placeholder-body min-h-12 transition duration-200 focus:ring-0 ease-in-out bg-white border-gray-200 focus:outline-none focus:border-emerald-500 h-11 md:h-12"
-                          value={user.displayName}
+                          value={user?.displayName}
                         // onChange={(e) => handlChange(e)}
                         />
                       </div>
@@ -89,7 +89,7 @@ const EmailModal = () => {
                           placeholder="Inter Your Email"
                           // required
                           className="py-2 px-4 md:px-5 w-full appearance-none border text-sm opacity-75 text-input rounded-md placeholder-body min-h-12 transition duration-200 focus:ring-0 ease-in-out bg-white border-gray-200 focus:outline-none focus:border-emerald-500 h-11 md:h-12"
-                          value={user.email}
+                          value={user?.email}
                         // onChange={(e) => handlChange(e)}
                         />
                       </div>
