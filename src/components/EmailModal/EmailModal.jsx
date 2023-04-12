@@ -115,8 +115,8 @@ const EmailModal = () => {
                     <textarea
                       name="message"
                       className="px-4 py-3 flex items-center w-full rounded appearance-none opacity-75 transition duration-300 ease-in-out text-sm focus:ring-0 bg-white border border-gray-300 focus:shadow-none focus:outline-none focus:border-gray-500 placeholder-body"
-                      autocomplete="off"
-                      spellcheck="false"
+                      autoComplete="off"
+                      spellCheck="false"
                       rows="4"
                       required
                       value={compose.message}

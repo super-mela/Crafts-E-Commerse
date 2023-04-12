@@ -1,11 +1,13 @@
 import React from "react";
 import { Autoplay } from "swiper";
+import { useQuery } from "@tanstack/react-query";
 import SwiperCore, { Navigation, Pagination } from "swiper/core";
 import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
 import { Swiper, SwiperSlide } from "swiper/react";
 import AdvertiseProduct from "../AdvertiseProduct/AdvertiseProduct";
+import axios from "../../../../AxiosInstance/AxiosInstance"
 
 // Import Swiper styles
 
@@ -13,6 +15,14 @@ import AdvertiseProduct from "../AdvertiseProduct/AdvertiseProduct";
 SwiperCore.use([Pagination, Navigation, Autoplay]);
 
 const AdvertiseProducts = () => {
+  const {
+    data: { data: slider } = [],
+  } = useQuery({
+    queryKey: ["slider"],
+    queryFn: () => {
+      return axios.get("/setting/slider");
+    },
+  });
   return (
     <div className="swiper-container lg:col-span-3 col-span-1">
       <Swiper
@@ -26,18 +36,11 @@ const AdvertiseProducts = () => {
         autoplay
         className="categoriesSwipper"
       >
-        <SwiperSlide>
-          <AdvertiseProduct />
-        </SwiperSlide>
-        <SwiperSlide>
-          <AdvertiseProduct />
-        </SwiperSlide>
-        <SwiperSlide>
-          <AdvertiseProduct />
-        </SwiperSlide>
-        <SwiperSlide>
-          <AdvertiseProduct />
-        </SwiperSlide>
+        {slider?.sliders.map((item, i) => (
+          <SwiperSlide key={i}>
+            <AdvertiseProduct data={item} />
+          </SwiperSlide>
+        ))}
       </Swiper>
     </div>
   );

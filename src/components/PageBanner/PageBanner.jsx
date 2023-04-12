@@ -1,9 +1,22 @@
 import React from "react";
-import pageBanner from "../../assets/page-header-bg_gift_pc.jpg";
+import { useQuery } from "@tanstack/react-query";
+import axios from "../../AxiosInstance/AxiosInstance";
+
+const API = process.env.REACT_APP_STATIC;
+
 const PageBanner = ({ title }) => {
+  const {
+    data: { data: banner } = [],
+  } = useQuery({
+    queryKey: ["banner"],
+    queryFn: () => {
+      return axios.get("/setting/banner");
+    },
+  });
+
   return (
     <div className="relative">
-      <img src={pageBanner} alt="" className="h-48 w-full" />
+      <img src={API + "bannerimage/" + banner?.bannerfilename} alt="" className="h-48 w-full" />
       <div className="absolute flex items-center justify-center text-gray-800 inset-0">
         <h2 className="text-3xl font-bold">{title}</h2>
       </div>

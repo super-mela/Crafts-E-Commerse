@@ -1,18 +1,23 @@
 import React from "react";
 import { Helmet } from "react-helmet-async";
+import { useQuery } from "@tanstack/react-query";
+import axios from "../../AxiosInstance/AxiosInstance"
 import PageBanner from "../../components/PageBanner/PageBanner";
 import Founders from "./Founders/Founers";
 import spoon from '../../assets/spoon.png'
 import weddinggift from '../../assets/wedding-gift.png'
-import image1 from '../../assets/image1.webp'
-import image2 from '../../assets/image2.webp'
-import image3 from '../../assets/image (3).webp'
-import image4 from '../../assets/image (4).webp'
-import image5 from '../../assets/image (5).webp'
-import image6 from '../../assets/image (6).webp'
 
+const API = process.env.REACT_APP_STATIC;
 
 const AboutUs = () => {
+  const {
+    data: { data: aboutus } = [],
+  } = useQuery({
+    queryKey: ["aboutus"],
+    queryFn: () => {
+      return axios.get("/setting/aboutus");
+    },
+  });
   return (
     <div>
       <Helmet>
@@ -23,31 +28,21 @@ const AboutUs = () => {
       <div className="max-w-screen-2xl mx-auto lg:py-20 py-10 px-4 sm:px-10 text-gray-800">
         <div className="grid grid-flow-row lg:grid-cols-2 gap-4 lg:gap-16 items-center">
           <div className="">
-            <h3 className="text-xl lg:text-3xl mb-2 font-serif font-semibold">Welcome to our Crafts Gift</h3>
+            <h3 className="text-xl lg:text-3xl mb-2 font-serif font-semibold">{aboutus?.title}</h3>
             <div className="mt-3 text-base opacity-90 leading-7">
-              <p>
-                Holisticly seize parallel metrics and functional ROI. Seamlessly revolutionize error-free internal or
-                "organic" sources before effective scenarios. Progressively incentivize state of the art applications
-                for efficient intellectual capital. Credibly leverage existing distinctive mindshare through cutting-edge schemas.
-                Proactively procrastinate team building paradigms coordinate client-centric total transparent internal.
-              </p>
-              <p>
-                Dynamically embrace diverse customer service and installed base paradigms. Credibly seize enterprise-wide
-                experiences for end-to-end data. Professionally brand flexible alignments and cost effective architectures.
-                Enthusiastically incentivize seamless communities with seamlessly facilitate revolutionary metrics with strategic
-                theme areas.
-              </p>
+              <p>               {aboutus?.paragraph1}              </p>
+              <p>              {aboutus?.paragraph1}              </p>
             </div>
             <div className="grid md:grid-cols-2 gap-6 lg:grid-cols-2 xl:gap-6 mt-8">
               <div className="p-8 bg-indigo-50 shadow-sm rounded-lg">
-                <span className="text-3xl block font-extrabold font-serif mb-4 text-gray-800">10K</span>
-                <h4 className="text-lg font-serif font-bold mb-1">Listed Products</h4>
-                <p className="mb-0 opacity-90 leading-7">Dynamically morph team driven partnerships after vertical. </p>
+                <span className="text-3xl block font-extrabold font-serif mb-4 text-gray-800">{aboutus?.card1.title}</span>
+                <h4 className="text-lg font-serif font-bold mb-1">{aboutus?.card1.subtitle}</h4>
+                <p className="mb-0 opacity-90 leading-7">{aboutus?.card1.paragraph} </p>
               </div>
               <div className="p-8 bg-indigo-50 shadow-sm rounded-lg">
-                <span className="text-3xl block font-extrabold font-serif mb-4 text-gray-800">8K</span>
-                <h4 className="text-lg font-serif font-bold mb-1">Lovely Customer</h4>
-                <p className="mb-0 opacity-90 leading-7">Competently productize virtual models without performance. </p>
+                <span className="text-3xl block font-extrabold font-serif mb-4 text-gray-800">{aboutus?.card2.title}</span>
+                <h4 className="text-lg font-serif font-bold mb-1">{aboutus?.card2.subtitle}</h4>
+                <p className="mb-0 opacity-90 leading-7">{aboutus?.card2.paragraph} </p>
               </div>
             </div>
           </div>
@@ -62,37 +57,16 @@ const AboutUs = () => {
               </span>
               <img
                 alt='logo'
-                src={weddinggift}
+                src={API + "aboutus/" + aboutus?.sidefilename}
                 decoding="async" data-nimg="intrinsic"
-                srcset={`${weddinggift} w=108 q=75 1x, ${weddinggift}w=1920 q=75 2x`}
+                srcset={`${API + "aboutus/" + aboutus?.sidefilename} w=108 q=75 1x, ${API + "aboutus/" + aboutus?.sidefilename}w=1920 q=75 2x`}
                 style={{ position: "absolute", inset: '0px', boxSizing: 'border-box', padding: '0px', border: "none", margin: "auto", display: "block", width: '0px', height: '0px', minWidth: '100%', maxWidth: '100', minHeight: '100%', maxHeight: '100%' }} />
             </span>
           </div>
         </div>
         <div className="mt-10 lg:mt-16 text-base opacity-90 leading-7">
-          <p>
-            Holisticly seize parallel metrics and functional ROI. Seamlessly revolutionize error-free internal or
-            "organic" sources before effective scenarios. Progressively incentivize state of the art applications
-            for efficient intellectual capital. Credibly leverage existing distinctive mindshare through cutting-edge
-            schemas. Proactively procrastinate team building paradigms coordinate client-centric total transparent internal.
-            Energistically reconceptualize global leadership for high-quality networks. Credibly restore an expanded
-            array of systems rather than accurate results. Collaboratively synergize backend bandwidth without 24/7
-            functionalities. Credibly utilize proactive ideas whereas cross-media core competencies. Uniquely
-            maximize professional best practices through resource maximizing services. Conveniently architect cross-unit web
-            services for e-business imperatives.
-          </p>
-          <p>
-            Appropriately visualize market-driven data before one-to-one scenarios.
-            Collaboratively productize multifunctional ROI through intuitive supply chains.
-            Enthusiastically seize revolutionary value and process-centric services.
-            Competently harness intuitive information after interoperable markets.
-            Interactively revolutionize future-proof value before granular sources.
-            Dynamically embrace diverse customer service and installed base paradigms.
-            Credibly seize enterprise-wide experiences for end-to-end data. Professionally
-            brand flexible alignments and cost effective architectures. Enthusiastically
-            incentivize seamless communities with seamlessly facilitate revolutionary
-            metrics with strategic theme areas.
-          </p>
+          <p> {aboutus?.paragraph3} </p>
+          <p>   {aboutus?.paragraph4}  </p>
         </div>
         <div className="mt-10 lg:mt-12 flex flex-col sm:grid gap-4">
           <span style={{ boxSizing: 'border-box', display: 'inline-block', overflow: "hidden", width: "initial", height: "initial", background: "none", opacity: 1, border: '0px', margin: '0px', padding: '0px', position: "relative", maxWidth: '100%' }}>
@@ -105,11 +79,11 @@ const AboutUs = () => {
             </span>
             <img
               alt="logo"
-              src={spoon}
+              src={API + "aboutus/" + aboutus?.bannerfilename}
               decoding="async"
               data-nimg="intrinsic"
               className="block rounded-lg"
-              srcset={`${spoon}w=1920 q=75 1x, ${spoon}w=3840 q=75 2x`}
+              srcset={`${API + "aboutus/" + aboutus?.bannerfilename}w=1920 q=75 1x, ${API + "aboutus/" + aboutus?.bannerfilename}w=3840 q=75 2x`}
               style={{ position: "absolute", inset: '0px', boxSizing: 'border-box', padding: '0px', border: 'none', margin: "auto", display: "block", width: '0px', height: '0px', minWidth: '100%', maxWidth: '100%', minHeight: '100%', maxHeight: '100%' }} />
           </span>
         </div>

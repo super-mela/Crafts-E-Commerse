@@ -83,7 +83,7 @@ const PersonalInfo = ({
                         readOnly
                         id="email"
                         type="email"
-                        value={user?.email}
+                        defaultValue={user?.email}
                         className="tori-input"
                         {...register("email", {
                             required: "Email is required!",
@@ -93,7 +93,6 @@ const PersonalInfo = ({
                             },
                         })}
                     />
-
                     <ErrorMessage
                         errors={errors}
                         name="email"

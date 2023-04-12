@@ -1,27 +1,20 @@
 import React from "react";
+import { useQuery } from "@tanstack/react-query";
+import axios from "../../../AxiosInstance/AxiosInstance";
 import CategoryAd from "../CategoryAd/CategoryAd";
-import kids from "../../../assets/kid-gift.png";
-import wedding from "../../../assets/Gift-giving.png";
-import retirement from "../../../assets/retirement-gifts.jpg"
 
 const CategoryAds = () => {
-  const ads = [
-    {
-      title: "Kids Gift",
-      image: kids,
+  const {
+    data: { data: category } = [],
+  } = useQuery({
+    queryKey: ["category"],
+    queryFn: () => {
+      return axios.get("/setting/category");
     },
-    {
-      title: "Wedding Gift",
-      image: wedding,
-    },
-    {
-      title: "Retirement Gift",
-      image: retirement,
-    },
-  ];
+  });
   return (
     <div className="component flex gap-5 lg:flex-nowrap flex-wrap">
-      {ads.map((ad, idx) => (
+      {category?.catadverts.map((ad, idx) => (
         <CategoryAd key={Math.random()} ad={ad}></CategoryAd>
       ))}
     </div>

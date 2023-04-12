@@ -7,6 +7,7 @@ import { BsCash } from "react-icons/bs";
 import { FaRegCreditCard } from "react-icons/fa";
 import { FcShipped } from "react-icons/fc";
 import { v4 as uuid } from "uuid";
+import { useQuery } from "@tanstack/react-query";
 import axios from "../../../AxiosInstance/AxiosInstance";
 import ButtonLoader from "../../../components/ButtonLoader/ButtonLoader";
 import Required from "../../../components/Required/Required";
@@ -35,6 +36,14 @@ const CheckoutForm = ({
 
   const invoiceNumber = getRandomId();
 
+  const {
+    data: { data: shipping } = [],
+  } = useQuery({
+    queryKey: ["shipping"],
+    queryFn: () => {
+      return axios.get("/setting/shipping");
+    },
+  });
   const {
     register,
     formState: { errors },
@@ -439,57 +448,33 @@ const CheckoutForm = ({
           </label>
 
           <div className="flex justify-between lg:gap-5 gap-2 lg:flex-nowrap flex-wrap">
-            <label
-              htmlFor="fedx"
-              className="text-sm flex items-center justify-between gap-2 px-2 py-1 border rounded-md w-full"
-            >
-              <div className="flex gap-3 items-center">
-                <FcShipped className="w-7 h-7" />
-                <div>
-                  <span className="text-sm">FedEx</span>
-                  <small className="block">
-                    Delivery Within 24 Hours in{" "}
-                    <span className="font-bold">$60</span>
-                  </small>
+            {shipping?.shippers.map((item, i) => (
+              <label
+                htmlFor={item.name}
+                className="text-sm flex items-center justify-between gap-2 px-2 py-1 border rounded-md w-full"
+              >
+                <div className="flex gap-3 items-center">
+                  <FcShipped className="w-7 h-7" />
+                  <div>
+                    <span className="text-sm">{item.name}</span>
+                    <small className="block">
+                      {item.discription}{" "}
+                      <span className="font-bold">${item.price}</span>
+                    </small>
+                  </div>
                 </div>
-              </div>
-              <input
-                id="fedx"
-                type="radio"
-                value={60}
-                onClick={() => setShippingCost(60)}
-                className="icon accent-primary"
-                {...register("shippingOption", {
-                  required: "Shipping Option is required!",
-                })}
-              />
-            </label>
-
-            <label
-              htmlFor="ups"
-              className="text-sm flex items-center justify-between gap-2 px-2 py-1 border rounded-md w-full"
-            >
-              <div className="flex gap-3 items-center">
-                <FcShipped className="w-7 h-7" />
-                <div>
-                  <span className="text-sm">UPS</span>
-                  <small className="block">
-                    Delivery Within 72 Hours in{" "}
-                    <span className="font-bold">$20</span>
-                  </small>
-                </div>
-              </div>
-              <input
-                id="ups"
-                type="radio"
-                className="icon accent-primary"
-                value={20}
-                onClick={() => setShippingCost(20)}
-                {...register("shippingOption", {
-                  required: "Shipping Option is required!",
-                })}
-              />
-            </label>
+                <input
+                  id={item.name}
+                  type="radio"
+                  value={JSON.parse(item.price)}
+                  onClick={() => setShippingCost(JSON.parse(item.price))}
+                  className="icon accent-primary"
+                  {...register("shippingOption", {
+                    required: "Shipping Option is required!",
+                  })}
+                />
+              </label>
+            ))}
           </div>
           <ErrorMessage
             errors={errors}
