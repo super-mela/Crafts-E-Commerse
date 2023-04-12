@@ -4,8 +4,6 @@ import { useQuery } from "@tanstack/react-query";
 import axios from "../../AxiosInstance/AxiosInstance"
 import PageBanner from "../../components/PageBanner/PageBanner";
 import Founders from "./Founders/Founers";
-import spoon from '../../assets/spoon.png'
-import weddinggift from '../../assets/wedding-gift.png'
 
 const API = process.env.REACT_APP_STATIC;
 
@@ -30,8 +28,8 @@ const AboutUs = () => {
           <div className="">
             <h3 className="text-xl lg:text-3xl mb-2 font-serif font-semibold">{aboutus?.title}</h3>
             <div className="mt-3 text-base opacity-90 leading-7">
-              <p>               {aboutus?.paragraph1}              </p>
-              <p>              {aboutus?.paragraph1}              </p>
+              <p>{aboutus?.paragraph1}</p>
+              <p>{aboutus?.paragraph1}</p>
             </div>
             <div className="grid md:grid-cols-2 gap-6 lg:grid-cols-2 xl:gap-6 mt-8">
               <div className="p-8 bg-indigo-50 shadow-sm rounded-lg">
@@ -89,7 +87,7 @@ const AboutUs = () => {
         </div>
       </div>
       {/* Founder of crafts gift */}
-      <Founders />
+      <Founders founders={aboutus?.founders} />
     </div>
   );
 };

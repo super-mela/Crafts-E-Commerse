@@ -1,46 +1,8 @@
 import React from "react";
-import image1 from '../../../assets/image1.webp'
-import image2 from '../../../assets/image2.webp'
-import image3 from '../../../assets/image (3).webp'
-import image4 from '../../../assets/image (4).webp'
-import image5 from '../../../assets/image (5).webp'
-import image6 from '../../../assets/image (6).webp'
 
+const API = process.env.REACT_APP_STATIC;
 
-const Founders = () => {
-
-    const founders = [
-        {
-            name: "Niamh Shea",
-            position: "Co-founder & Executive",
-            image: image1
-        },
-        {
-            name: "Orla Dwyer",
-            position: "Chief Executive",
-            image: image2
-        },
-        {
-            name: "Danien James",
-            position: "Co-founder, Chairman",
-            image: image3
-        },
-        {
-            name: "Dara Frazier",
-            position: "Chief Strategy Officer",
-            image: image4
-        },
-        {
-            name: "Glenda Arvidson",
-            position: "HR Officer",
-            image: image5
-        },
-        {
-            name: "Melvin Davis",
-            position: "Lead Developer",
-            image: image6
-        },
-    ]
+const Founders = ({ founders }) => {
 
     return (
         <div>
@@ -68,7 +30,7 @@ const Founders = () => {
                                     </span>
                                     <img
                                         alt="logo"
-                                        src={item.image}
+                                        src={API + "aboutus/founders/" + item.founderfilename}
                                         decoding="async"
                                         data-nimg="intrinsic"
                                         className="block rounded-lg"
@@ -77,7 +39,7 @@ const Founders = () => {
                                 </span>
                                 <div className="py-4">
                                     <h5 className="text-lg font-semibold font-serif">{item.name}</h5>
-                                    <span className="opacity-75 text-sm">{item.position}</span>
+                                    <span className="opacity-75 text-sm">{item.proffession}</span>
                                 </div>
                             </div>
                         ))}
