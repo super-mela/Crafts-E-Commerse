@@ -3,7 +3,7 @@ import { CardElement, useElements, useStripe } from "@stripe/react-stripe-js";
 import React, { useContext, useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { toast } from "react-hot-toast";
-import { BsCash } from "react-icons/bs";
+import { BsPaypal } from "react-icons/bs";
 import { FaRegCreditCard } from "react-icons/fa";
 import { FcShipped } from "react-icons/fc";
 import { v4 as uuid } from "uuid";
@@ -16,6 +16,7 @@ import ValidationError from "../../../components/ValidationError/ValidationError
 import { AuthContext } from "../../../Contexts/AuthProvider/AuthProvider";
 import { CartContext } from "../../../Contexts/CartProvider/CartProvider";
 import { getRandomId } from "../../../utils/GetRandomId/getRandomId";
+import { Link } from "react-router-dom";
 
 const CheckoutForm = ({
   grandTotal,
@@ -527,15 +528,15 @@ const CheckoutForm = ({
             className="text-sm flex items-center justify-between gap-2 px-2 py-1 border rounded-md w-full"
           >
             <div className="flex gap-3 items-center">
-              <BsCash className="w-7 h-7" />
+              <BsPaypal className="w-7 h-7" />
               <div>
-                <span className="text-sm">Cash On Delivery</span>
+                <span className="text-sm">Pay Pal</span>
               </div>
             </div>
             <input
-              id="cash-on-delivery"
+              id="pay-pal"
               type="radio"
-              value={"Cash On Delivery"}
+              value={"Pay Pal"}
               className="icon accent-primary"
               {...register("paymentMethod", {
                 required: "Payment Method is required!",
@@ -582,11 +583,11 @@ const CheckoutForm = ({
       </div>
 
       <div className="flex lg:gap-5 gap-2 lg:flex-nowrap flex-wrap">
-        <button className="tori-btn-accent">Continue Shopping</button>
+        <Link className="tori-btn-accent" to="/">Continue Shopping</Link>
         <button
           // onClick={() => navigate("/invoice")}
           className="tori-btn-secondary"
-          // disabled={!stripe || !clientSecret || !processing}
+          disabled={!stripe || !clientSecret || !processing}
           type="submit"
         >
           Confirm{processing && <ButtonLoader />}

@@ -4,6 +4,7 @@ import ButtonLoader from "../../../components/ButtonLoader/ButtonLoader";
 import Required from "../../../components/Required/Required";
 import ValidationError from "../../../components/ValidationError/ValidationError";
 import { AuthContext } from "../../../Contexts/AuthProvider/AuthProvider";
+import { Link } from "react-router-dom";
 
 const PersonalInfo = ({
     register,
@@ -289,7 +290,7 @@ const PersonalInfo = ({
                 </div>
             </div>
             <div className="flex lg:gap-5 gap-2 lg:flex-nowrap flex-wrap">
-                <button className="tori-btn-accent">Continue Shopping</button>
+                <Link className="tori-btn-accent" to={"/"}>Continue Shopping</Link>
                 <button
                     // onClick={() => navigate("/invoice")}
                     className="tori-btn-secondary"

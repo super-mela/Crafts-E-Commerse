@@ -22,7 +22,7 @@ const AppDownload = () => {
             necessary product from our Crafts Gift Store and get some special
             offer.
           </p>
-          <div className="flex items-center justify-center gap-5 mt-2">
+          {/* <div className="flex items-center justify-center gap-5 mt-2">
             <a
               rel="noreferrer"
               target={"_blank"}
@@ -45,7 +45,7 @@ const AppDownload = () => {
                 className="w-32"
               />
             </a>
-          </div>
+          </div> */}
         </div>
         <div className="lg:flex items-center  hidden">
           <img
