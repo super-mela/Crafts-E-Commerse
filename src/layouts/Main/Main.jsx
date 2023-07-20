@@ -4,6 +4,7 @@ import Indicator from "../../components/Indicator/Indicator";
 import LoginModal from "../../components/LoginModal/LoginModal";
 import NewsLetterModal from "../../components/NewsLetterModal/NewsLetterModal";
 import ProductModal from "../../components/ProductModal/ProductModal";
+import CrystaltModal from "../../components/CrystalModal/CrystalModal";
 import { CartContext } from "../../Contexts/CartProvider/CartProvider";
 import MyCart from "../../pages/MyCart/MyCart/MyCart";
 import MyWishlist from "../../pages/MyWishlist/MyWishlist/MyWishlist";
@@ -28,6 +29,7 @@ const Main = () => {
           setLoginOrRegister={setLoginOrRegister}
         ></LoginModal>
         <ProductModal />
+        <CrystaltModal />
         {/* <NewsLetterModal /> */}
         {/* Cart On Bottom */}
         <label

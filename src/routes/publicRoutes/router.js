@@ -21,7 +21,9 @@ import ProductDetails from "../../pages/ProductDetails/ProductDetails/ProductDet
 import SearchResult from "../../pages/SearchResult/SearchResult";
 import PrivateRoutes from "../PrivateRoutes/PrivateRoutes";
 import TermsCondition from "../../pages/termscondition/TermsCondition";
-import Crystals from "../../pages/crafts/home/home"
+import Crystals from "../../pages/crafts/home/home";
+import CrystalDetails from "../../pages/crafts/CrystalDetails/CrystalDetails";
+
 export const router = createBrowserRouter([
   {
     path: "/",
@@ -77,8 +79,12 @@ export const router = createBrowserRouter([
         element: <ContactUs />,
       },
       {
-        path: "/3dCrafts",
+        path: "/3dCrystals",
         element: <Crystals />,
+      },
+      {
+        path: "/3dCrystals/:id",
+        element: <CrystalDetails />,
       },
       {
         path: "/order",

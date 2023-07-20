@@ -15,7 +15,7 @@ const AdvertiseProduct = ({ data }) => {
           {data.subtitle}
         </p>
         <div className="mt-2">
-          <Link className="tori-btn-secondary" to={"/order"}>Order Now</Link>
+          <Link className="tori-btn-secondary" to={"/3dCrystals"}>Order Now</Link>
         </div>
       </div>
       <div className="lg:col-span-2 flex items-center lg:order-1 order-0">

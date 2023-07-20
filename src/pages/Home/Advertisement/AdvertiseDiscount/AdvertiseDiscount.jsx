@@ -19,7 +19,7 @@ const AdvertiseDiscount = () => {
         </p>
       </div>
 
-      <Link className="tori-btn-primary" to={"/order"}>Order Now</Link>
+      <Link className="tori-btn-primary" to={"/3dCrystals"}>Order Now</Link>
     </div>
   );
 };

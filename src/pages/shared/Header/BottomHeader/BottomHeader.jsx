@@ -19,7 +19,7 @@ const BottomHeader = () => {
           <CategoriesDropdown idText={"bottomHeader"}></CategoriesDropdown>
         </div>
 
-        <NavLink to={"/3dCrafts"}>3D Crystals</NavLink>
+        <NavLink to={"/3dCrystals"}>3D Crystals</NavLink>
         <NavLink
           to={"/offers"}
           className={
