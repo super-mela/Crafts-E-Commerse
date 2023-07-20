@@ -26,7 +26,7 @@
     <img src="./src/assets/logo.png" alt="Logo" width="80" height="80">
   </a>
 
-<h3 align="center">ToriTorkari</h3>
+<h3 align="center">Craft Gift</h3>
 
   <p align="center">
     An online gift shop where all the regular gift items can be found in a place.

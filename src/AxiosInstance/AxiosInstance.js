@@ -12,9 +12,9 @@ const defaultOptions = {
 const fileOptions = {
   baseURL: process.env.REACT_APP_API_PATH,
   headers: {
-    "Content-Type": "multipart/form-data",
-    'Access-Control-Allow-Origin': '*',
-    'Access-Control-Allow-Methods': 'GET,PUT,POST,DELETE,PATCH,OPTIONS',
+    "Content-Type": "multipart/form-data"
+    // 'Access-Control-Allow-Origin': '*',
+    // 'Access-Control-Allow-Methods': 'GET,PUT,POST,DELETE,PATCH,OPTIONS',
   },
 };
 

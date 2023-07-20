@@ -21,6 +21,7 @@ import ProductDetails from "../../pages/ProductDetails/ProductDetails/ProductDet
 import SearchResult from "../../pages/SearchResult/SearchResult";
 import PrivateRoutes from "../PrivateRoutes/PrivateRoutes";
 import TermsCondition from "../../pages/termscondition/TermsCondition";
+import Crystals from "../../pages/crafts/home/home"
 export const router = createBrowserRouter([
   {
     path: "/",
@@ -74,6 +75,10 @@ export const router = createBrowserRouter([
       {
         path: "/contact",
         element: <ContactUs />,
+      },
+      {
+        path: "/3dCrafts",
+        element: <Crystals />,
       },
       {
         path: "/order",

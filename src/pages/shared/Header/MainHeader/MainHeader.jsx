@@ -123,9 +123,9 @@ const MainHeader = ({ setLoginOrRegister }) => {
           </div>
         </div>
         {/* <!-- Page content here --> */}
-        <BottomHeader></BottomHeader>
-        <Outlet></Outlet>
-        <Footer></Footer>
+        <BottomHeader />
+        <Outlet />
+        <Footer />
       </div>
 
       <div className="drawer-side">

@@ -26,10 +26,6 @@ const TopHeader = ({ setLoginOrRegister }) => {
         <Link className="tori-link" to={"/aboutus"}>
           About Us
         </Link>
-        |
-        <Link className="tori-link" to={"/order"}>
-          Order
-        </Link>
         |{" "}
         {user && user.uid ? (
           <Link

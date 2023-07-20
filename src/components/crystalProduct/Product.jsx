@@ -1,7 +1,7 @@
 import React, { useContext } from "react";
 import { toast } from "react-hot-toast";
 import { AiOutlineHeart } from "react-icons/ai";
-import { BsBagPlusFill } from "react-icons/bs";
+import { BsBagFill } from "react-icons/bs";
 import { HiOutlineEye } from "react-icons/hi";
 import { CartContext } from "../../Contexts/CartProvider/CartProvider";
 import { WishlistContext } from "../../Contexts/WishlistProvider/WishlistProvider";
@@ -116,12 +116,13 @@ const Product = ({
 
       {/* Text */}
       <div className="text-sm font-medium z-10 mt-1">
-        <div className="flex justify-between items-center">
-          <span className="text-xs text-black/60">{net}</span>
+        <div className="flex justify-end items-center">
+          {/* <span className="text-xs text-black/60">{net}</span> */}
           <StatusTag
             color={status?.toLowerCase() === "in stock" ? true : false}
           >
-            {status}
+            Avaliable
+            {/* {status} */}
           </StatusTag>
         </div>
         <p className="text-black/80">{name}</p>
@@ -136,8 +137,8 @@ const Product = ({
       )}
 
       {/* Price */}
-      <div className="flex justify-between items-end mt-[2px]">
-        <span className="price my-auto">
+      <div className="flex justify-end items-end mt-[2px]">
+        {/* <span className="price my-auto">
           $
           {product?.discount
             ? (product?.price - (product.discount / 100) * price)?.toFixed(2)
@@ -145,36 +146,18 @@ const Product = ({
           {product?.discount && (
             <span className="text-sm line-through text-black/50">${price}</span>
           )}
-        </span>
+        </span> */}
 
         {/* Add Cart Button */}
         {status?.toLowerCase() === "in stock" &&
-          (quantity ? (
-            <div className="text-white border border-primary hover:bg-white hover:text-primary rounded-sm items-center bg-primary flex">
-              <button
-                className="px-2 py-1"
-                onClick={() => handleReduceQuantity(_id, name)}
-              >
-                {" "}
-                -{" "}
-              </button>
-              <span>{quantity}</span>
-              <button
-                className="px-2 py-1"
-                onClick={() => handleAddtoCart(_id, name)}
-              >
-                {" "}
-                +{" "}
-              </button>
-            </div>
-          ) : (
-            <button
-              onClick={() => handleAddtoCart(_id, name)}
-              className="border border-primary flex justify-center items-center p-2 cursor-pointer transition-all delay-[30ms] hover:bg-primary hover:text-white rounded-sm text-primary"
-            >
-              <BsBagPlusFill className="w-4 h-4" />
-            </button>
-          ))}
+
+          <button
+            onClick={() => handleAddtoCart(_id, name)}
+            className="border border-primary flex justify-center items-center p-2 cursor-pointer transition-all delay-[30ms] hover:bg-primary hover:text-white rounded-sm text-primary"
+          >
+            <BsBagFill className="w-4 h-4" />
+          </button>
+        }
       </div>
     </div>
   );
