@@ -10,14 +10,9 @@ import "swiper/css/thumbs";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "./CrystalDetailsCard.css";
 
-import { useContext } from "react";
-import { toast } from "react-hot-toast";
-import { AiOutlineHeart } from "react-icons/ai";
 import { BiChevronLeft, BiChevronRight } from "react-icons/bi";
 import { MdOutlineMore } from "react-icons/md";
 import { FreeMode, Thumbs } from "swiper";
-import { CartContext } from "../../Contexts/CartProvider/CartProvider";
-import useGetQuantity from "../../Hooks/useGetQuantity/useGetQuantity";
 import RatingsStars from "../RatingsStars/RatingsStars";
 
 const StaticPath = process.env.REACT_APP_STATIC;
@@ -160,7 +155,7 @@ const CrystalDetailsCard = ({
           <div className="flex lg:justify-start justify-center items-center lg:gap-5 my-3 gap-2 lg:flex-nowrap flex-wrap">
             <div className="lg:w-[30%] w-[70%]">
               <button
-                onClick={() => navigate('/order')}
+                onClick={() => navigate('/3dCrystals/customize')}
                 className="tori-btn-secondary w-full"
               >
                 Order Now

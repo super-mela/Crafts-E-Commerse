@@ -64,7 +64,7 @@ const Product = ({
         {status?.toLowerCase() === "in stock" &&
 
           <button
-            onClick={() => navigate('/order')}
+            onClick={() => navigate('/3dCrystals/customize')}
             className="border border-primary flex justify-center items-center p-2 cursor-pointer transition-all delay-[30ms] hover:bg-primary hover:text-white rounded-sm text-primary"
           >
             <BsBagFill className="w-4 h-4" />

@@ -21,8 +21,9 @@ import ProductDetails from "../../pages/ProductDetails/ProductDetails/ProductDet
 import SearchResult from "../../pages/SearchResult/SearchResult";
 import PrivateRoutes from "../PrivateRoutes/PrivateRoutes";
 import TermsCondition from "../../pages/termscondition/TermsCondition";
-import Crystals from "../../pages/crafts/home/home";
-import CrystalDetails from "../../pages/crafts/CrystalDetails/CrystalDetails";
+import Crystals from "../../pages/Crystals/home/home";
+import CrystalDetails from "../../pages/Crystals/CrystalDetails/CrystalDetails";
+import CrystalCustomize from "../../pages/Crystals/CrystalCustomize/CrystalCustomize"
 
 export const router = createBrowserRouter([
   {
@@ -81,6 +82,10 @@ export const router = createBrowserRouter([
       {
         path: "/3dCrystals",
         element: <Crystals />,
+      },
+      {
+        path: "/3dCrystals/customize",
+        element: <CrystalCustomize />,
       },
       {
         path: "/3dCrystals/:id",
