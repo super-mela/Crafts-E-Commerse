@@ -8,6 +8,7 @@ import AuthProvider from "./Contexts/AuthProvider/AuthProvider";
 import CartProvider from "./Contexts/CartProvider/CartProvider";
 import WishlistProvider from "./Contexts/WishlistProvider/WishlistProvider";
 import ProductsProvider from "./Contexts/ProductsProvider/ProductsProvider";
+import CrystalProvider from './Contexts/CrystalProvider/CrystalProvider'
 import "./index.css";
 import reportWebVitals from "./reportWebVitals";
 
@@ -22,15 +23,17 @@ root.render(
           <AuthProvider>
             <CartProvider>
               <WishlistProvider>
-                <div>
-                  <Toaster
-                    toastOptions={{
-                      className:
-                        "text-sm font-semibold rounded-sm px-2 py-1 max-w-xl",
-                    }}
-                  />
-                </div>
-                <App />
+                <CrystalProvider>
+                  <div>
+                    <Toaster
+                      toastOptions={{
+                        className:
+                          "text-sm font-semibold rounded-sm px-2 py-1 max-w-xl",
+                      }}
+                    />
+                  </div>
+                  <App />
+                </CrystalProvider>
               </WishlistProvider>
             </CartProvider>
           </AuthProvider>

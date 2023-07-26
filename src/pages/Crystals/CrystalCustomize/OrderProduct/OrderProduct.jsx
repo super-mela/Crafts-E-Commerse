@@ -72,7 +72,7 @@ const OrderProduct = ({ register, errors, setValue }) => {
     const fileUpload = (e) => {
         setValue("file", e.target.files)
         var objectUrl = URL.createObjectURL(e.target.files[0])
-        // setPreview(objectUrl);
+        setPreview(objectUrl);
     }
 
     const handleReduceQuantity = () => {

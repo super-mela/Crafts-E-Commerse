@@ -143,6 +143,72 @@ const getStoredWishlist = () => {
 
   return wishlistCart;
 };
+/********************************************************
+ Local storage for Crystal
+ ********************************************************/
+
+const addToCrystalDb = (id) => {
+  const CrystalCart = getStoredCrystalCart();
+
+  // if quantity available increase otherwise add 1 minimum
+
+  if (CrystalCart[id]) {
+    CrystalCart[id]++;
+  } else {
+    CrystalCart[id] = 1;
+  }
+  localStorage.setItem("crystal-cart", JSON.stringify(CrystalCart));
+};
+
+const addNewCrystalDb = (id) => {
+  var CrystalCart = getStoredCrystalCart();
+  // if quantity available increase otherwise add 1 minimum
+  if (CrystalCart) {
+    deleteCrystalCart();
+    CrystalCart = getStoredCrystalCart();
+    CrystalCart[id] = 1;
+  } else {
+    CrystalCart[id] = 1;
+  }
+  localStorage.setItem("crystal-cart", JSON.stringify(CrystalCart));
+};
+
+const reduceQuantityFromCrystalDb = (id) => {
+  const CrystalCart = getStoredCrystalCart();
+
+  // reduce quantity
+  if (CrystalCart[id]) {
+    CrystalCart[id]--;
+    localStorage.setItem("crystal-cart", JSON.stringify(CrystalCart));
+  }
+  if (CrystalCart[id] === 0) {
+    removeFromCrystalDb(id);
+  }
+};
+
+const removeFromCrystalDb = (id) => {
+  const CrystalCart = getStoredCrystalCart();
+
+  // Check if the id is in the shopping cart then delete the id and upload the updated cart into storage
+  if (id in CrystalCart) {
+    delete CrystalCart[id];
+    localStorage.setItem("crystal-cart", JSON.stringify(CrystalCart));
+  }
+};
+
+const deleteCrystalCart = () => {
+  localStorage.removeItem("crystal-cart");
+};
+
+const getStoredCrystalCart = () => {
+  let CrystalCart = {};
+  const storedCrystal = localStorage.getItem("crystal-cart");
+  if (storedCrystal) {
+    CrystalCart = JSON.parse(storedCrystal);
+  }
+
+  return CrystalCart;
+};
 
 export {
   addToDb,
@@ -155,4 +221,10 @@ export {
   getStoredWishlist,
   reduceQuantityFromWishlistDb,
   removeFromWishlistDb,
+  addToCrystalDb,
+  reduceQuantityFromCrystalDb,
+  removeFromCrystalDb,
+  deleteCrystalCart,
+  getStoredCrystalCart,
+  addNewCrystalDb
 };

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { Navigation } from "swiper/core";
 import "swiper/css";
@@ -9,6 +9,7 @@ import "swiper/css/pagination";
 import "swiper/css/thumbs";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "./CrystalDetailsCard.css";
+import { CrystalContext } from "../../Contexts/CrystalProvider/CrystalProvider";
 
 import { BiChevronLeft, BiChevronRight } from "react-icons/bi";
 import { MdOutlineMore } from "react-icons/md";
@@ -23,9 +24,17 @@ const CrystalDetailsCard = ({
   selectedProduct,
   selectedProduct: { image, tags, name, price, status, desc, _id, net },
 }) => {
+  const { addnewCrystalCart } = useContext(CrystalContext)
   const navigate = useNavigate();
   const [thumbsSwiper, setThumbsSwiper] = useState(null);
   const location = useLocation();
+
+  const handleCrystal = () => {
+    addnewCrystalCart(_id);
+    setTimeout(() => {
+      navigate('/3dCrystals/customize')
+    }, 200);
+  }
 
   return (
     <div className="flex lg:gap-5 text-[16px] text-gray-700 lg:flex-nowrap flex-wrap">
@@ -155,7 +164,7 @@ const CrystalDetailsCard = ({
           <div className="flex lg:justify-start justify-center items-center lg:gap-5 my-3 gap-2 lg:flex-nowrap flex-wrap">
             <div className="lg:w-[30%] w-[70%]">
               <button
-                onClick={() => navigate('/3dCrystals/customize')}
+                onClick={() => handleCrystal()}
                 className="tori-btn-secondary w-full"
               >
                 Order Now

@@ -51,13 +51,13 @@ const OrderSummary = ({ grandTotal, shippingCost, discount, setDiscount }) => {
       <hr />
       <div className="h-[300px] overflow-y-scroll flex items-center flex-col">
         {isLoading ? (
-          <Loader></Loader>
+          <Loader />
         ) : cartItems?.length ? (
           cartItems?.map((cartItem) => (
             <CartItem cartItem={cartItem} key={cartItem?._id}></CartItem>
           ))
         ) : (
-          <EmptyCart></EmptyCart>
+          <EmptyCart />
         )}
       </div>
       <form

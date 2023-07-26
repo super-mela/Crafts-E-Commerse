@@ -2,6 +2,7 @@ import React, { useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import { BsBagFill } from "react-icons/bs";
 import { ProductContext } from "../../Contexts/ProductsProvider/ProductsProvider";
+import { CrystalContext } from "../../Contexts/CrystalProvider/CrystalProvider";
 import RatingsStars from "../RatingsStars/RatingsStars";
 import StatusTag from "../StatusTag/StatusTag";
 import "./Product.css";
@@ -14,6 +15,14 @@ const Product = ({
 }) => {
   const navigate = useNavigate()
   const { setSelectedProduct } = useContext(ProductContext);
+  const { addnewCrystalCart } = useContext(CrystalContext)
+
+  const handleCrystal = () => {
+    addnewCrystalCart(_id);
+    setTimeout(() => {
+      navigate('/3dCrystals/customize')
+    }, 200);
+  }
 
   return (
     <div className="text-black/90 flex flex-col justify-between gap-1 overflow-hidden bg-white  rounded-sm p-2 product relative">
@@ -64,7 +73,7 @@ const Product = ({
         {status?.toLowerCase() === "in stock" &&
 
           <button
-            onClick={() => navigate('/3dCrystals/customize')}
+            onClick={() => handleCrystal()}
             className="border border-primary flex justify-center items-center p-2 cursor-pointer transition-all delay-[30ms] hover:bg-primary hover:text-white rounded-sm text-primary"
           >
             <BsBagFill className="w-4 h-4" />

@@ -1,11 +1,12 @@
 import React, { useEffect, useState, useContext } from "react";
 import { Helmet } from "react-helmet-async";
-import PersonalInfo from "./PersonalInfo/PersonalInfo";
+import CrystalProducts from "./CrystalProducts/CrystalProducts";
 import useGetSubTotal from "../../../Hooks/useGetSubTotal/useGetSubTotal";
 import OrderProduct from "./OrderProduct/OrderProduct";
 import SuccessModal from "../../../components/SuccessModal/SuccessModal";
 import { AuthContext } from "../../../Contexts/AuthProvider/AuthProvider";
 import { fileinstace } from '../../../AxiosInstance/AxiosInstance'
+import { CrystalContext } from "../../../Contexts/CrystalProvider/CrystalProvider";
 import { useForm } from "react-hook-form";
 import { v4 as uuid } from "uuid";
 import { toast } from "react-hot-toast";
@@ -19,6 +20,7 @@ const CrystalCustomize = () => {
     const [processing, setProccessing] = useState(false);
     const [uniqueId, setUniqueId] = useState("");
     const { user } = useContext(AuthContext);
+    const { refetch } = useContext(CrystalContext)
 
     const {
         register,
@@ -29,6 +31,7 @@ const CrystalCustomize = () => {
         criteriaMode: "all",
     });
 
+    useEffect(() => { refetch() }, [])
     useEffect(() => {
         setGrandTotal(
             parseFloat((subTotal - discount + shippingCost || 0).toFixed(2))
@@ -82,15 +85,7 @@ const CrystalCustomize = () => {
                 </Helmet>
 
                 <div className="lg:w-[50%] bg-white rounded-md lg:order-1 order-1">
-                    <PersonalInfo
-                        discount={discount}
-                        shippingCost={shippingCost}
-                        setShippingCost={setShippingCost}
-                        grandTotal={grandTotal}
-                        register={register}
-                        errors={errors}
-                        processing={processing}
-                    ></PersonalInfo>
+                    <CrystalProducts />
                 </div>
                 <div className="lg:w-[50%] w-full relative transition-all delay-75 lg:order-2 order-2">
                     <OrderProduct

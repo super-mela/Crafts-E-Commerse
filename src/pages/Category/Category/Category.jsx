@@ -44,7 +44,7 @@ const Category = () => {
   return (
     <div className="bg-[#F9FAFB] section">
       <Helmet>
-        <title>Crafts Bazar - Category</title>
+        <title>Crafts - Category</title>
         <meta
           name="description"
           content="Explore a specific category on the shop"
