@@ -33,7 +33,9 @@ const CrystalProvider = ({ children }) => {
         return addToCrystalDb(id);
     };
     const addnewCrystalCart = (id) => {
-        return addNewCrystalDb(id);
+        addNewCrystalDb(id);
+        refetch()
+        return
     };
 
     const removeFromCrystalCart = (id) => {
@@ -49,7 +51,7 @@ const CrystalProvider = ({ children }) => {
         return reduceQuantityFromCrystalDb(id);
     };
 
-    const removeShoppingCart = () => {
+    const removeCrystalCart = () => {
         deleteCrystalCart();
         setNumberOfCrystalItems(0);
         refetch();
@@ -74,7 +76,7 @@ const CrystalProvider = ({ children }) => {
         refetch,
         isLoading,
         successModal,
-        removeShoppingCart,
+        removeCrystalCart,
     };
     return (
         <CrystalContext.Provider value={crystalInfo}>{children}</CrystalContext.Provider>

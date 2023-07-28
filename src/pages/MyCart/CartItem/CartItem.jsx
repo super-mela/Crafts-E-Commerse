@@ -68,7 +68,7 @@ const CartItem = ({ cartItem }) => {
           <div className="border rounded-sm items-center flex">
             <button
               onClick={() =>
-                quantity && handleReduceQuantity(cartItem?._id, cartItem?.name)
+                quantity - 1 && handleReduceQuantity(cartItem?._id, cartItem?.name)
               }
               className="px-2 "
             // onClick={() => handleReduceQuantity(_id, name)}

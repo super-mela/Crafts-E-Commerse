@@ -24,8 +24,8 @@ const CrystalProducts = () => {
         <div className=" w-full">{
             isLoading ? <Loader />
                 : crystalItems?.length ? (
-                    crystalItems?.map((crystalItem) => (
-                        <div>
+                    crystalItems?.map((crystalItem, key) => (
+                        <div key={key}>
                             <img
                                 src={thumbsSwiper}
                                 alt=""

@@ -1,72 +1,101 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
+import { useForm } from "react-hook-form";
+import { v4 as uuid } from "uuid";
+import { toast } from "react-hot-toast";
+import { useNavigate } from "react-router-dom";
+import { ErrorMessage } from "@hookform/error-message";
+
 import ValidationError from "../../../../components/ValidationError/ValidationError";
 import EmptyImage from "../EmptyImage/EmptyImage";
-import { ErrorMessage } from "@hookform/error-message";
 import Required from "../../../../components/Required/Required";
-import { useNavigate } from "react-router-dom";
+import { CrystalContext } from "../../../../Contexts/CrystalProvider/CrystalProvider";
+import { AuthContext } from "../../../../Contexts/AuthProvider/AuthProvider";
+import useGetCrystalQuantity from "../../../../Hooks/useGetCrystalQuantity/useGetCrystalQuantity";
+import useGetCrsytalSubTotal from "../../../../Hooks/useGetCrystalSubTotal/useGetCrystalSubTotal";
+import { fileinstace } from "../../../../AxiosInstance/AxiosInstance";
 
-const OrderProduct = ({ register, errors, setValue }) => {
-
-    const navigate = useNavigate()
-
+const OrderProduct = ({ crystalItem }) => {
+    const {
+        register,
+        formState: { errors },
+        handleSubmit,
+        setValue,
+        getValues,
+        watch
+    } = useForm({
+        criteriaMode: "all",
+        defaultValues: {
+            size: 0,
+            rush: 0,
+            LED: 0,
+            line: 0,
+            text: [],
+            font: "Ariel",
+            keychane: 0,
+            cleaningKit: 0,
+            background: 0
+        }
+    });
+    const navigate = useNavigate();
+    const { addToCrystalCart, reduceQuantityFromCrystalCart, } = useContext(CrystalContext)
+    const { user } = useContext(AuthContext);
+    const [quantity] = useGetCrystalQuantity(crystalItem._id);
+    const [subTotal] = useGetCrsytalSubTotal();
     const [preview, setPreview] = useState(null)
-    const [quantity, setQuantity] = useState(1)
-    const subTotal = 500;
+    const crystalOptions = {
+        size: [
+            { id: 0, price: 0, text: `Small Heart (Up to 2 People) 3" x 2.8"` },
+            { id: 1, price: 70.00, text: `Medium Heart (Up to 2 People) 3.9" x 3.5" ` },
+            { id: 2, price: 140.00, text: `Large Heart (Up to 3 People) 4.9" x 4.1" ` }
+        ],
+        rush: [
+            { id: 0, price: 0, text: `No Thankyou` },
+            { id: 1, price: 12.95, text: `Rush - Produced Next Business Day ` },
+        ],
+        LED: [
+            { id: 0, price: 0, text: `No Thankyou` },
+            { id: 1, price: 44.95, text: `Lighted Base For Small or Medium Heart` },
+            { id: 2, price: 54.95, text: `Lighted Base For Large Heart ` },
+            { id: 3, price: 39.95, text: `Round Rotating Lighted Base For Small or Medium Heart ` },
+            { id: 4, price: 39.95, text: `Round Rotating Color Changing LED Base for Medium Heart ` }
+        ],
+        line: [
+            { text: 'No Thankyou', price: 0, id: 0 },
+            { text: '1 ', price: 6.95, id: 1 },
+            { text: '2 ', price: 9.95, id: 2 }
+        ],
+        font: [
+            { id: 0, text: `Arial` },
+            { id: 1, text: `Monotype Corsiva` },
+            { id: 1, text: `Times New Roman` },
+            { id: 2, text: `Script MT Bold` }
+        ],
+        keyChain: [
+            { id: 0, price: 0, text: `No Thankyou` },
+            { id: 1, price: 19.75, text: `Heart Shape` },
+            { id: 2, price: 14.75, text: `Rectangle Shape` }
+        ],
+        cleaningKit: { id: 0, price: 7.95, text: `+ $` },
+        background: { id: 0, price: 25, text: `+ $` }
+    }
+    const textLine = [{ text: 'No Thankyou', price: 0, index: 0 }, { text: '1 (+6.95)', price: 6.95, index: 1 }, { text: '2 (+9.95)', price: 9.95, index: 2 }]
     const [total, setTotal] = useState(subTotal);
-    const [value, setValues] = useState({
-        size: 0,
-        rush: 0,
-        LED: 0,
-        line: 0,
-        font: "Ariel",
-        keychane: 0,
-        cleaningKit: 0,
-        background: 0
-    });
-    const [prevValue, setPrevValue] = useState({
-        size: 0,
-        rush: 0,
-        LED: 0,
-        line: 0,
-        font: "Ariel",
-        keychane: 0,
-        cleaningKit: 0,
-        background: 0
-    });
-
-    useEffect((props) => {
-        setTotal(parseFloat(((quantity * subTotal)
-            - prevValue.rush + value.rush
-            - prevValue.LED + value.LED
-            - prevValue.line + value.line
-            - prevValue.size + value.size
-            - prevValue.keychane + value.keychane
-            - prevValue.cleaningKit + value.cleaningKit
-            - prevValue.background + value.background
-        ).toFixed(2)))
-    }, [quantity])
 
     useEffect(() => {
-        setTotal(parseFloat((total - prevValue.rush + value.rush).toFixed(2)))
-    }, [value.rush])
-    useEffect(() => {
-        setTotal(parseFloat((total - prevValue.LED + value.LED).toFixed(2)))
-    }, [value.LED])
-    useEffect(() => {
-        setTotal(parseFloat((total - prevValue.line + value.line).toFixed(2)))
-    }, [value.line])
-    useEffect(() => {
-        setTotal(parseFloat((total - prevValue.size + value.size).toFixed(2)))
-    }, [value.size])
-    useEffect(() => {
-        setTotal(parseFloat((total - prevValue.keychane + value.keychane).toFixed(2)))
-    }, [value.keychane])
-    useEffect(() => {
-        setTotal(parseFloat((total - prevValue.cleaningKit + value.cleaningKit).toFixed(2)))
-    }, [value.cleaningKit])
-    useEffect(() => {
-        setTotal(parseFloat((total - prevValue.background + value.background).toFixed(2)))
-    }, [value.background])
+        setTotal(parseFloat((subTotal
+            + (getValues().rush
+                + getValues().LED
+                + getValues().line
+                + getValues().size
+                + getValues().keychane
+                + getValues().cleaningKit
+                + getValues().background
+            ) * quantity).toFixed(2)))
+
+        return () => {
+            //clean up function
+        }
+    }, [subTotal, watch()])
 
 
     const fileUpload = (e) => {
@@ -77,288 +106,339 @@ const OrderProduct = ({ register, errors, setValue }) => {
 
     const handleReduceQuantity = () => {
         if (quantity > 1) {
-            setQuantity(quantity - 1)
+            reduceQuantityFromCrystalCart(crystalItem._id)
         }
     }
 
     const handleAddtoCart = () => {
-        setQuantity(quantity + 1)
-        setTotal(quantity * subTotal)
+        addToCrystalCart(crystalItem._id)
     }
 
     const handleChange = (e) => {
-        setPrevValue({ ...prevValue, [e.target.name]: value[e.target.name] })
-        setValues({ ...value, [e.target.name]: parseFloat(e.target.value) })
+        if (e.target.name === "font") {
+            setValue(e.target.name, e.target.value)
+        }
+        else if (e.target.name === "line") {
+            setValue("text", new Array(parseInt(e.target.value)).fill(''))
+            setValue(e.target.name, parseFloat(textLine[e.target.value].price))
+        }
+        else {
+            setValue(e.target.name, parseFloat(e.target.value))
+        }
+
     }
 
     const handelCheckbox = (e) => {
-        switch (e.target.name) {
-            case 'background':
-                if (e.target.checked) {
-                    setPrevValue({ ...prevValue, [e.target.name]: value[e.target.name] })
-                    setValues({ ...value, [e.target.name]: parseFloat(e.target.value) })
-                }
-                break;
-            case "cleaningKit":
-                if (e.target.checked) {
-                    setPrevValue({ ...prevValue, [e.target.name]: value[e.target.name] })
-                    setValues({ ...value, [e.target.name]: parseFloat(e.target.value) })
-                }
-                break;
-            default:
-                break;
+        if (e.target.checked) {
+            setValue(e.target.name, parseFloat(e.target.value))
+        } else {
+            setValue(e.target.name, 0)
         }
     }
 
+    const handleText = (e) => {
+        var newArray = getValues().text;
+        newArray[parseInt(e.target.name)] = e.target.value
+        setValue('text', newArray)
+    }
+
+    const handleOrder = (data) => {
+
+        // setProccessing(true)
+        const unique_id = uuid() + "." + data.file[0].type.split("/")[1];
+        const formdata = new FormData()
+        formdata.append("orderId", unique_id)
+        formdata.append("address", data.address)
+        formdata.append("city", data.city)
+        formdata.append("country", data.country)
+        formdata.append("email", data.email)
+        formdata.append("file", data.file[0], unique_id)
+        formdata.append("firstname", data.firstname)
+        formdata.append("lastname", data.lastname)
+        formdata.append("phone", data.phone)
+        formdata.append("zip", data.zip)
+        formdata.append("description", data.description)
+
+        // Send to Db
+        fileinstace
+            .post(`/customOrder?email=${user?.email}`, formdata)
+            .then((res) => {
+                if (res?.data?.acknowledged) {
+                    toast.success("order Complites");
+                    // setProccessing(false)
+                    //  successModal.current.checked = true;
+                }
+            })
+            .catch((err) => {
+                toast.error("Something went wrong");
+            });
+    }
+
+    const handleRoute = () => {
+        navigate('/order')
+    }
     return (
-        <div className="py-3 sticky top-0 bg-white rounded-md flex flex-col gap-3 border text-gray-700">
-            <h4 className="tori-title text-center">Image to be Crafted <Required /></h4>
-            <hr />
-            <div className="text-gray-700 lg:p-5 px-2 py-5 flex flex-col gap-3">
-                <div className="h-[300px] overflow-y-scroll ">
-                    {!preview ?
-                        <EmptyImage />
-                        : <img src={preview} alt="placeholder" className="w-full" />
-                    }
-                </div>
-                <div className="flex">
-                    <input
-                        id="file"
-                        type="file"
-                        accept="image/*"
-                        onChange={fileUpload}
-                        className="tori-btn-secondary disabled:bg-gray-400 disabled:border-gray-400 disabled:text-white w-[100%]"
-                    />
-                    <input
-                        type="hidden"
-                        {...register("file", {
-                            required: "Image is required!",
-                        })}
-                    />
-                    <ErrorMessage
-                        errors={errors}
-                        name="file"
-                        render={({ messages }) => {
-                            return messages
-                                ? Object.entries(messages).map(([type, message]) => (
-                                    <ValidationError
-                                        key={type}
-                                        message={message}
-                                    ></ValidationError>
-                                ))
-                                : null;
-                        }}
-                    />
-                </div>
+        <form
+            onSubmit={handleSubmit(handleRoute)}
+        >
+            <div className="py-3 sticky top-0 bg-white rounded-md flex flex-col gap-3 border text-gray-700">
+                <h4 className="tori-title text-center">Image to be Crafted <Required /></h4>
                 <hr />
-                <div className="">
-                    <label htmlFor="firstname" className="tori-label">
-                        Choose A Size: <Required />
-                    </label>
-                    <select
-                        className="py-2 px-3 pr-9 block w-full border-gray-200 rounded-md text-sm"
-                        {...register("size", {
-                            required: "Size is required!",
-                        })}
-                        defaultValue={"0"}
-                        name="size"
-                        onChange={(e) => handleChange(e)}
-                    >
-                        <option value={"0"} disabled unselectable>Please Select</option>
-                        <option value={0}>Small Heart (Up to 2 People) 3" x 2.8"</option>
-                        <option value={70.00}>Medium Heart (Up to 2 People) 3.9" x 3.5" (+$70.00)</option>
-                        <option value={140.00}>Large Heart (Up to 3 People) 4.9" x 4.1" (+$140.00)</option>
-                    </select>
-                    <ErrorMessage
-                        errors={errors}
-                        name="firstname"
-                        render={({ messages }) => {
-                            return messages
-                                ? Object.entries(messages).map(([type, message]) => (
-                                    <ValidationError
-                                        key={type}
-                                        message={message}
-                                    ></ValidationError>
-                                ))
-                                : null;
-                        }}
-                    />
-                </div>
-                <div className="">
-                    <label htmlFor="rush" className="tori-label">
-                        Rush My Item:
-                    </label>
-                    <select
-                        className="py-2 px-3 pr-9 block w-full border-gray-200 rounded-md text-sm"
-                        onChange={(e) => handleChange(e)}
-                        defaultValue={'No Thankyou'}
-                        name="rush"
-                    >
-                        <option value={0} >No Thankyou</option>
-                        <option value={12.95}>Rush - Produced Next Business Day (+$12.95)</option>
-                    </select>
-                </div>
-                <div className="">
-                    <label htmlFor="firstname" className="tori-label">
-                        Add On Lighted LED Base:
-                    </label>
-                    <select
-                        className="py-2 px-3 pr-9 block w-full border-gray-200 rounded-md text-sm"
-                        defaultValue={0}
-                        name="LED"
-                        onChange={(e => handleChange(e))}
-                    >
-                        <option value={0}>No Thankyou</option>
-                        <option value={44.95}>Lighted Base For Small or Medium Heart (+$44.95)</option>
-                        <option value={54.95}>Lighted Base For Large Heart (+$54.95)</option>
-                        <option value={39.95}>Round Rotating Lighted Base For Small or Medium Heart (+$39.95)</option>
-                        <option value={39.95}>Round Rotating Color Changing LED Base for Medium Heart (+$39.95)</option>
-                    </select>
-
-                </div>
-                <div className="">
-                    <label htmlFor="firstname" className="tori-label">
-                        Add 1 or 2 Lines of Engraved Text:
-                    </label>
-                    <select
-                        className="py-2 px-3 pr-9 block w-full border-gray-200 rounded-md text-sm"
-                        defaultValue={'No Thankyou'}
-                        name="line"
-                        onChange={(e) => handleChange(e)}
-                    >
-                        <option value={0} >No Thankyou</option>
-                        <option value={6.95}>1{" "}(+6.95)</option>
-                        <option value={9.95}>2{" "}(+9.95)</option>
-                    </select>
-
-                </div>
-                <div className="">
-                    <label htmlFor="firstname" className="tori-label">
-                        3D Crystal Text Font:
-                    </label>
-                    <select
-                        className="py-2 px-3 pr-9 block w-full border-gray-200 rounded-md text-sm"
-                        defaultValue={value.font}
-                        name="font"
-                        onChange={(e) => handleChange(e)}
-                    >
-                        <option value={"Arial"} >Arial</option>
-                        <option value={"Monotype Corsiva"}>Monotype Corsiva</option>
-                        <option value={"Script MT Bold"}>Script MT Bold</option>
-                        <option value={"Times New Roman"}>Times New Roman</option>
-                    </select>
-
-                </div>
-
-                <div className="">
-                    <label htmlFor="firstname" className="tori-label">
-                        Add Keychain:
-                    </label>
-                    <select
-                        className="py-2 px-3 pr-9 block w-full border-gray-200 rounded-md text-sm focus:border-blue-500 focus:ring-blue-500 dark:bg-slate-900 dark:border-gray-700 dark:text-gray-400"
-                        defaultValue={0}
-                        name="keychane"
-                        onChange={(e) => handleChange(e)}
-                    >
-                        <option value={0} >No Thankyou</option>
-                        <option value={19.75}>Heart Shape{" "} $19.75</option>
-                        <option value={14.75}>Rectangle Shape{" "}$14.75</option>
-                    </select>
-
-                </div>
-                <div className="">
-                    <label
-                        htmlFor={'Cleaning Kit'}
-                        className="text-sm flex items-center justify-between gap-2 px-2 py-1 border rounded-md w-full"
-                    >
-                        <div className="flex gap-3 items-center">
-                            <div>
-                                <span className="text-sm"> Add A Crystal Cleaning Kit</span>
-                                <small className="block">
-                                    Price{" "}
-                                    <span className="font-bold">+{" "}${'7.95'}</span>
-                                </small>
-                            </div>
-                        </div>
+                <div className="text-gray-700 lg:p-5 px-2 py-5 flex flex-col gap-3">
+                    <div className="h-[300px] overflow-y-scroll ">
+                        {!preview ?
+                            <EmptyImage />
+                            : <img src={preview} alt="placeholder" className="w-full" />
+                        }
+                    </div>
+                    <div className="flex">
                         <input
-                            id={'Cleaning Kit'}
-                            type="checkbox"
-                            name="cleaningKit"
-                            onChange={(e) => handelCheckbox(e)}
-                            value={7.95}
-                            className="icon accent-primary"
+                            id="file"
+                            type="file"
+                            accept="image/*"
+                            onChange={fileUpload}
+                            className="tori-btn-secondary disabled:bg-gray-400 disabled:border-gray-400 disabled:text-white w-[100%]"
                         />
-                    </label>
-                </div>
-                <div className="">
-                    <label
-                        htmlFor={'Backgound'}
-                        className="text-sm flex items-center justify-between gap-2 px-2 py-1 border rounded-md w-full"
-                    >
-                        <div className="flex gap-3 items-center">
-                            <div>
-                                <span className="text-sm"> Keep the Backgound</span>
-                                <small className="block">
-                                    Price{" "}
-                                    <span className="font-bold">+{" "}${'25'}</span>
-                                </small>
-                            </div>
-                        </div>
                         <input
-                            id={'Backgound'}
-                            type="checkbox"
-                            name="background"
-                            onChange={(e) => handelCheckbox(e)}
-                            value={25}
-                            className="icon accent-primary"
+                            type="hidden"
+                            {...register("file", {
+                                required: "Image is required!",
+                            })}
                         />
-                    </label>
-                </div>
-                <hr />
-                <div className="grid lg:grid-cols-2 gap-x-5 gap-y-3">
-                    <div className="flex justify-start font-extrabold text-lg text-primary">
-                        <p>Quantity</p><Required />
-                        <div className="border rounded-sm items-center flex ml-2">
-                            <button
-                                onClick={() =>
-                                    quantity && handleReduceQuantity()
-                                }
-                                className="px-2 "
-                            // onClick={() => handleReduceQuantity(_id, name)}
-                            >
-                                {" "}
-                                -{" "}
-                            </button>
-                            <span className="text-sm mx-1">{quantity}</span>
-                            <button
-                                onClick={() => handleAddtoCart()}
-                                className="px-2 "
-                            // onClick={() => handleAddtoCart(_id, name)}
-                            >
-                                {" "}
-                                +{" "}
-                            </button>
-                        </div>
+                        <ErrorMessage
+                            errors={errors}
+                            name="file"
+                            render={({ messages }) => {
+                                return messages
+                                    ? Object.entries(messages).map(([type, message]) => (
+                                        <ValidationError
+                                            key={type}
+                                            message={message}
+                                        ></ValidationError>
+                                    ))
+                                    : null;
+                            }}
+                        />
+                    </div>
+                    <hr />
+                    <div className="">
+                        <label htmlFor="size" className="tori-label">
+                            Choose A Size: <Required />
+                        </label>
+                        <select
+                            className="py-2 px-3 pr-9 block w-full border-gray-200 rounded-md text-sm"
+                            {...register("size", {
+                                required: "Size is required!",
+                                valueAsNumber: true
+                            })}
+                            defaultValue={getValues().size}
+                            name="size"
+                            onChange={(e) => handleChange(e)}
+                        >
+                            {crystalOptions?.size?.map((item, index) => (
+                                <option key={item.id} value={item.price}>{item.text} {item.price ? `(+$${item.price})` : null} </option>
+                            ))}
+                        </select>
+                        <ErrorMessage
+                            errors={errors}
+                            name="size"
+                            render={({ messages }) => {
+                                return messages
+                                    ? Object.entries(messages).map(([type, message]) => (
+                                        <ValidationError
+                                            key={type}
+                                            message={message}
+                                        ></ValidationError>
+                                    ))
+                                    : null;
+                            }}
+                        />
                     </div>
                     <div className="">
-                        <div className="flex justify-between font-extrabold text-lg text-primary">
-                            <p>Total</p>
-                            <p>${parseFloat(total.toFixed(2))}</p>
+                        <label htmlFor="rush" className="tori-label">
+                            Rush My Item:
+                        </label>
+                        <select
+                            className="py-2 px-3 pr-9 block w-full border-gray-200 rounded-md text-sm"
+                            onChange={(e) => handleChange(e)}
+                            defaultValue={getValues().rush}
+                            name="rush"
+                        >
+                            {crystalOptions?.rush?.map((item, index) => (
+                                <option key={item.id} value={item.price} >{item.text}{item.price ? `(+$${item.price})` : null} </option>
+
+                            ))}
+                        </select>
+                    </div>
+                    <div className="">
+                        <label htmlFor="firstname" className="tori-label">
+                            Add On Lighted LED Base:
+                        </label>
+                        <select
+                            className="py-2 px-3 pr-9 block w-full border-gray-200 rounded-md text-sm"
+                            defaultValue={getValues().LED}
+                            name="LED"
+                            onChange={(e => handleChange(e))}
+                        >
+                            {crystalOptions?.LED?.map((item, index) => (
+                                <option key={item.id} value={item.price}>{item.text}{item.price ? `(+$${item.price})` : null}</option>
+                            ))}
+                        </select>
+
+                    </div>
+                    <div className="">
+                        <label htmlFor="line" className="tori-label">
+                            Add 1 or 2 Lines of Engraved Text:
+                        </label>
+                        <select
+                            className="py-2 px-3 pr-9 block w-full border-gray-200 rounded-md text-sm"
+                            defaultValue={getValues().line}
+                            name="line"
+                            onChange={(e) => handleChange(e)}
+                        >
+                            {crystalOptions?.line.map((item, index) => (
+                                <option key={item.id} value={item.id}>{item.text}{item.price ? `(+$${item.price})` : null}</option>
+                            ))}
+                        </select>
+                        {
+                            getValues().text.map((item, index) => (
+                                <input
+                                    name={index}
+                                    value={item}
+                                    className="tori-input mt-2"
+                                    placeholder={`Text Line ${index + 1}`}
+                                    onChange={(e) => handleText(e)}
+                                />
+                            ))
+                        }
+                    </div>
+                    <div className="">
+                        <label htmlFor="firstname" className="tori-label">
+                            3D Crystal Text Font:
+                        </label>
+                        <select
+                            className="py-2 px-3 pr-9 block w-full border-gray-200 rounded-md text-sm"
+                            defaultValue={getValues().font}
+                            name="font"
+                            onChange={(e) => handleChange(e)}
+                        >
+                            {crystalOptions?.font?.map((item, index) => (
+                                <option key={item.id} value={item.text} >{item.text}</option>
+                            ))}
+                        </select>
+
+                    </div>
+
+                    <div className="">
+                        <label htmlFor="firstname" className="tori-label">
+                            Add Keychain:
+                        </label>
+                        <select
+                            className="py-2 px-3 pr-9 block w-full border-gray-200 rounded-md text-sm focus:border-blue-500 focus:ring-blue-500 dark:bg-slate-900 dark:border-gray-700 dark:text-gray-400"
+                            defaultValue={getValues().keychane}
+                            name="keychane"
+                            onChange={(e) => handleChange(e)}
+                        >
+                            {crystalOptions?.keyChain?.map((item, index) => (
+                                <option key={item.id} value={item.price}>{item.text}{item.price ? `(+$${item.price})` : null} </option>
+                            ))}
+                        </select>
+
+                    </div>
+                    <div className="">
+                        <label
+                            htmlFor={'Cleaning Kit'}
+                            className="text-sm flex items-center justify-between gap-2 px-2 py-1 border rounded-md w-full"
+                        >
+                            <div className="flex gap-3 items-center">
+                                <div>
+                                    <span className="text-sm"> Add A Crystal Cleaning Kit</span>
+                                    <small className="block">
+                                        Price{" "}
+                                        <span className="font-bold">+{" "}${crystalOptions.cleaningKit.price}</span>
+                                    </small>
+                                </div>
+                            </div>
+                            <input
+                                id={'Cleaning Kit'}
+                                type="checkbox"
+                                name="cleaningKit"
+                                onChange={(e) => handelCheckbox(e)}
+                                value={crystalOptions.cleaningKit.price}
+                                className="icon accent-primary"
+                            />
+                        </label>
+                    </div>
+                    <div className="">
+                        <label
+                            htmlFor={'Backgound'}
+                            className="text-sm flex items-center justify-between gap-2 px-2 py-1 border rounded-md w-full"
+                        >
+                            <div className="flex gap-3 items-center">
+                                <div>
+                                    <span className="text-sm"> Keep the Backgound</span>
+                                    <small className="block">
+                                        Price{" "}
+                                        <span className="font-bold">+{" "}${crystalOptions.background.price}</span>
+                                    </small>
+                                </div>
+                            </div>
+                            <input
+                                id={'Backgound'}
+                                type="checkbox"
+                                name="background"
+                                onChange={(e) => handelCheckbox(e)}
+                                value={crystalOptions.background.price}
+                                className="icon accent-primary"
+                            />
+                        </label>
+                    </div>
+                    <hr />
+                    <div className="grid lg:grid-cols-2 gap-x-5 gap-y-3">
+                        <div className="flex justify-start font-extrabold text-lg text-primary">
+                            <p>Quantity</p><Required />
+                            <div className="border rounded-sm items-center flex ml-2">
+                                <button
+                                    onClick={() =>
+                                        quantity && handleReduceQuantity()
+                                    }
+                                    className="px-2 "
+                                // onClick={() => handleReduceQuantity(_id, name)}
+                                >
+                                    {" "}
+                                    -{" "}
+                                </button>
+                                <span className="text-sm mx-1">{quantity}</span>
+                                <button
+                                    onClick={() => handleAddtoCart()}
+                                    className="px-2 "
+                                // onClick={() => handleAddtoCart(_id, name)}
+                                >
+                                    {" "}
+                                    +{" "}
+                                </button>
+                            </div>
                         </div>
-                        {/* <label htmlFor="firstname" className="tori-label">
+                        <div className="">
+                            <div className="flex justify-between font-extrabold text-lg text-primary">
+                                <p>Total</p>
+                                <p>${parseFloat(total.toFixed(2))}</p>
+                            </div>
+                            {/* <label htmlFor="firstname" className="tori-label">
                         Total <Required />
                     </label> */}
+                        </div>
                     </div>
+                    <button
+                        type="submit"
+                        className="tori-btn-secondary"
+                    //   disabled={!stripe || !clientSecret || !processing}
+                    >
+                        Continue
+                    </button>
                 </div>
-                <button
-                    onClick={() => navigate("/order")}
-                    className="tori-btn-secondary"
-                //   disabled={!stripe || !clientSecret || !processing}
-                >
-                    Continue
-                </button>
             </div>
-        </div>
+        </form>
     );
 };
 
