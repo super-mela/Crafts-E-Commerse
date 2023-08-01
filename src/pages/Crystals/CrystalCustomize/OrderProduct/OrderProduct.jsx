@@ -1,7 +1,5 @@
 import React, { useState, useEffect, useContext } from "react";
 import { useForm } from "react-hook-form";
-import { v4 as uuid } from "uuid";
-import { toast } from "react-hot-toast";
 import { useNavigate } from "react-router-dom";
 import { ErrorMessage } from "@hookform/error-message";
 
@@ -9,10 +7,9 @@ import ValidationError from "../../../../components/ValidationError/ValidationEr
 import EmptyImage from "../EmptyImage/EmptyImage";
 import Required from "../../../../components/Required/Required";
 import { CrystalContext } from "../../../../Contexts/CrystalProvider/CrystalProvider";
-import { AuthContext } from "../../../../Contexts/AuthProvider/AuthProvider";
 import useGetCrystalQuantity from "../../../../Hooks/useGetCrystalQuantity/useGetCrystalQuantity";
 import useGetCrsytalSubTotal from "../../../../Hooks/useGetCrystalSubTotal/useGetCrystalSubTotal";
-import { fileinstace } from "../../../../AxiosInstance/AxiosInstance";
+
 
 const OrderProduct = ({ crystalItem }) => {
     const {
@@ -38,7 +35,6 @@ const OrderProduct = ({ crystalItem }) => {
     });
     const navigate = useNavigate();
     const { addToCrystalCart, reduceQuantityFromCrystalCart, } = useContext(CrystalContext)
-    const { user } = useContext(AuthContext);
     const [quantity] = useGetCrystalQuantity(crystalItem._id);
     const [subTotal] = useGetCrsytalSubTotal();
     const [preview, setPreview] = useState(null)
@@ -95,7 +91,7 @@ const OrderProduct = ({ crystalItem }) => {
         return () => {
             //clean up function
         }
-    }, [subTotal, watch()])
+    }, [subTotal, watch(), quantity])
 
 
     const fileUpload = (e) => {
@@ -142,37 +138,6 @@ const OrderProduct = ({ crystalItem }) => {
         setValue('text', newArray)
     }
 
-    const handleOrder = (data) => {
-
-        // setProccessing(true)
-        const unique_id = uuid() + "." + data.file[0].type.split("/")[1];
-        const formdata = new FormData()
-        formdata.append("orderId", unique_id)
-        formdata.append("address", data.address)
-        formdata.append("city", data.city)
-        formdata.append("country", data.country)
-        formdata.append("email", data.email)
-        formdata.append("file", data.file[0], unique_id)
-        formdata.append("firstname", data.firstname)
-        formdata.append("lastname", data.lastname)
-        formdata.append("phone", data.phone)
-        formdata.append("zip", data.zip)
-        formdata.append("description", data.description)
-
-        // Send to Db
-        fileinstace
-            .post(`/customOrder?email=${user?.email}`, formdata)
-            .then((res) => {
-                if (res?.data?.acknowledged) {
-                    toast.success("order Complites");
-                    // setProccessing(false)
-                    //  successModal.current.checked = true;
-                }
-            })
-            .catch((err) => {
-                toast.error("Something went wrong");
-            });
-    }
 
     const handleRoute = (data) => {
         const customTotal = (getValues().rush + getValues().LED + getValues().line + getValues().size + getValues().keychane + getValues().cleaningKit + getValues().background)

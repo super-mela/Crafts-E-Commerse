@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { BiChevronRight } from "react-icons/bi";
 
-const StaticPath = process.env.REACT_APP_STATIC;
 
 const CustomCard = ({ customData }) => {
   const { LED, background, cleaningKit, file, font, keychane, line, rush, size, text } = customData;
@@ -10,7 +9,8 @@ const CustomCard = ({ customData }) => {
   useEffect(() => {
     var objectUrl = URL.createObjectURL(file[0])
     setPreview(objectUrl);
-  }, [])
+  }, [file])
+
   return (
     <div
       className="grid lg:grid-cols-6 bg-white px-2 py-3 cursor-pointer rounded-sm text-sm text-black/80 hover:text-primary shadow-sm hover:shadow-2xl transition-all delay-[30ms]"
