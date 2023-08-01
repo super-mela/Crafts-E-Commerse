@@ -174,8 +174,10 @@ const OrderProduct = ({ crystalItem }) => {
             });
     }
 
-    const handleRoute = () => {
-        navigate('/order')
+    const handleRoute = (data) => {
+        const customTotal = (getValues().rush + getValues().LED + getValues().line + getValues().size + getValues().keychane + getValues().cleaningKit + getValues().background)
+        localStorage.setItem("customTotal", customTotal)
+        navigate('/order', { state: data })
     }
     return (
         <form
