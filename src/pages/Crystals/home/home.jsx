@@ -29,15 +29,12 @@ const Crystals = () => {
         queryKey: [id, subCat, sort, page, size],
         queryFn: () => {
             return axios.get(
-                `/category/64521c1e5b6499f4b7833dcd?subcategory=${'all'.replace(
-                    "&",
-                    "%26"
-                )}&sort=${sort}&page=${page}&size=${size}`
+                `/crystal`
             );
         },
     });
-
-    const products = data?.result;
+    console.log(data)
+    const products = data;
 
     const pages = Math.ceil(data?.dataCount / size) || 0;
 
@@ -50,14 +47,6 @@ const Crystals = () => {
                     content="Explore a All Craft crystals on the shop"
                 />
             </Helmet>
-            {/* <CategoryAds /> */}
-            {/* <Categories /> */}
-            {/* <TotalProduct
-        refetch={refetch}
-        setSort={setSort}
-        sort={sort}
-        totalProuducts={products?.length}
-      ></TotalProduct> */}
             <div className="grid lg:grid-cols-6 grid-cols-2 sub-section gap-3">
                 {isLoading ? (
                     <Loader></Loader>

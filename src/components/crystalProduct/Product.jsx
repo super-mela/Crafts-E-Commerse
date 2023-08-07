@@ -42,7 +42,7 @@ const Product = ({
         // to={`/product/${_id}`}
         className="cursor-pointer flex justify-center items-center border-b relative overflow-hidden"
       >
-        <img src={StaticPath + "product/" + image} alt="" className="w-28 h-28 image z-0" />
+        <img src={StaticPath + "crystal/" + image} alt="" className="w-28 h-28 image z-0" />
 
       </label>
 

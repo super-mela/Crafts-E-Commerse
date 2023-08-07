@@ -28,7 +28,7 @@ const CrystalItem = ({ crystalItem }) => {
     return (
         <div className="flex w-full gap-3 border-b text-[#374151] items-center justify-center px-3 py-2  hover:bg-slate-50 cursor-pointer">
             <div className="">
-                <img src={crystalItem ? StaticPath + "product/" + crystalItem.image : ""} alt="" className="w-14 rounded-lg" />
+                <img src={crystalItem ? StaticPath + "crystal/" + crystalItem.image : ""} alt="" className="w-14 rounded-lg" />
             </div>
 
             <div className="flex flex-col w-full">

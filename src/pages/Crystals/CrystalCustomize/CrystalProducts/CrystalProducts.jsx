@@ -43,17 +43,17 @@ const CrystalProducts = () => {
                             >
                                 <SwiperSlide>
                                     <div className="border rounded-sm overflow-hidden">
-                                        <img src={StaticPath + "product/" + crystalItem.image} alt="" className=" w-full " />
+                                        <img src={StaticPath + "crystal/" + crystalItem.image} alt="" className=" w-full " />
                                     </div>
                                 </SwiperSlide>
                                 <SwiperSlide>
                                     <div className="border rounded-sm overflow-hidden">
-                                        <img src={StaticPath + "product/" + crystalItem.image} alt="" className="h-full w-full " />
+                                        <img src={StaticPath + "crystal/" + crystalItem.image} alt="" className="h-full w-full " />
                                     </div>
                                 </SwiperSlide>
                                 <SwiperSlide>
                                     <div className="border rounded-sm overflow-hidden">
-                                        <img src={StaticPath + "product/" + crystalItem.image} alt="" className="h-full w-full " />
+                                        <img src={StaticPath + "crystal/" + crystalItem.image} alt="" className="h-full w-full " />
                                     </div>
                                 </SwiperSlide>
                             </Swiper>
@@ -73,13 +73,13 @@ const CrystalProducts = () => {
                                 className="mySwiper p-2 bg-secondary relative md:block hidden"
                             >
                                 <SwiperSlide>
-                                    <img src={StaticPath + "product/" + crystalItem.image} alt="" className="h-full w-full cursor-pointer" />
+                                    <img src={StaticPath + "crystal/" + crystalItem.image} alt="" className="h-full w-full cursor-pointer" />
                                 </SwiperSlide>
                                 <SwiperSlide>
-                                    <img src={StaticPath + "product/" + crystalItem.image} alt="" className="h-full w-full cursor-pointer" />
+                                    <img src={StaticPath + "crystal/" + crystalItem.image} alt="" className="h-full w-full cursor-pointer" />
                                 </SwiperSlide>
                                 <SwiperSlide>
-                                    <img src={StaticPath + "product/" + crystalItem.image} alt="" className="h-full w-full cursor-pointer" />
+                                    <img src={StaticPath + "crystal/" + crystalItem.image} alt="" className="h-full w-full cursor-pointer" />
                                 </SwiperSlide>
 
                                 <button className="absolute prevThumb bottom-[26%] bg-primary w-6 rounded-r-md my-auto flex justify-center items-center h-7 z-10 lg:left-0 left-2">
