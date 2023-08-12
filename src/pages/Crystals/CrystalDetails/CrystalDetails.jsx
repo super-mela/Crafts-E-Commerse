@@ -20,9 +20,9 @@ const CrystalDetails = () => {
     refetch,
     data: { data: selectedProduct } = [],
   } = useQuery({
-    queryKey: [id, "product"],
+    queryKey: [id, "crystal"],
     queryFn: () => {
-      return axios.get(`/product/${id}`);
+      return axios.get(`/crystal/${id}`);
     },
   });
 
@@ -41,16 +41,8 @@ const CrystalDetails = () => {
             </Link>
           </li>
           <li>
-            <Link to={`${from}?subcategory=all`} className="tori-link">
-              {selectedProduct?.category}
-            </Link>
-          </li>
-          <li>
-            <Link
-              to={`${from}?subcategory=${selectedProduct?.subCategory}`}
-              className="tori-link"
-            >
-              {selectedProduct?.subCategory}
+            <Link to={`${from}?3dCrystals`} className="tori-link">
+              3dCrystals
             </Link>
           </li>
           <li>{selectedProduct?.name}</li>
