@@ -2,6 +2,8 @@ import React, { useState, useEffect, useContext } from "react";
 import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
 import { ErrorMessage } from "@hookform/error-message";
+import { useQuery } from "@tanstack/react-query";
+import axios from '../../../../AxiosInstance/AxiosInstance'
 
 import ValidationError from "../../../../components/ValidationError/ValidationError";
 import EmptyImage from "../EmptyImage/EmptyImage";
@@ -33,48 +35,65 @@ const OrderProduct = ({ crystalItem }) => {
             background: 0
         }
     });
+    const {
+        data: { data: crystalOption } = [],
+    } = useQuery({
+        queryKey: ["crystalOption"],
+        queryFn: () => {
+            return axios.get("/setting/crystalOption");
+        },
+    });
+
     const navigate = useNavigate();
     const { addToCrystalCart, reduceQuantityFromCrystalCart, } = useContext(CrystalContext)
     const [quantity] = useGetCrystalQuantity(crystalItem._id);
     const [subTotal] = useGetCrsytalSubTotal();
     const [preview, setPreview] = useState(null)
-    const crystalOptions = {
-        size: [
-            { id: 0, price: 0, text: `Small Heart (Up to 2 People) 3" x 2.8"` },
-            { id: 1, price: 70.00, text: `Medium Heart (Up to 2 People) 3.9" x 3.5" ` },
-            { id: 2, price: 140.00, text: `Large Heart (Up to 3 People) 4.9" x 4.1" ` }
-        ],
-        rush: [
-            { id: 0, price: 0, text: `No Thankyou` },
-            { id: 1, price: 12.95, text: `Rush - Produced Next Business Day ` },
-        ],
-        LED: [
-            { id: 0, price: 0, text: `No Thankyou` },
-            { id: 1, price: 44.95, text: `Lighted Base For Small or Medium Heart` },
-            { id: 2, price: 54.95, text: `Lighted Base For Large Heart ` },
-            { id: 3, price: 39.95, text: `Round Rotating Lighted Base For Small or Medium Heart ` },
-            { id: 4, price: 39.95, text: `Round Rotating Color Changing LED Base for Medium Heart ` }
-        ],
-        line: [
-            { text: 'No Thankyou', price: 0, id: 0 },
-            { text: '1 ', price: 6.95, id: 1 },
-            { text: '2 ', price: 9.95, id: 2 }
-        ],
-        font: [
-            { id: 0, text: `Arial` },
-            { id: 1, text: `Monotype Corsiva` },
-            { id: 1, text: `Times New Roman` },
-            { id: 2, text: `Script MT Bold` }
-        ],
-        keyChain: [
-            { id: 0, price: 0, text: `No Thankyou` },
-            { id: 1, price: 19.75, text: `Heart Shape` },
-            { id: 2, price: 14.75, text: `Rectangle Shape` }
-        ],
-        cleaningKit: { id: 0, price: 7.95, text: `+ $` },
-        background: { id: 0, price: 25, text: `+ $` }
-    }
-    const textLine = [{ text: 'No Thankyou', price: 0, index: 0 }, { text: '1 (+6.95)', price: 6.95, index: 1 }, { text: '2 (+9.95)', price: 9.95, index: 2 }]
+    console.log(crystalOption)
+    const [crystalOptions, setCrystalOptions] = useState()
+    const [textLine, setTextLine] = useState([])
+    useEffect(() => {
+        setCrystalOptions(crystalOption)
+        setTextLine(crystalOption?.lines)
+    }, [crystalOption])
+
+    // const crystalOptions = {
+    //     size: [
+    //         { id: 0, price: 0, text: `Small Heart (Up to 2 People) 3" x 2.8"` },
+    //         { id: 1, price: 70.00, text: `Medium Heart (Up to 2 People) 3.9" x 3.5" ` },
+    //         { id: 2, price: 140.00, text: `Large Heart (Up to 3 People) 4.9" x 4.1" ` }
+    //     ],
+    //     rush: [
+    //         { id: 0, price: 0, text: `No Thankyou` },
+    //         { id: 1, price: 12.95, text: `Rush - Produced Next Business Day ` },
+    //     ],
+    //     LED: [
+    //         { id: 0, price: 0, text: `No Thankyou` },
+    //         { id: 1, price: 44.95, text: `Lighted Base For Small or Medium Heart` },
+    //         { id: 2, price: 54.95, text: `Lighted Base For Large Heart ` },
+    //         { id: 3, price: 39.95, text: `Round Rotating Lighted Base For Small or Medium Heart ` },
+    //         { id: 4, price: 39.95, text: `Round Rotating Color Changing LED Base for Medium Heart ` }
+    //     ],
+    //     line: [
+    //         { text: 'No Thankyou', price: 0, id: 0 },
+    //         { text: '1 ', price: 6.95, id: 1 },
+    //         { text: '2 ', price: 9.95, id: 2 }
+    //     ],
+    //     font: [
+    //         { id: 0, text: `Arial` },
+    //         { id: 1, text: `Monotype Corsiva` },
+    //         { id: 1, text: `Times New Roman` },
+    //         { id: 2, text: `Script MT Bold` }
+    //     ],
+    //     keyChain: [
+    //         { id: 0, price: 0, text: `No Thankyou` },
+    //         { id: 1, price: 19.75, text: `Heart Shape` },
+    //         { id: 2, price: 14.75, text: `Rectangle Shape` }
+    //     ],
+    //     cleaningKit: { id: 0, price: 7.95, text: `+ $` },
+    //     background: { id: 0, price: 25, text: `+ $` }
+    // }
+    // const textLine = [{ text: 'No Thankyou', price: 0, index: 0 }, { text: '1 (+6.95)', price: 6.95, index: 1 }, { text: '2 (+9.95)', price: 9.95, index: 2 }]
     const [total, setTotal] = useState(subTotal);
 
     useEffect(() => {
@@ -115,10 +134,17 @@ const OrderProduct = ({ crystalItem }) => {
             setValue(e.target.name, e.target.value)
         }
         else if (e.target.name === "line") {
-            setValue("text", new Array(parseInt(e.target.value)).fill(''))
-            setValue(e.target.name, parseFloat(textLine[e.target.value].price))
+            if (isNaN(parseFloat(e.target.value))) {
+                setValue("text", new Array(0).fill(''))
+                setValue(e.target.name, parseFloat(textLine.find((content) => content.text === e.target.value).price))
+            }
+            else {
+                setValue("text", new Array(parseInt(e.target.value)).fill(''))
+                setValue(e.target.name, parseFloat(textLine.find((content) => content.text === e.target.value).price))
+            }
         }
         else {
+            console.log(parseFloat(e.target.value))
             setValue(e.target.name, parseFloat(e.target.value))
         }
 
@@ -194,15 +220,15 @@ const OrderProduct = ({ crystalItem }) => {
                         </label>
                         <select
                             className="py-2 px-3 pr-9 block w-full border-gray-200 rounded-md text-sm"
-                            {...register("size", {
-                                required: "Size is required!",
-                                valueAsNumber: true
-                            })}
+                            // {...register("size", {
+                            //     required: "Size is required!",
+                            //     valueAsNumber: true
+                            // })}
                             defaultValue={getValues().size}
                             name="size"
                             onChange={(e) => handleChange(e)}
                         >
-                            {crystalOptions?.size?.map((item, index) => (
+                            {crystalOptions?.sizes?.map((item, index) => (
                                 <option key={item.id} value={item.price}>{item.text} {item.price ? `(+$${item.price})` : null} </option>
                             ))}
                         </select>
@@ -231,7 +257,7 @@ const OrderProduct = ({ crystalItem }) => {
                             defaultValue={getValues().rush}
                             name="rush"
                         >
-                            {crystalOptions?.rush?.map((item, index) => (
+                            {crystalOptions?.rushs?.map((item, index) => (
                                 <option key={item.id} value={item.price} >{item.text}{item.price ? `(+$${item.price})` : null} </option>
 
                             ))}
@@ -247,7 +273,7 @@ const OrderProduct = ({ crystalItem }) => {
                             name="LED"
                             onChange={(e => handleChange(e))}
                         >
-                            {crystalOptions?.LED?.map((item, index) => (
+                            {crystalOptions?.LEDs?.map((item, index) => (
                                 <option key={item.id} value={item.price}>{item.text}{item.price ? `(+$${item.price})` : null}</option>
                             ))}
                         </select>
@@ -263,13 +289,14 @@ const OrderProduct = ({ crystalItem }) => {
                             name="line"
                             onChange={(e) => handleChange(e)}
                         >
-                            {crystalOptions?.line.map((item, index) => (
-                                <option key={item.id} value={item.id}>{item.text}{item.price ? `(+$${item.price})` : null}</option>
+                            {crystalOptions?.lines.map((item, index) => (
+                                <option key={item.id} value={item.text}>{item.text}{item.price ? `(+$${item.price})` : null}</option>
                             ))}
                         </select>
                         {
                             getValues().text.map((item, index) => (
                                 <input
+                                    key={item.id}
                                     name={index}
                                     value={item}
                                     className="tori-input mt-2"
@@ -289,7 +316,7 @@ const OrderProduct = ({ crystalItem }) => {
                             name="font"
                             onChange={(e) => handleChange(e)}
                         >
-                            {crystalOptions?.font?.map((item, index) => (
+                            {crystalOptions?.fonts?.map((item, index) => (
                                 <option key={item.id} value={item.text} >{item.text}</option>
                             ))}
                         </select>
@@ -306,7 +333,7 @@ const OrderProduct = ({ crystalItem }) => {
                             name="keychane"
                             onChange={(e) => handleChange(e)}
                         >
-                            {crystalOptions?.keyChain?.map((item, index) => (
+                            {crystalOptions?.keychains?.map((item, index) => (
                                 <option key={item.id} value={item.price}>{item.text}{item.price ? `(+$${item.price})` : null} </option>
                             ))}
                         </select>
@@ -322,7 +349,7 @@ const OrderProduct = ({ crystalItem }) => {
                                     <span className="text-sm"> Add A Crystal Cleaning Kit</span>
                                     <small className="block">
                                         Price{" "}
-                                        <span className="font-bold">+{" "}${crystalOptions.cleaningKit.price}</span>
+                                        <span className="font-bold">+{" "}${crystalOptions?.cleaingKit?.price}</span>
                                     </small>
                                 </div>
                             </div>
@@ -331,7 +358,7 @@ const OrderProduct = ({ crystalItem }) => {
                                 type="checkbox"
                                 name="cleaningKit"
                                 onChange={(e) => handelCheckbox(e)}
-                                value={crystalOptions.cleaningKit.price}
+                                value={crystalOptions?.cleaingKit?.price}
                                 className="icon accent-primary"
                             />
                         </label>
@@ -346,7 +373,7 @@ const OrderProduct = ({ crystalItem }) => {
                                     <span className="text-sm"> Keep the Backgound</span>
                                     <small className="block">
                                         Price{" "}
-                                        <span className="font-bold">+{" "}${crystalOptions.background.price}</span>
+                                        <span className="font-bold">+{" "}${crystalOptions?.background?.price}</span>
                                     </small>
                                 </div>
                             </div>
@@ -355,7 +382,7 @@ const OrderProduct = ({ crystalItem }) => {
                                 type="checkbox"
                                 name="background"
                                 onChange={(e) => handelCheckbox(e)}
-                                value={crystalOptions.background.price}
+                                value={crystalOptions?.background?.price}
                                 className="icon accent-primary"
                             />
                         </label>
