@@ -44,10 +44,10 @@ const CustomCard = ({ customData }) => {
             <BiChevronRight /> Keychain:{" "}{keychane}
           </span>
           <span className="tori-link flex items-center gap-1 text-xs text-black/70" >
-            <BiChevronRight /> Cleaning Kit:{" "}{cleaningKit}
+            <BiChevronRight /> Cleaning Kit:{" "}{cleaningKit ? "Yes" : "No Thankyou"}
           </span>
           <span className="tori-link flex items-center gap-1 text-xs text-black/70" >
-            <BiChevronRight /> Background:{" "}{background}
+            <BiChevronRight /> Background:{" "}{background ? "Yes" : "No Thankyou"}
           </span>
 
         </div>

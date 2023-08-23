@@ -45,11 +45,10 @@ const OrderProduct = ({ crystalItem }) => {
     });
 
     const navigate = useNavigate();
-    const { addToCrystalCart, reduceQuantityFromCrystalCart, } = useContext(CrystalContext)
+    const { addToCrystalCart, reduceQuantityFromCrystalCart } = useContext(CrystalContext)
     const [quantity] = useGetCrystalQuantity(crystalItem._id);
     const [subTotal] = useGetCrsytalSubTotal();
     const [preview, setPreview] = useState(null)
-    console.log(crystalOption)
     const [crystalOptions, setCrystalOptions] = useState()
     const [textLine, setTextLine] = useState([])
     useEffect(() => {
@@ -57,43 +56,6 @@ const OrderProduct = ({ crystalItem }) => {
         setTextLine(crystalOption?.lines)
     }, [crystalOption])
 
-    // const crystalOptions = {
-    //     size: [
-    //         { id: 0, price: 0, text: `Small Heart (Up to 2 People) 3" x 2.8"` },
-    //         { id: 1, price: 70.00, text: `Medium Heart (Up to 2 People) 3.9" x 3.5" ` },
-    //         { id: 2, price: 140.00, text: `Large Heart (Up to 3 People) 4.9" x 4.1" ` }
-    //     ],
-    //     rush: [
-    //         { id: 0, price: 0, text: `No Thankyou` },
-    //         { id: 1, price: 12.95, text: `Rush - Produced Next Business Day ` },
-    //     ],
-    //     LED: [
-    //         { id: 0, price: 0, text: `No Thankyou` },
-    //         { id: 1, price: 44.95, text: `Lighted Base For Small or Medium Heart` },
-    //         { id: 2, price: 54.95, text: `Lighted Base For Large Heart ` },
-    //         { id: 3, price: 39.95, text: `Round Rotating Lighted Base For Small or Medium Heart ` },
-    //         { id: 4, price: 39.95, text: `Round Rotating Color Changing LED Base for Medium Heart ` }
-    //     ],
-    //     line: [
-    //         { text: 'No Thankyou', price: 0, id: 0 },
-    //         { text: '1 ', price: 6.95, id: 1 },
-    //         { text: '2 ', price: 9.95, id: 2 }
-    //     ],
-    //     font: [
-    //         { id: 0, text: `Arial` },
-    //         { id: 1, text: `Monotype Corsiva` },
-    //         { id: 1, text: `Times New Roman` },
-    //         { id: 2, text: `Script MT Bold` }
-    //     ],
-    //     keyChain: [
-    //         { id: 0, price: 0, text: `No Thankyou` },
-    //         { id: 1, price: 19.75, text: `Heart Shape` },
-    //         { id: 2, price: 14.75, text: `Rectangle Shape` }
-    //     ],
-    //     cleaningKit: { id: 0, price: 7.95, text: `+ $` },
-    //     background: { id: 0, price: 25, text: `+ $` }
-    // }
-    // const textLine = [{ text: 'No Thankyou', price: 0, index: 0 }, { text: '1 (+6.95)', price: 6.95, index: 1 }, { text: '2 (+9.95)', price: 9.95, index: 2 }]
     const [total, setTotal] = useState(subTotal);
 
     useEffect(() => {
@@ -171,9 +133,7 @@ const OrderProduct = ({ crystalItem }) => {
         navigate('/order', { state: data })
     }
     return (
-        <form
-            onSubmit={handleSubmit(handleRoute)}
-        >
+        <form onSubmit={handleSubmit(handleRoute)}>
             <div className="py-3 sticky top-0 bg-white rounded-md flex flex-col gap-3 border text-gray-700">
                 <h4 className="tori-title text-center">Image to be Crafted <Required /></h4>
                 <hr />
@@ -390,9 +350,10 @@ const OrderProduct = ({ crystalItem }) => {
                     <hr />
                     <div className="grid lg:grid-cols-2 gap-x-5 gap-y-3">
                         <div className="flex justify-start font-extrabold text-lg text-primary">
-                            <p>Quantity</p><Required />
+                            <p>Quantity</p>
                             <div className="border rounded-sm items-center flex ml-2">
                                 <button
+                                    type="button"
                                     onClick={() =>
                                         quantity && handleReduceQuantity()
                                     }
@@ -404,6 +365,7 @@ const OrderProduct = ({ crystalItem }) => {
                                 </button>
                                 <span className="text-sm mx-1">{quantity}</span>
                                 <button
+                                    type="button"
                                     onClick={() => handleAddtoCart()}
                                     className="px-2 "
                                 // onClick={() => handleAddtoCart(_id, name)}
@@ -426,7 +388,6 @@ const OrderProduct = ({ crystalItem }) => {
                     <button
                         type="submit"
                         className="tori-btn-secondary"
-                    //   disabled={!stripe || !clientSecret || !processing}
                     >
                         Continue
                     </button>
