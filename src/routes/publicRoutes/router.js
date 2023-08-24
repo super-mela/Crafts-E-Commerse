@@ -24,6 +24,7 @@ import TermsCondition from "../../pages/termscondition/TermsCondition";
 import Crystals from "../../pages/Crystals/home/home";
 import CrystalDetails from "../../pages/Crystals/CrystalDetails/CrystalDetails";
 import CrystalCustomize from "../../pages/Crystals/CrystalCustomize/CrystalCustomize"
+import CrystalInvoice from "../../pages/CrystalInvoice/Invoice/Invoice";
 
 export const router = createBrowserRouter([
   {
@@ -62,6 +63,10 @@ export const router = createBrowserRouter([
       {
         path: "/invoice/:uid",
         element: <Invoice />,
+      },
+      {
+        path: "/crystalinvoice/:uid",
+        element: <CrystalInvoice />,
       },
       {
         path: "/orderinfo/:uid",

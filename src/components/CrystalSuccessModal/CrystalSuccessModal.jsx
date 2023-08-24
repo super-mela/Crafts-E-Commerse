@@ -26,7 +26,7 @@ const CrystalSuccessModal = ({ trasactionId, unique_id }) => {
                     <p className="text-sm">Transaction ID: {trasactionId}</p>
                     <div className="modal-action">
                         <label
-                            onClick={() => navigate(`/invoice/${unique_id}`)}
+                            onClick={() => navigate(`/crystalinvoice/${unique_id}`)}
                             htmlFor="success-modal"
                             className="tori-btn-secondary"
                         >

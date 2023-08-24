@@ -19,13 +19,11 @@ const OrderSummary = ({ grandTotal, shippingCost, discount, setDiscount }) => {
   const handleApplyDiscount = (e) => {
     setLeastAmountError("");
     e.preventDefault();
-    console.log(e.target.promo.value);
     axios
       .post(`/offers?email=${user?.email}`, {
         coupon: e.target.promo.value,
       })
       .then((res) => {
-        console.log(res);
         if (res?.data?.message === "Valid") {
           if (subTotal >= res.data?.leastAmount) {
             setDiscount(

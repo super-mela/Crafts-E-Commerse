@@ -106,7 +106,6 @@ const OrderProduct = ({ crystalItem }) => {
             }
         }
         else {
-            console.log(parseFloat(e.target.value))
             setValue(e.target.name, parseFloat(e.target.value))
         }
 
@@ -256,7 +255,7 @@ const OrderProduct = ({ crystalItem }) => {
                         {
                             getValues().text.map((item, index) => (
                                 <input
-                                    key={item.id}
+                                    key={item + "-" + index}
                                     name={index}
                                     value={item}
                                     className="tori-input mt-2"

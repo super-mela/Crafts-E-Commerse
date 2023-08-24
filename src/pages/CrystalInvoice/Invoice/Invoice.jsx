@@ -12,7 +12,7 @@ import { AuthContext } from "../../../Contexts/AuthProvider/AuthProvider";
 import SuccessMessage from "../SuccessMessage/SuccessMessage";
 import "./Invoice.css";
 
-const Invoice = () => {
+const CrystalInvoice = () => {
   const ref = useRef();
   const { uid } = useParams();
   const { user } = useContext(AuthContext);
@@ -25,10 +25,10 @@ const Invoice = () => {
   } = useQuery({
     queryKey: ["invoices", uid],
     queryFn: () => {
-      return axios.get(`/invoices/${uid}?email=${user?.email}`);
+      return axios.get(`/crystalinvoices/${uid}?email=${user?.email}`);
     },
   });
-
+  console.log(invoice)
   return (
     <div className="sub-section bg-[#F9FAFB]">
       <Helmet>
@@ -39,11 +39,10 @@ const Invoice = () => {
         />
       </Helmet>
       {isLoading ? (
-        <Loader/>
+        <Loader />
       ) : (
         <>
-          <SuccessMessage/>
-
+          <SuccessMessage />
           <div className="bg-white my-5 text-[17px]" ref={ref}>
             <div className="bg-[#EEF2FF] rounded-t-md lg:p-5 p-2 text-black">
               <div className="flex lg:flex-nowrap flex-wrap justify-between">
@@ -89,7 +88,6 @@ const Invoice = () => {
                   {/* <!-- head --> */}
                   <thead className="bg-secondary">
                     <tr>
-                      <th>No</th>
                       <th>Product</th>
                       <th>Quantity</th>
                       <th>Item Price</th>
@@ -97,39 +95,67 @@ const Invoice = () => {
                     </tr>
                   </thead>
                   <tbody>
-                    {invoice?.cart?.map((item, idx) => (
-                      <tr key={item?._id}>
-                        <th>{idx + 1}</th>
-                        <td>{item?.name}</td>
-                        <td>{item?.quantity}</td>
-                        <td>${parseFloat(item?.price).toFixed(2)}</td>
-                        <td>${(item?.price * item?.quantity).toFixed(2)}</td>
-                      </tr>
-                    ))}
+                    <tr >
+                      <td>{invoice?.crystal?.name}</td>
+                      <td>{invoice?.crystal?.quantity}</td>
+                      <td>${parseFloat(invoice?.crystal?.price).toFixed(2)}</td>
+                      <td>${(parseFloat(invoice?.crystal?.price) * parseFloat(invoice?.crystal?.quantity)).toFixed(2)}</td>
+                    </tr>
+
                     {/* <!-- row 1 --> */}
                   </tbody>
                 </table>
               </div>
             </div>
-
+            <div className="bg-primary/10 rounded-b-md text-black/80 sub-section lg:flex lg:flex-nowrap flex-wrap justify-between text-center">
+              <div>
+                <p className="text-base font-bold">{invoice?.optionCaption?.size}</p>
+                <p>{parseFloat(invoice?.custom?.size).toFixed(2)}</p>
+              </div>
+              <div>
+                <p className="text-base font-bold">{invoice?.optionCaption?.rush}</p>
+                <p>${parseFloat(invoice?.custom?.rush).toFixed(2)}</p>
+              </div>
+              <div>
+                <p className="text-base font-bold">{invoice?.optionCaption?.LED}</p>
+                <p>${parseFloat(invoice?.custom?.LED).toFixed(2)}</p>
+              </div>
+              <div>
+                <p className="text-base font-bold">Texts</p>
+                <p>${parseFloat(invoice?.custom?.line).toFixed(2)}</p>
+              </div>
+            </div>
+            <div className="bg-primary/10 rounded-b-md text-black/80 sub-section lg:flex lg:flex-nowrap flex-wrap justify-between text-center">
+              <div>
+                <p className="text-base font-bold">{invoice?.optionCaption?.keychane}</p>
+                <p>${parseFloat(invoice?.custom?.keychane).toFixed(2)}</p>
+              </div>
+              <div>
+                <p className="text-base font-bold">Font</p>
+                <p>{invoice?.custom?.font}</p>
+              </div>
+              <div>
+                <p className="text-base font-bold">Cleaning Kit</p>
+                <p>${parseFloat(invoice?.custom?.cleaningKit).toFixed(2)}</p>
+              </div>
+              <div>
+                <p className="text-base font-bold">Background</p>
+                <p>${parseFloat(invoice?.custom?.background).toFixed(2)}</p>
+              </div>
+            </div>
             <div className="bg-primary/10 rounded-b-md text-black/80 sub-section lg:flex lg:flex-nowrap flex-wrap justify-between text-center">
               <div>
                 <p className="text-base font-bold">Payment Method</p>
                 <p>{invoice?.paymentMethod}</p>
               </div>
-
               <div>
                 <p className="text-base font-bold">Shipping</p>
                 <p>${parseFloat(invoice?.shippingCost).toFixed(2)}</p>
               </div>
               <div>
-                <p className="text-base font-bold">Discount</p>
-                <p>${parseFloat(invoice?.discount).toFixed(2)}</p>
-              </div>
-              <div>
                 <p className="text-base font-bold">Total</p>
                 <p className="text-lg font-bold text-warning">
-                  ${parseFloat(invoice?.amount).toFixed(2)}
+                  ${parseFloat(((parseFloat(invoice?.crystal?.price) + parseFloat(invoice?.custom?.size) + parseFloat(invoice?.custom?.rush) + parseFloat(invoice?.custom?.LED) + parseFloat(invoice?.custom?.line) + parseFloat(invoice?.custom?.keychane) + parseFloat(invoice?.custom?.cleaningKit) + parseFloat(invoice?.custom?.background)) * parseFloat(invoice?.crystal?.quantity)) + parseFloat(invoice?.shippingCost)).toFixed(2)}
                 </p>
               </div>
             </div>
@@ -151,4 +177,4 @@ const Invoice = () => {
   );
 };
 
-export default Invoice;
+export default CrystalInvoice;

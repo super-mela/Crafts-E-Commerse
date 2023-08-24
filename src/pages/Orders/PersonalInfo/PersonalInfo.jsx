@@ -25,6 +25,7 @@ const PersonalInfo = ({
     discount,
     shippingCost,
     customData,
+    customcaptionData
 }) => {
     const [creditPayment, setCreditPayment] = useState(false);
     const stripe = useStripe();
@@ -163,38 +164,6 @@ const PersonalInfo = ({
         return cart;
     };
 
-    // const handleOrder = (data) => {
-
-    //     // setProccessing(true)
-    //     const fileName = uuid() + "." + data.file[0].type.split("/")[1];
-    //     const formdata = new FormData()
-    //     formdata.append("orderId", unique_id)
-    //     formdata.append("address", data.address)
-    //     formdata.append("city", data.city)
-    //     formdata.append("country", data.country)
-    //     formdata.append("email", data.email)
-    //     formdata.append("file", data.file[0], unique_id)
-    //     formdata.append("firstname", data.firstname)
-    //     formdata.append("lastname", data.lastname)
-    //     formdata.append("phone", data.phone)
-    //     formdata.append("zip", data.zip)
-    //     formdata.append("description", data.description)
-
-    //     // Send to Db
-    //     fileinstace
-    //         .post(`/customOrder?email=${user?.email}`, formdata)
-    //         .then((res) => {
-    //             if (res?.data?.acknowledged) {
-    //                 toast.success("order Complites");
-    //                 // setProccessing(false)
-    //                 //  successModal.current.checked = true;
-    //             }
-    //         })
-    //         .catch((err) => {
-    //             toast.error("Something went wrong");
-    //         });
-    // }
-
     const placeOrderInDb = (data, transId) => {
 
         const unique_id = uuid();
@@ -213,6 +182,7 @@ const PersonalInfo = ({
         formdata.append("invoiceId", unique_id)
         formdata.append("shippingCost", shippingCost)
         formdata.append("crystal", JSON.stringify(createCrystal()))
+        formdata.append("optionCaption", JSON.stringify(customcaptionData))
         formdata.append("status", creditPayment ? "paid" : "pending")
         formdata.append("invoice", `#${invoiceNumber}`)
         formdata.append("date", new Date())

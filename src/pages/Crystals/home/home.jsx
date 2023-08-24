@@ -33,9 +33,7 @@ const Crystals = () => {
             );
         },
     });
-    console.log(data)
     const products = data;
-
     const pages = Math.ceil(data?.dataCount / size) || 0;
 
     return (
