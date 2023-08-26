@@ -276,7 +276,7 @@ const OrderProduct = ({ crystalItem }) => {
                             onChange={(e) => handleChange(e)}
                         >
                             {crystalOptions?.fonts?.map((item, index) => (
-                                <option key={item.id} value={item.text} >{item.text}</option>
+                                <option key={item.id} value={item.text} className={`font-[${item.text}]`}>{item.text}</option>
                             ))}
                         </select>
 

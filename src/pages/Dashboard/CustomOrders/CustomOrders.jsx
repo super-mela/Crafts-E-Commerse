@@ -33,7 +33,7 @@ const CustomOrders = () => {
             ) : customOrders?.length ? (
                 <>
                     <h4 className="text-base text-gray-700 font-semibold leading-none">
-                        My Custome Orders
+                        My Crystal Orders
                     </h4>
 
                     <div className="overflow-x-auto text-gray-700 border text-center">
@@ -41,18 +41,20 @@ const CustomOrders = () => {
                             {/* <!-- head --> */}
                             <thead className="bg-secondary">
                                 <tr>
-                                    <th>Order ID</th>
+                                    <th>Invoice</th>
                                     <th>Date</th>
+                                    <th>Method</th>
                                     <th>Status</th>
+                                    <th>Total</th>
                                     <th>Action</th>
                                 </tr>
                             </thead>
                             <tbody className="text-xs">
                                 {customOrders?.map((customOrder) => (
                                     <tr key={customOrder?._id}>
-                                        <th>{customOrder?.orderId}</th>
+                                        <th>{customOrder?.invoice}</th>
                                         <td>{moment(customOrder?.date).format("DD/MM/YYYY")}</td>
-
+                                        <td>{customOrder?.paymentMethod}</td>
                                         <td>
                                             {customOrder?.status === "paid" ? (
                                                 <span className="text-primary">Paid</span>
@@ -60,9 +62,10 @@ const CustomOrders = () => {
                                                 <span className="text-accent"> Pending</span>
                                             )}
                                         </td>
+                                        ${parseFloat(((parseFloat(customOrder?.crystal?.price) + parseFloat(customOrder?.custom?.size) + parseFloat(customOrder?.custom?.rush) + parseFloat(customOrder?.custom?.LED) + parseFloat(customOrder?.custom?.line) + parseFloat(customOrder?.custom?.keychane) + parseFloat(customOrder?.custom?.cleaningKit) + parseFloat(customOrder?.custom?.background)) * parseFloat(customOrder?.crystal?.quantity)) + parseFloat(customOrder?.shippingCost)).toFixed(2)}
                                         <td>
                                             <Link
-                                                to={`/orderinfo/${customOrder?.orderId}`}
+                                                to={`/orderinfo/${customOrder?.invoiceId}`}
                                                 className="text-primary bg-primary/20 rounded-full px-2 py-[2px] hover:text-white hover:bg-primary"
                                             >
                                                 Detials

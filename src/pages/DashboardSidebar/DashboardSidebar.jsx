@@ -44,7 +44,7 @@ const DashboardSidebar = () => {
           <span className="border rounded-full p-1">
             <AiOutlineGift />
           </span>
-          My Custome Orders
+          My Crystal Orders
         </Link>
         <Link to={"/user/dashboard/updateProfile"} className="dashboard-link">
           <span className="border rounded-full p-1">
