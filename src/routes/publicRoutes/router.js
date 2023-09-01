@@ -1,4 +1,4 @@
-import { createBrowserRouter } from "react-router-dom";
+import { createBrowserRouter, createHashRouter } from "react-router-dom";
 import DashboardLayout from "../../layouts/DashboardLayout/DashboardLayout";
 import Main from "../../layouts/Main/Main";
 import Order from "../../pages/Orders/Order";
@@ -26,7 +26,7 @@ import CrystalDetails from "../../pages/Crystals/CrystalDetails/CrystalDetails";
 import CrystalCustomize from "../../pages/Crystals/CrystalCustomize/CrystalCustomize"
 import CrystalInvoice from "../../pages/CrystalInvoice/Invoice/Invoice";
 
-export const router = createBrowserRouter([
+export const router = createHashRouter([
   {
     path: "/",
     element: <Main />,

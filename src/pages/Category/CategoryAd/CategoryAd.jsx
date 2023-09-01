@@ -15,7 +15,7 @@ const CategoryAd = ({ ad: { title, subtitle, categoryfilename } }) => {
         <h3 className="text-2xl">{title}</h3>
         <small className="text-xs leading-none">{subtitle}</small>
 
-        <Link className="tori-btn-primary mt-3" to={"/order"}>Order Now</Link>
+        <Link className="tori-btn-primary mt-3" to={"/3dCrystals"}>Order Now</Link>
       </div>
     </div>
   );

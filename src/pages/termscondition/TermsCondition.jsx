@@ -55,7 +55,7 @@ const TermsCondition = () => {
                     <div class="my-6 lg:my-8 last:mb-0">
                         <h2 class="text-xl xl:text-2xl xl:leading-7 font-semibold font-serif mb-2 lg:mb-4">Your Privacy</h2>
                         <div class="font-sans leading-7">
-                            <p>Please read <a class="text-emerald-500" href="/privacy-policy">Privacy Policy</a> </p>
+                            <p>Please read <a class="text-emerald-500" href="#/privacy-policy">Privacy Policy</a> </p>
                         </div>
                     </div>
                     <div class="my-6 lg:my-8 last:mb-0">
